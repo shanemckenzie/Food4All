@@ -155,8 +155,6 @@
 				79E5A2E41E3A800200DE2978 /* Main.storyboard */,
 				79E5A2E71E3A800200DE2978 /* Assets.xcassets */,
 				79E5A2E91E3A800200DE2978 /* LaunchScreen.storyboard */,
-				79E5A2EC1E3A800200DE2978 /* Info.plist */,
-				79EBDAAD1E3A8AA9001CAEA0 /* GoogleService-Info.plist */,
 			);
 			path = Food4All;
 			sourceTree = "<group>";
@@ -209,6 +207,8 @@
 		79EBDAAA1E3A849F001CAEA0 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				79EBDAAD1E3A8AA9001CAEA0 /* GoogleService-Info.plist */,
+				79E5A2EC1E3A800200DE2978 /* Info.plist */,
 				792FB1841E4682230067C1B0 /* SWRevealViewController.h */,
 				792FB1851E4682230067C1B0 /* SWRevealViewController.m */,
 				792FB1831E4682220067C1B0 /* Food4All-Bridging-Header.h */,
