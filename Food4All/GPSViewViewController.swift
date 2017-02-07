@@ -7,9 +7,15 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
+
 
 class GPSViewViewController: UIViewController {
 
+    @IBOutlet weak var mapView: MKMapView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,6 +27,8 @@ class GPSViewViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
     
 
     /*

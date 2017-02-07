@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         
         //open button reveals side menu
         open.target = self.revealViewController()
-        open.action = Selector("revealToggle:")
+        open.action = #selector(SWRevealViewController.revealToggle(_:))
         
         //allows side menu to be opened by sliding
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
