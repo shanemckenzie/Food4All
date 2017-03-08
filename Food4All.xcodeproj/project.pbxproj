@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		19FEB5C9C87E05FE24D8E5FB /* Pods_Food4AllUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7822FDD313B0B2B80A4011AA /* Pods_Food4AllUITests.framework */; };
-		4BFBA41E2435BC2722AAE7BB /* Pods_Food4AllTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9A13DA884D371E8BC5DA51A /* Pods_Food4AllTests.framework */; };
+		3A4425C48777164956ABC350 /* libPods-Food4AllUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC665A2722F0F1F15C31DCEC /* libPods-Food4AllUITests.a */; };
+		55D413CE923557E05BF78B91 /* libPods-Food4All.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66178A2996FAF9857962FB10 /* libPods-Food4All.a */; };
+		7547FC003CA82B587EB8724B /* libPods-Food4AllTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FFE28F90C525D360467C535 /* libPods-Food4AllTests.a */; };
 		792FB1861E4682230067C1B0 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 792FB1851E4682230067C1B0 /* SWRevealViewController.m */; };
 		792FB1881E4684A80067C1B0 /* BackTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792FB1871E4684A80067C1B0 /* BackTableVC.swift */; };
 		792FB18A1E468C2B0067C1B0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792FB1891E468C2B0067C1B0 /* HomeViewController.swift */; };
@@ -23,10 +24,8 @@
 		79E5A3011E3A800200DE2978 /* Food4AllUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E5A3001E3A800200DE2978 /* Food4AllUITests.swift */; };
 		79EBDAA91E3A840E001CAEA0 /* DonatedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EBDAA81E3A840E001CAEA0 /* DonatedItem.swift */; };
 		79EBDAAC1E3A84AD001CAEA0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EBDAAB1E3A84AD001CAEA0 /* Constants.swift */; };
-		79EBDAAE1E3A8AA9001CAEA0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79EBDAAD1E3A8AA9001CAEA0 /* GoogleService-Info.plist */; };
-		79EBDAAF1E3A8AA9001CAEA0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79EBDAAD1E3A8AA9001CAEA0 /* GoogleService-Info.plist */; };
-		79EBDAB01E3A8AA9001CAEA0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79EBDAAD1E3A8AA9001CAEA0 /* GoogleService-Info.plist */; };
-		AB0EEF84E45C49402A8E4299 /* Pods_Food4All.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 812A8225A19BDB325923437A /* Pods_Food4All.framework */; };
+		A9B52C731E6F627100036715 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B52C721E6F627100036715 /* InitialViewController.swift */; };
+		A9B52C751E6F6F4200036715 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9B52C741E6F6F4200036715 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,9 +48,10 @@
 /* Begin PBXFileReference section */
 		2CBC0EB594C63C2970D415A1 /* Pods-Food4AllUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Food4AllUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Food4AllUITests/Pods-Food4AllUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		36B4BC220A0D6C6260991564 /* Pods-Food4AllUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Food4AllUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Food4AllUITests/Pods-Food4AllUITests.release.xcconfig"; sourceTree = "<group>"; };
+		4FFE28F90C525D360467C535 /* libPods-Food4AllTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Food4AllTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		528D78495E000CC50D589380 /* Pods-Food4AllTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Food4AllTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Food4AllTests/Pods-Food4AllTests.debug.xcconfig"; sourceTree = "<group>"; };
+		66178A2996FAF9857962FB10 /* libPods-Food4All.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Food4All.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		73DBDA2C6678F079A5B5880C /* Pods-Food4All.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Food4All.release.xcconfig"; path = "Pods/Target Support Files/Pods-Food4All/Pods-Food4All.release.xcconfig"; sourceTree = "<group>"; };
-		7822FDD313B0B2B80A4011AA /* Pods_Food4AllUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Food4AllUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		792FB1831E4682220067C1B0 /* Food4All-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Food4All-Bridging-Header.h"; sourceTree = "<group>"; };
 		792FB1841E4682230067C1B0 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		792FB1851E4682230067C1B0 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
@@ -74,11 +74,11 @@
 		79E5A3021E3A800200DE2978 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79EBDAA81E3A840E001CAEA0 /* DonatedItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonatedItem.swift; sourceTree = "<group>"; };
 		79EBDAAB1E3A84AD001CAEA0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		79EBDAAD1E3A8AA9001CAEA0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		812A8225A19BDB325923437A /* Pods_Food4All.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Food4All.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		980DEC61E16DF66BDFCBE221 /* Pods-Food4AllTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Food4AllTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Food4AllTests/Pods-Food4AllTests.release.xcconfig"; sourceTree = "<group>"; };
 		A82311851814AD7EAF07028D /* Pods-Food4All.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Food4All.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Food4All/Pods-Food4All.debug.xcconfig"; sourceTree = "<group>"; };
-		E9A13DA884D371E8BC5DA51A /* Pods_Food4AllTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Food4AllTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9B52C721E6F627100036715 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
+		A9B52C741E6F6F4200036715 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FC665A2722F0F1F15C31DCEC /* libPods-Food4AllUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Food4AllUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB0EEF84E45C49402A8E4299 /* Pods_Food4All.framework in Frameworks */,
+				55D413CE923557E05BF78B91 /* libPods-Food4All.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,7 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BFBA41E2435BC2722AAE7BB /* Pods_Food4AllTests.framework in Frameworks */,
+				7547FC003CA82B587EB8724B /* libPods-Food4AllTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,7 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19FEB5C9C87E05FE24D8E5FB /* Pods_Food4AllUITests.framework in Frameworks */,
+				3A4425C48777164956ABC350 /* libPods-Food4AllUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +200,7 @@
 				792FB1891E468C2B0067C1B0 /* HomeViewController.swift */,
 				792FB18B1E468C360067C1B0 /* GPSViewViewController.swift */,
 				792FB18D1E468C420067C1B0 /* AccountViewController.swift */,
+				A9B52C721E6F627100036715 /* InitialViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -207,7 +208,7 @@
 		79EBDAAA1E3A849F001CAEA0 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				79EBDAAD1E3A8AA9001CAEA0 /* GoogleService-Info.plist */,
+				A9B52C741E6F6F4200036715 /* GoogleService-Info.plist */,
 				79E5A2EC1E3A800200DE2978 /* Info.plist */,
 				792FB1841E4682230067C1B0 /* SWRevealViewController.h */,
 				792FB1851E4682230067C1B0 /* SWRevealViewController.m */,
@@ -220,9 +221,9 @@
 		FF00FB09D8EFF4ADBCB75462 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				812A8225A19BDB325923437A /* Pods_Food4All.framework */,
-				E9A13DA884D371E8BC5DA51A /* Pods_Food4AllTests.framework */,
-				7822FDD313B0B2B80A4011AA /* Pods_Food4AllUITests.framework */,
+				66178A2996FAF9857962FB10 /* libPods-Food4All.a */,
+				4FFE28F90C525D360467C535 /* libPods-Food4AllTests.a */,
+				FC665A2722F0F1F15C31DCEC /* libPods-Food4AllUITests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -349,8 +350,8 @@
 			files = (
 				79E5A2EB1E3A800200DE2978 /* LaunchScreen.storyboard in Resources */,
 				79E5A2E81E3A800200DE2978 /* Assets.xcassets in Resources */,
+				A9B52C751E6F6F4200036715 /* GoogleService-Info.plist in Resources */,
 				79E5A2E61E3A800200DE2978 /* Main.storyboard in Resources */,
-				79EBDAAE1E3A8AA9001CAEA0 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,7 +359,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79EBDAAF1E3A8AA9001CAEA0 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,7 +366,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79EBDAB01E3A8AA9001CAEA0 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +519,7 @@
 				792FB18C1E468C360067C1B0 /* GPSViewViewController.swift in Sources */,
 				792FB1881E4684A80067C1B0 /* BackTableVC.swift in Sources */,
 				792FB1861E4682230067C1B0 /* SWRevealViewController.m in Sources */,
+				A9B52C731E6F627100036715 /* InitialViewController.swift in Sources */,
 				79E5A2E11E3A800200DE2978 /* AppDelegate.swift in Sources */,
 				792FB18A1E468C2B0067C1B0 /* HomeViewController.swift in Sources */,
 				79EBDAAC1E3A84AD001CAEA0 /* Constants.swift in Sources */,
