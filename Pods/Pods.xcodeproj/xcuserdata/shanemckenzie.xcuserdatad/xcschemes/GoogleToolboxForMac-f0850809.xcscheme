@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "62038EDBD4355BB4F4D98D3FE552556A"
-               BuildableName = "libPods-Food4All.a"
-               BlueprintName = "Pods-Food4All"
+               BlueprintIdentifier = "A68306F6543C656306175BE0B935CC5F"
+               BuildableName = "libGoogleToolboxForMac-f0850809.a"
+               BlueprintName = "GoogleToolboxForMac-f0850809"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "62038EDBD4355BB4F4D98D3FE552556A"
-            BuildableName = "libPods-Food4All.a"
-            BlueprintName = "Pods-Food4All"
+            BlueprintIdentifier = "A68306F6543C656306175BE0B935CC5F"
+            BuildableName = "libGoogleToolboxForMac-f0850809.a"
+            BlueprintName = "GoogleToolboxForMac-f0850809"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -60,6 +60,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "A68306F6543C656306175BE0B935CC5F"
+            BuildableName = "libGoogleToolboxForMac-f0850809.a"
+            BlueprintName = "GoogleToolboxForMac-f0850809"
+            ReferencedContainer = "container:Pods.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
