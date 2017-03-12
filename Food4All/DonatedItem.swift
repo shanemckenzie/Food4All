@@ -7,11 +7,19 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseAuth
+
 
 class DonatedItem {
     
     fileprivate var _name: String!
+    fileprivate var _description: String!
     fileprivate var _expiration: String!
+    
+    
+    var ref: FIRDatabaseReference!
+    
     
     
     var name: String {
@@ -26,6 +34,28 @@ class DonatedItem {
             _expiration = ""
         }
         return _expiration
+    }
+    
+    func saveToDB() {
+        ref = FIRDatabase.database().reference()
+        
+        //let userID = FIRAuth.auth()?.currentUser?.uid
+        //self.ref.child("users").child(user).setValue(["itemName": _name])
+        //self.ref.child("itemName")
+        
+        let newDonationItemRef = self.ref!.child("DonationItem").childByAutoId()
+        
+        let newDonationItemId = newDonationItemRef.key
+        
+        let newDonationItemData = ["itemID": newDonationItemId,
+            "title": _name as NSString,
+            "description": _description as NSString,
+            "expiration": _expiration as NSString
+        ] as [String : Any]
+        
+        newDonationItemRef.setValue(newDonationItemData)
+        
+        
     }
     
 }

@@ -11,6 +11,8 @@ target 'Food4All' do
   # For user accounts
   pod 'Firebase/Auth'
 
+  pod 'Firebase/Database'
+
   target 'Food4AllTests' do
     inherit! :search_paths
     # Pods for testing

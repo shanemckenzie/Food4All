@@ -10,6 +10,7 @@
 		3A4425C48777164956ABC350 /* libPods-Food4AllUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC665A2722F0F1F15C31DCEC /* libPods-Food4AllUITests.a */; };
 		55D413CE923557E05BF78B91 /* libPods-Food4All.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66178A2996FAF9857962FB10 /* libPods-Food4All.a */; };
 		7547FC003CA82B587EB8724B /* libPods-Food4AllTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FFE28F90C525D360467C535 /* libPods-Food4AllTests.a */; };
+		790838541E74EB0F0037A7D2 /* SubmissionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790838531E74EB0F0037A7D2 /* SubmissionVC.swift */; };
 		792FB1861E4682230067C1B0 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 792FB1851E4682230067C1B0 /* SWRevealViewController.m */; };
 		792FB1881E4684A80067C1B0 /* BackTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792FB1871E4684A80067C1B0 /* BackTableVC.swift */; };
 		792FB18A1E468C2B0067C1B0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792FB1891E468C2B0067C1B0 /* HomeViewController.swift */; };
@@ -52,6 +53,7 @@
 		528D78495E000CC50D589380 /* Pods-Food4AllTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Food4AllTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Food4AllTests/Pods-Food4AllTests.debug.xcconfig"; sourceTree = "<group>"; };
 		66178A2996FAF9857962FB10 /* libPods-Food4All.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Food4All.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		73DBDA2C6678F079A5B5880C /* Pods-Food4All.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Food4All.release.xcconfig"; path = "Pods/Target Support Files/Pods-Food4All/Pods-Food4All.release.xcconfig"; sourceTree = "<group>"; };
+		790838531E74EB0F0037A7D2 /* SubmissionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionVC.swift; sourceTree = "<group>"; };
 		792FB1831E4682220067C1B0 /* Food4All-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Food4All-Bridging-Header.h"; sourceTree = "<group>"; };
 		792FB1841E4682230067C1B0 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		792FB1851E4682230067C1B0 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				792FB18B1E468C360067C1B0 /* GPSViewViewController.swift */,
 				792FB18D1E468C420067C1B0 /* AccountViewController.swift */,
 				A9B52C721E6F627100036715 /* InitialViewController.swift */,
+				790838531E74EB0F0037A7D2 /* SubmissionVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -522,6 +525,7 @@
 				A9B52C731E6F627100036715 /* InitialViewController.swift in Sources */,
 				79E5A2E11E3A800200DE2978 /* AppDelegate.swift in Sources */,
 				792FB18A1E468C2B0067C1B0 /* HomeViewController.swift in Sources */,
+				790838541E74EB0F0037A7D2 /* SubmissionVC.swift in Sources */,
 				79EBDAAC1E3A84AD001CAEA0 /* Constants.swift in Sources */,
 				792FB18E1E468C420067C1B0 /* AccountViewController.swift in Sources */,
 			);
