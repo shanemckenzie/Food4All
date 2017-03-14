@@ -39,19 +39,18 @@ class DonatedItem {
     func saveToDB() {
         ref = FIRDatabase.database().reference()
         
-        //let userID = FIRAuth.auth()?.currentUser?.uid
-        //self.ref.child("users").child(user).setValue(["itemName": _name])
-        //self.ref.child("itemName")
-        
         let newDonationItemRef = self.ref!.child("DonationItem").childByAutoId()
         
         let newDonationItemId = newDonationItemRef.key
         
-        let newDonationItemData = ["itemID": newDonationItemId,
+        let newDonationItemData: [String : Any] = ["itemID": newDonationItemId,
             "title": _name as NSString,
             "description": _description as NSString,
             "expiration": _expiration as NSString
-        ] as [String : Any]
+            //user
+            //image
+            //location
+        ]
         
         newDonationItemRef.setValue(newDonationItemData)
         
