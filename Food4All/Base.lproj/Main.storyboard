@@ -64,14 +64,34 @@
                     <connections>
                         <outlet property="emailField" destination="dh3-CR-lEY" id="rlH-aY-7e6"/>
                         <outlet property="passwordField" destination="Iw5-k8-UI7" id="CTI-5y-3qM"/>
-                        <segue destination="Fqd-Bh-3j7" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="8zR-vB-5na"/>
-                        <segue destination="gvZ-m7-Sne" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="sJ2-TJ-ELM"/>
-                        <segue destination="XF7-hZ-LD5" kind="show" identifier="logInSegue" id="n2T-Go-eIt"/>
+                        <segue destination="MmV-GL-CVt" kind="show" identifier="logInSegue" id="8zW-hE-mit"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xab-PA-9Pv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-212" y="90"/>
+            <point key="canvasLocation" x="-1660" y="107"/>
+        </scene>
+        <!--Reveal View Controller-->
+        <scene sceneID="Zt6-dy-rpm">
+            <objects>
+                <viewController id="MmV-GL-CVt" customClass="SWRevealViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7Id-rV-uDY"/>
+                        <viewControllerLayoutGuide type="bottom" id="vRI-LH-ZqK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="M5E-kS-aq3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="Fqd-Bh-3j7" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="2ps-cC-YFU"/>
+                        <segue destination="gvZ-m7-Sne" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="sVt-fM-nO3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SH4-YA-5QA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-254" y="70"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rXy-bn-ayl">
@@ -498,11 +518,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="KiN-js-Cri"/>
-        <segue reference="z29-a9-U73"/>
+        <segue reference="Opc-Aw-TxI"/>
+        <segue reference="sVt-fM-nO3"/>
         <segue reference="y8c-7L-Yrg"/>
-        <segue reference="UJC-6a-zsR"/>
-        <segue reference="zm5-Ic-SAo"/>
-
+        <segue reference="s0D-eL-482"/>
     </inferredMetricsTieBreakers>
 </document>
