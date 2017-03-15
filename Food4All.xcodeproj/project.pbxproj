@@ -14,8 +14,9 @@
 		792FB1861E4682230067C1B0 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 792FB1851E4682230067C1B0 /* SWRevealViewController.m */; };
 		792FB1881E4684A80067C1B0 /* BackTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792FB1871E4684A80067C1B0 /* BackTableVC.swift */; };
 		792FB18A1E468C2B0067C1B0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792FB1891E468C2B0067C1B0 /* HomeViewController.swift */; };
-		792FB18C1E468C360067C1B0 /* GPSViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792FB18B1E468C360067C1B0 /* GPSViewViewController.swift */; };
+		792FB18C1E468C360067C1B0 /* GPSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792FB18B1E468C360067C1B0 /* GPSViewController.swift */; };
 		792FB18E1E468C420067C1B0 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792FB18D1E468C420067C1B0 /* AccountViewController.swift */; };
+		79783A931E78F5B300916C75 /* MapData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79783A921E78F5B300916C75 /* MapData.swift */; };
 		79E5A2E11E3A800200DE2978 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E5A2E01E3A800200DE2978 /* AppDelegate.swift */; };
 		79E5A2E31E3A800200DE2978 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E5A2E21E3A800200DE2978 /* ViewController.swift */; };
 		79E5A2E61E3A800200DE2978 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79E5A2E41E3A800200DE2978 /* Main.storyboard */; };
@@ -59,8 +60,9 @@
 		792FB1851E4682230067C1B0 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		792FB1871E4684A80067C1B0 /* BackTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackTableVC.swift; sourceTree = "<group>"; };
 		792FB1891E468C2B0067C1B0 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		792FB18B1E468C360067C1B0 /* GPSViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPSViewViewController.swift; sourceTree = "<group>"; };
+		792FB18B1E468C360067C1B0 /* GPSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPSViewController.swift; sourceTree = "<group>"; };
 		792FB18D1E468C420067C1B0 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		79783A921E78F5B300916C75 /* MapData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapData.swift; sourceTree = "<group>"; };
 		79E5A2DD1E3A800200DE2978 /* Food4All.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Food4All.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79E5A2E01E3A800200DE2978 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		79E5A2E21E3A800200DE2978 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				79EBDAA81E3A840E001CAEA0 /* DonatedItem.swift */,
+				79783A921E78F5B300916C75 /* MapData.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -200,7 +203,7 @@
 				79E5A2E21E3A800200DE2978 /* ViewController.swift */,
 				792FB1871E4684A80067C1B0 /* BackTableVC.swift */,
 				792FB1891E468C2B0067C1B0 /* HomeViewController.swift */,
-				792FB18B1E468C360067C1B0 /* GPSViewViewController.swift */,
+				792FB18B1E468C360067C1B0 /* GPSViewController.swift */,
 				792FB18D1E468C420067C1B0 /* AccountViewController.swift */,
 				A9B52C721E6F627100036715 /* InitialViewController.swift */,
 				790838531E74EB0F0037A7D2 /* SubmissionVC.swift */,
@@ -519,8 +522,9 @@
 			files = (
 				79EBDAA91E3A840E001CAEA0 /* DonatedItem.swift in Sources */,
 				79E5A2E31E3A800200DE2978 /* ViewController.swift in Sources */,
-				792FB18C1E468C360067C1B0 /* GPSViewViewController.swift in Sources */,
+				792FB18C1E468C360067C1B0 /* GPSViewController.swift in Sources */,
 				792FB1881E4684A80067C1B0 /* BackTableVC.swift in Sources */,
+				79783A931E78F5B300916C75 /* MapData.swift in Sources */,
 				792FB1861E4682230067C1B0 /* SWRevealViewController.m in Sources */,
 				A9B52C731E6F627100036715 /* InitialViewController.swift in Sources */,
 				79E5A2E11E3A800200DE2978 /* AppDelegate.swift in Sources */,
