@@ -44,23 +44,6 @@ class DonatedItems: NSObject{
         donatedItems.append(item)
     }
     
-    /*
-     
-     func updateItem(item: Item, index: Int){
-     //items[index] = item
-     
-     //remeove thee item, then readd it so the list remains sorted
-     removeItem(index: index)
-     addItem(item: item)
-     }
-     
-     
-     func removeItem(index: Int){
-     items.remove(at: index)
-     }
-     */
-    
-    
     //MARK: Private Functions
     private func loadSampleDonation() {
         
@@ -77,6 +60,7 @@ class DonatedItems: NSObject{
         let dateString: String = formatter.string(from: date as Date)
         let coordinates = CLLocationCoordinate2D(latitude: 50.417433, longitude: -104.594179)
         let coordinates2 = CLLocationCoordinate2D(latitude: 50.417439, longitude: -104.59417)
+        let coordinates3 = CLLocationCoordinate2D(latitude: 50.495254, longitude: -104.637263)
         
         
         guard let donation1 = DonatedItem(title, photo!, true, description, dateString, coordinates) else {
@@ -87,8 +71,12 @@ class DonatedItems: NSObject{
             fatalError("Unable to instantiate object")
         }
         
+        guard let donation3 = DonatedItem("WALMART", photo!, false, description2, dateString, coordinates3) else {
+            fatalError("Unable to instantiate object")
+        }
         
-        donatedItems += [donation1, donation2]
+        
+        donatedItems += [donation1, donation2, donation3]
         
         
     }

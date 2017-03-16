@@ -18,12 +18,16 @@ class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     let regionRadius: CLLocationDistance = 1000
     let locationManager = CLLocationManager()
     var myLocation: CLLocationCoordinate2D?
-    
     var mapData: MapData?
+    
+    //var annotations = [MKPointAnnotation]()
+    var donatedItems = DonatedItems()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        donatedItems.initItems()
+        
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         self.mapView.showsUserLocation = true
         
@@ -55,10 +59,18 @@ class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
         
         //mapData?.loadSampleData(mapView)
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = CLLocationCoordinate2D(latitude: 50.417433, longitude: -104.594179)
-        mapView.addAnnotation(annotation)
+        //let annotation = MKPointAnnotation()
+        //annotation.coordinate = CLLocationCoordinate2D(latitude: 50.417433, longitude: -104.594179)
+        //mapView.addAnnotation(annotation)
         
+        //load pins onto the map
+        
+        for index in 0 ... (donatedItems.getCount() - 1){
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = donatedItems.getItem(index: index).coordinates!
+            mapView.addAnnotation(annotation)
+        }
+
     }
     
     override func viewWillAppear(_ animated: Bool) {

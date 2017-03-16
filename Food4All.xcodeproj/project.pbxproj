@@ -188,7 +188,6 @@
 		79EBDAA41E3A827B001CAEA0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				795798821E79A77C0055D8E3 /* DonationItemCell.swift */,
 				79EBDAA81E3A840E001CAEA0 /* DonatedItem.swift */,
 				A93F7A861E7B3A68003B9DC1 /* DonatedItems.swift */,
 				79783A921E78F5B300916C75 /* MapData.swift */,
@@ -199,6 +198,7 @@
 		79EBDAA61E3A829F001CAEA0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				795798821E79A77C0055D8E3 /* DonationItemCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
