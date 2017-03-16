@@ -17,6 +17,7 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     @IBOutlet weak var descTxt: UITextField!
     @IBOutlet weak var expirationDatePicker: UIDatePicker!
     
+    var donatedItem: DonatedItem?
     
     
     override func viewDidLoad() {

@@ -7,3 +7,21 @@
 //
 
 import Foundation
+import MapKit
+import CoreLocation
+
+class MapData {
+    
+    
+    
+    
+    
+    func loadSampleData(_ mapView: MKMapView) {
+        let annotation = MKPointAnnotation()
+        
+        annotation.coordinate = CLLocationCoordinate2D(latitude: 50.417433, longitude: -104.594178)
+        
+        mapView.addAnnotation(annotation)
+        
+    }
+}

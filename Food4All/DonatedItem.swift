@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 import FirebaseAuth
-
+import CoreLocation
 
 class DonatedItem {
     
@@ -17,16 +17,31 @@ class DonatedItem {
     fileprivate var _description: String!
     fileprivate var _expiration: String!
     
+    var expireDate: NSDate?
+    var coordinates: CLLocationCoordinate2D?
+    
+    
+    lazy var expireDateString: String = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM dd, h:mm a"
+        
+        return formatter.string(from: self.expireDate as! Date)
+    }()
     
     var ref: FIRDatabaseReference!
-    
-    
-    
+
     var name: String {
         if _name == nil {
             _name = ""
         }
         return _name
+    }
+    
+    var description: String {
+        if _description == nil {
+            _description = ""
+        }
+        return _description
     }
     
     var expiration: String {
@@ -35,6 +50,13 @@ class DonatedItem {
         }
         return _expiration
     }
+    
+    init?(){
+        _name = ""
+        _description = ""
+        _expiration = ""
+    }
+    
     
     func saveToDB() {
         ref = FIRDatabase.database().reference()

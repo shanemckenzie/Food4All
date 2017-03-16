@@ -19,6 +19,8 @@ class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     let locationManager = CLLocationManager()
     var myLocation: CLLocationCoordinate2D?
     
+    var mapData: MapData?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -52,6 +54,10 @@ class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             mapView.setCenter(coor, animated: true)
         }
         
+        //mapData?.loadSampleData(mapView)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: 50.417433, longitude: -104.594179)
+        mapView.addAnnotation(annotation)
         
     }
     
