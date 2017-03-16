@@ -12,7 +12,7 @@ class DonationItemCell: UITableViewCell {
     
     @IBOutlet weak var cellImg: UIImageView!
     @IBOutlet weak var cellTitle: UILabel!
-    @IBOutlet weak var cellDesc: UITextView!
+    @IBOutlet weak var cellDesc: UILabel!
     
 
     override func awakeFromNib() {

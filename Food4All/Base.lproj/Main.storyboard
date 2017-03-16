@@ -208,13 +208,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qnd-tH-7Ws" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2770" y="472"/>
+            <point key="canvasLocation" x="2710" y="472"/>
         </scene>
         <!--F4A-->
         <scene sceneID="4mp-AT-pOk">
             <objects>
                 <tableViewController storyboardIdentifier="HomeView" id="pJD-3I-qe7" customClass="HomeViewController" customModule="Food4All" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="CKI-0T-ZHF">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="CKI-0T-ZHF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -238,31 +238,31 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" misplaced="YES" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M3U-Cg-gfA">
-                                            <frame key="frameInset" minX="101" minY="31" width="266" height="60"/>
-                                            <color key="backgroundColor" red="0.78724747470000001" green="0.78724747470000001" blue="0.78724747470000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        </textView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="auw-zZ-Dgr">
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="59" id="y1i-h7-oMX"/>
+                                            </constraints>
+                                            <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="auw-zZ-Dgr" firstAttribute="top" secondItem="NqV-uy-vIB" secondAttribute="bottom" constant="3" id="8SA-kn-nPw"/>
                                         <constraint firstItem="iCf-vp-D3d" firstAttribute="leading" secondItem="M5Q-po-cJL" secondAttribute="leading" constant="8" id="8iZ-qc-iLc"/>
-                                        <constraint firstItem="M3U-Cg-gfA" firstAttribute="top" secondItem="NqV-uy-vIB" secondAttribute="bottom" constant="2" id="9cl-0V-9bv"/>
                                         <constraint firstItem="NqV-uy-vIB" firstAttribute="leading" secondItem="iCf-vp-D3d" secondAttribute="trailing" constant="8" id="DkY-Wc-4pJ"/>
                                         <constraint firstItem="NqV-uy-vIB" firstAttribute="trailing" secondItem="M5Q-po-cJL" secondAttribute="trailingMargin" id="EDo-AC-grZ"/>
-                                        <constraint firstAttribute="trailing" secondItem="M3U-Cg-gfA" secondAttribute="trailing" constant="8" id="Gm4-sV-hST"/>
-                                        <constraint firstItem="M3U-Cg-gfA" firstAttribute="leading" secondItem="iCf-vp-D3d" secondAttribute="trailing" constant="8" id="HuK-vb-nTu"/>
-                                        <constraint firstItem="M3U-Cg-gfA" firstAttribute="top" secondItem="NqV-uy-vIB" secondAttribute="bottom" constant="2" id="OUr-WV-DjC"/>
+                                        <constraint firstItem="auw-zZ-Dgr" firstAttribute="trailing" secondItem="M5Q-po-cJL" secondAttribute="trailingMargin" id="GGc-bx-0Dc"/>
                                         <constraint firstItem="NqV-uy-vIB" firstAttribute="top" secondItem="M5Q-po-cJL" secondAttribute="topMargin" id="Qmb-T5-2Ug"/>
-                                        <constraint firstAttribute="bottom" secondItem="M3U-Cg-gfA" secondAttribute="bottom" constant="7" id="Ryc-uH-5yu"/>
                                         <constraint firstAttribute="bottom" secondItem="iCf-vp-D3d" secondAttribute="bottom" constant="7" id="Wqf-6a-FAb"/>
+                                        <constraint firstItem="auw-zZ-Dgr" firstAttribute="leading" secondItem="iCf-vp-D3d" secondAttribute="trailing" constant="8" id="Yu9-Wb-Bwi"/>
                                         <constraint firstItem="iCf-vp-D3d" firstAttribute="top" secondItem="M5Q-po-cJL" secondAttribute="top" constant="7" id="cOQ-Vu-nOa"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.78724747470000001" green="0.78724747470000001" blue="0.78724747470000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <outlet property="cellDesc" destination="M3U-Cg-gfA" id="UYV-eZ-kP4"/>
+                                    <outlet property="cellDesc" destination="auw-zZ-Dgr" id="Prb-gT-YNu"/>
                                     <outlet property="cellImg" destination="iCf-vp-D3d" id="4Jy-th-Gfe"/>
                                     <outlet property="cellTitle" destination="NqV-uy-vIB" id="s4a-PU-5xa"/>
                                     <segue destination="1T4-ue-9Wb" kind="show" identifier="ShowDetail" id="J8Y-dF-Ddi"/>
@@ -285,7 +285,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aIZ-m2-Z8Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1769" y="472"/>
+            <point key="canvasLocation" x="1645.5999999999999" y="471.8140929535233"/>
         </scene>
         <!--F4A-->
         <scene sceneID="0jH-qt-GgO">
@@ -372,7 +372,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lFU-Bm-8r4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1769" y="1224"/>
+            <point key="canvasLocation" x="1646" y="1221"/>
         </scene>
         <!--F4A-->
         <scene sceneID="v4P-Zk-p2C">
@@ -485,6 +485,9 @@
                     <navigationItem key="navigationItem" title="F4A" id="7kZ-Sv-Wp5">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="8EY-r4-Y9k">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="3KX-bf-Ov3" kind="show" id="p8L-qg-Ovl"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -493,7 +496,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="abe-3Z-qn3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2769" y="-1030"/>
+            <point key="canvasLocation" x="3486" y="-1030"/>
         </scene>
         <!--F4A-->
         <scene sceneID="X4z-3z-ejP">
@@ -518,12 +521,15 @@
                     <navigationItem key="navigationItem" title="F4A" id="1oU-Iv-lEG">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="9hY-xr-a27">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="3KX-bf-Ov3" kind="show" id="TbX-OX-Zdl"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZBr-d4-z87" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2769" y="-305"/>
+            <point key="canvasLocation" x="2519" y="-305"/>
         </scene>
         <!--Back TableVC-->
         <scene sceneID="UiT-xw-WQM">
@@ -583,7 +589,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MDw-Lq-LPG" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="4FP-LS-5jp">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4FP-LS-5jp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.167081427" green="0.64625678730000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -602,7 +608,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MhK-UG-gcV" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="jjN-Z1-5zi">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jjN-Z1-5zi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.167081427" green="0.64625678730000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -614,11 +620,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hh5-5H-3gd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1769" y="-305"/>
+            <point key="canvasLocation" x="1647" y="-305"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="J8Y-dF-Ddi"/>
         <segue reference="KiN-js-Cri"/>
+        <segue reference="J8Y-dF-Ddi"/>
+        <segue reference="D6H-rA-bcP"/>
     </inferredMetricsTieBreakers>
 </document>

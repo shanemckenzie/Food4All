@@ -16,9 +16,13 @@ class DonatedItem {
     fileprivate var _name: String!
     fileprivate var _description: String!
     fileprivate var _expiration: String!
+    var donated: Bool!
+    
+    var image: UIImage?
     
     var expireDate: NSDate?
     var coordinates: CLLocationCoordinate2D?
+    
     
     
     lazy var expireDateString: String = {
@@ -55,6 +59,17 @@ class DonatedItem {
         _name = ""
         _description = ""
         _expiration = ""
+    }
+    
+    init?(_ title: String, _ image: UIImage, _ donated: Bool, _ description: String, _ expiration: String, _ coordinates: CLLocationCoordinate2D){
+        
+        self._name = title
+        self.image = image
+        self.donated = donated //true = item being donated, false = requesting donations
+        self._description = description
+        self._expiration = expiration
+        self.coordinates = coordinates
+        
     }
     
     
