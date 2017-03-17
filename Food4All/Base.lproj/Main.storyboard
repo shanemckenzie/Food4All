@@ -184,24 +184,47 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZTm-2A-HEW">
+                                <frame key="frameInset" minX="100" minY="257" width="88" height="22"/>
+                                <color key="backgroundColor" red="0.167081427" green="0.64625678730000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="88" id="UeP-FC-QOn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="Photo Library">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="imgFromLibrary:" destination="3KX-bf-Ov3" eventType="touchUpInside" id="5Gm-bD-gU7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="kMw-8T-DeS" firstAttribute="leading" secondItem="Ybk-1q-Lud" secondAttribute="leadingMargin" id="5Ir-YT-DEw"/>
                             <constraint firstItem="r6a-67-JLR" firstAttribute="leading" secondItem="Ybk-1q-Lud" secondAttribute="leadingMargin" id="Afz-Tm-lmA"/>
                             <constraint firstItem="9qO-jq-Fic" firstAttribute="top" secondItem="r6a-67-JLR" secondAttribute="bottom" constant="8" id="BYh-Tl-SSG"/>
                             <constraint firstItem="r6a-67-JLR" firstAttribute="top" secondItem="mDm-W7-7iV" secondAttribute="bottom" constant="13" id="CK2-o7-eLH"/>
                             <constraint firstItem="v2z-Zh-7d2" firstAttribute="centerX" secondItem="Ybk-1q-Lud" secondAttribute="centerX" id="Ed6-7l-rHs"/>
                             <constraint firstItem="S5Z-HM-Lh4" firstAttribute="leading" secondItem="Ybk-1q-Lud" secondAttribute="leadingMargin" id="Ixz-A3-APz"/>
+                            <constraint firstItem="E38-5P-vAd" firstAttribute="top" secondItem="kMw-8T-DeS" secondAttribute="bottom" constant="14" id="NDD-aO-tkI"/>
+                            <constraint firstItem="zi6-MS-M3X" firstAttribute="trailing" secondItem="Ybk-1q-Lud" secondAttribute="trailingMargin" id="Nzl-FL-jLv"/>
                             <constraint firstItem="9qO-jq-Fic" firstAttribute="leading" secondItem="Ybk-1q-Lud" secondAttribute="leadingMargin" id="OOH-0V-oGk"/>
+                            <constraint firstItem="zi6-MS-M3X" firstAttribute="leading" secondItem="Ybk-1q-Lud" secondAttribute="leadingMargin" id="Re9-K9-ccC"/>
                             <constraint firstItem="9qO-jq-Fic" firstAttribute="trailing" secondItem="Ybk-1q-Lud" secondAttribute="trailingMargin" id="SLD-TR-6Qs"/>
                             <constraint firstItem="ZTm-2A-HEW" firstAttribute="leading" secondItem="v2z-Zh-7d2" secondAttribute="leading" id="U25-UQ-H5D"/>
+                            <constraint firstItem="mDm-W7-7iV" firstAttribute="centerY" secondItem="ZTm-2A-HEW" secondAttribute="centerY" id="XBH-PX-OsA"/>
                             <constraint firstItem="mDm-W7-7iV" firstAttribute="top" secondItem="v2z-Zh-7d2" secondAttribute="bottom" constant="3" id="cP2-j5-7qO"/>
                             <constraint firstItem="S5Z-HM-Lh4" firstAttribute="trailing" secondItem="Ybk-1q-Lud" secondAttribute="trailingMargin" id="dIW-bo-AwF"/>
-                            <constraint firstItem="ZTm-2A-HEW" firstAttribute="top" secondItem="v2z-Zh-7d2" secondAttribute="bottom" constant="8" id="dmZ-wU-Zy9"/>
                             <constraint firstItem="r6a-67-JLR" firstAttribute="trailing" secondItem="Ybk-1q-Lud" secondAttribute="trailingMargin" id="dnF-To-g5I"/>
                             <constraint firstItem="v2z-Zh-7d2" firstAttribute="top" secondItem="SGA-XZ-zA3" secondAttribute="bottom" constant="8" id="f6Z-x2-5Bc"/>
+                            <constraint firstItem="S5Z-HM-Lh4" firstAttribute="top" secondItem="9qO-jq-Fic" secondAttribute="bottom" constant="14" id="gJ8-XG-gIJ"/>
+                            <constraint firstItem="zi6-MS-M3X" firstAttribute="top" secondItem="E38-5P-vAd" secondAttribute="bottom" constant="8" id="jJ2-iB-pYn"/>
                             <constraint firstItem="mDm-W7-7iV" firstAttribute="trailing" secondItem="v2z-Zh-7d2" secondAttribute="trailing" id="kpC-2I-LmE"/>
-                            <constraint firstItem="S5Z-HM-Lh4" firstAttribute="top" secondItem="9qO-jq-Fic" secondAttribute="bottom" constant="17" id="q0T-cp-wJ7"/>
+                            <constraint firstItem="kMw-8T-DeS" firstAttribute="top" secondItem="S5Z-HM-Lh4" secondAttribute="bottom" constant="8" id="lVk-AM-nHW"/>
+                            <constraint firstItem="kMw-8T-DeS" firstAttribute="trailing" secondItem="Ybk-1q-Lud" secondAttribute="trailingMargin" id="nxr-sh-dLT"/>
+                            <constraint firstItem="E38-5P-vAd" firstAttribute="leading" secondItem="Ybk-1q-Lud" secondAttribute="leadingMargin" id="tg0-Rr-8Gy"/>
+                            <constraint firstItem="E38-5P-vAd" firstAttribute="trailing" secondItem="Ybk-1q-Lud" secondAttribute="trailingMargin" id="ydK-9M-Gbl"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="F4A" id="Ma7-9H-VYu"/>
@@ -214,7 +237,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qnd-tH-7Ws" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2710" y="472"/>
+            <point key="canvasLocation" x="2709.5999999999999" y="471.8140929535233"/>
         </scene>
         <!--F4A-->
         <scene sceneID="4mp-AT-pOk">
@@ -263,6 +286,7 @@
                                         <constraint firstItem="NqV-uy-vIB" firstAttribute="leading" secondItem="iCf-vp-D3d" secondAttribute="trailing" constant="8" id="DkY-Wc-4pJ"/>
                                         <constraint firstItem="NqV-uy-vIB" firstAttribute="trailing" secondItem="M5Q-po-cJL" secondAttribute="trailingMargin" id="EDo-AC-grZ"/>
                                         <constraint firstItem="auw-zZ-Dgr" firstAttribute="trailing" secondItem="M5Q-po-cJL" secondAttribute="trailingMargin" id="GGc-bx-0Dc"/>
+                                        <constraint firstItem="auw-zZ-Dgr" firstAttribute="bottom" secondItem="M5Q-po-cJL" secondAttribute="bottomMargin" id="KJs-IY-SZ7"/>
                                         <constraint firstItem="NqV-uy-vIB" firstAttribute="top" secondItem="M5Q-po-cJL" secondAttribute="topMargin" id="Qmb-T5-2Ug"/>
                                         <constraint firstAttribute="bottom" secondItem="iCf-vp-D3d" secondAttribute="bottom" constant="7" id="Wqf-6a-FAb"/>
                                         <constraint firstItem="auw-zZ-Dgr" firstAttribute="leading" secondItem="iCf-vp-D3d" secondAttribute="trailing" constant="8" id="Yu9-Wb-Bwi"/>
@@ -284,8 +308,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="F4A" id="KbV-wX-SL1">
+                        <barButtonItem key="leftBarButtonItem" image="menu_btn" id="und-mh-gj6">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Qbs-TJ-PQz">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="3KX-bf-Ov3" kind="show" identifier="AddItem" id="D6H-rA-bcP"/>
                             </connections>
@@ -517,8 +544,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="F4A" id="7kZ-Sv-Wp5">
+                        <barButtonItem key="leftBarButtonItem" image="menu_btn" id="bOz-dj-5wJ">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="8EY-r4-Y9k">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="3KX-bf-Ov3" kind="show" id="p8L-qg-Ovl"/>
                             </connections>
@@ -554,7 +584,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="F4A" id="1oU-Iv-lEG">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="9hY-xr-a27">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="3KX-bf-Ov3" kind="show" id="TbX-OX-Zdl"/>
                             </connections>
@@ -675,6 +705,11 @@
             <point key="canvasLocation" x="815" y="1410"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="camera" width="256" height="256"/>
+        <image name="defaultPhoto" width="1080" height="1080"/>
+        <image name="menu_btn" width="22" height="22"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="KiN-js-Cri"/>
         <segue reference="poC-Rg-6R4"/>
