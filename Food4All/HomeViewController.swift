@@ -112,8 +112,9 @@ class HomeViewController: UITableViewController {
             os_log("Adding a new donation.", log: OSLog.default, type: .debug)
             
         //an existing item is pressed
-        case "ShowDetail":
-            guard let SubmissionVC = segue.destination as? SubmissionVC else {
+        case "ShowDetailDrill":
+            
+            guard let ItemViewController = segue.destination as? ItemViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             
@@ -126,10 +127,10 @@ class HomeViewController: UITableViewController {
             }
             
             let selectedDonation = donatedItems.getItem(index: indexPath.row)
-            //toDoDetailViewController.toDoItem = selectedToDo
             
             //TODO: load this to SubmissionVC
-            SubmissionVC.donatedItem = selectedDonation
+           
+            ItemViewController.donatedItem = selectedDonation
             
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")
@@ -137,6 +138,36 @@ class HomeViewController: UITableViewController {
         
     }
     /*
+     
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     
+     super.prepare(for: segue, sender: sender)
+     
+     switch(segue.identifier ?? "") {
+     
+     case "AddItem":
+     os_log("Adding a new to-do item.", log: OSLog.default, type: .debug)
+     
+     case "ShowDetail":
+     guard let itemDetailViewController = segue.destination as? ViewController else {
+     fatalError("Unexpected destination: \(segue.destination)")
+     }
+     
+     guard let selectedItemCell = sender as? itemTableViewCell else {
+     fatalError("Unexpected sender: \(sender)")
+     }
+     
+     guard let indexPath = tableView.indexPath(for: selectedItemCell) else {
+     fatalError("The selected cell is not being displayed by the table")
+     }
+     
+     let selectedItem = itemsList.getItem(index: indexPath.row)
+     itemDetailViewController.item = selectedItem
+     
+     default:
+     fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+     }
+     }
      
      @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
      if let sourceViewController = sender.source as? ViewController, let item = sourceViewController.item {

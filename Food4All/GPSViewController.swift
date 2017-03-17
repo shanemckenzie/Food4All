@@ -10,6 +10,14 @@ import UIKit
 import MapKit
 import CoreLocation
 
+class ColorPointAnnotation: MKPointAnnotation {
+    var pinColor: UIColor
+    
+    init(pinColor: UIColor) {
+        self.pinColor = pinColor
+        super.init()
+    }
+}
 
 class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
@@ -67,12 +75,33 @@ class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         //load pins onto the map
         
         for index in 0 ... (donatedItems.getCount() - 1){
-            let annotation = MKPointAnnotation()
+            //var view : MKPinAnnotationView
+         
+            
+            let annotation = ColorPointAnnotation(pinColor: UIColor.green)
+            annotation.pinColor = UIColor.green
             annotation.coordinate = donatedItems.getItem(index: index).coordinates!
+        
+        
             mapView.addAnnotation(annotation)
         }
 
     }
+    
+    //MARK: COLOR
+    /*
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        var view : MKPinAnnotationView
+        guard let annotation = annotation as? PizzaLocation else {return nil}
+        if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(annotation.identifier) as? MKPinAnnotationView {
+            view = dequeuedView
+        }else {
+            view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: annotation.identifier)
+        }
+        view.pinTintColor = pinColor(annotation.title!)
+        return view
+    }
+    */
     
     //MARK: PIN TAP
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView)
