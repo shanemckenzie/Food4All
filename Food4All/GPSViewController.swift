@@ -23,6 +23,7 @@ class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     //var annotations = [MKPointAnnotation]()
     var donatedItems = DonatedItems()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -71,6 +72,30 @@ class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             mapView.addAnnotation(annotation)
         }
 
+    }
+    
+    //MARK: PIN TAP
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView)
+    {
+        //self.performSegue(withIdentifier: "logInSegue", sender: nil)
+        let currentAnnotation = view.annotation?.coordinate
+        
+        //find the donated item that corresponds with the pin that was tapped
+        for index in 0 ... (donatedItems.getCount() - 1){
+            if(compareCoordinates(c1: currentAnnotation!, c2: donatedItems.getItem(index: index).coordinates!)){
+                print("FOUND IT!!")
+            }
+        }
+    }
+    
+    func compareCoordinates(c1: CLLocationCoordinate2D, c2: CLLocationCoordinate2D) -> Bool{
+        if(c1.latitude == c2.latitude && c1.longitude == c2.longitude)
+        {
+            return true
+        }
+        else{
+            return false
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
