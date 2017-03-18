@@ -10,10 +10,16 @@ import UIKit
 
 class AccountViewController: UIViewController {
 
+    @IBOutlet weak var menuBtn: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        
+        //button for slide out menu
+        menuBtn.target = self.revealViewController()
+        menuBtn.action = #selector(SWRevealViewController.revealToggle(_:))
     }
 
     override func didReceiveMemoryWarning() {

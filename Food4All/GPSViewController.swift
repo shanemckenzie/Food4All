@@ -22,6 +22,7 @@ class ColorPointAnnotation: MKPointAnnotation {
 class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var menuBtn: UIBarButtonItem!
     
     let regionRadius: CLLocationDistance = 1000
     let locationManager = CLLocationManager()
@@ -86,6 +87,10 @@ class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             mapView.addAnnotation(annotation)
         }
 
+        //button for slide out menu
+        menuBtn.target = self.revealViewController()
+        menuBtn.action = #selector(SWRevealViewController.revealToggle(_:))
+        
     }
     
     //MARK: COLOR

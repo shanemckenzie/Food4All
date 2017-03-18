@@ -17,6 +17,7 @@ class HomeViewController: UITableViewController {
     let donatedItems = DonatedItems();
     var ref: FIRDatabaseReference!
     
+    @IBOutlet weak var menuBtn: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,10 @@ class HomeViewController: UITableViewController {
         
         //TODO: Load data from database
         //create object, load the data in object as array
+        
+        //button for slide out menu
+        menuBtn.target = self.revealViewController()
+        menuBtn.action = #selector(SWRevealViewController.revealToggle(_:))
     }
     
     override func didReceiveMemoryWarning() {
