@@ -29,6 +29,7 @@
 		79EBDAAC1E3A84AD001CAEA0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EBDAAB1E3A84AD001CAEA0 /* Constants.swift */; };
 		A90431B71E7B7467001D55B4 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90431B61E7B7467001D55B4 /* ItemViewController.swift */; };
 		A93F7A871E7B3A68003B9DC1 /* DonatedItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93F7A861E7B3A68003B9DC1 /* DonatedItems.swift */; };
+		A9408FDD1E7F1CDF00EB3F29 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9408FDC1E7F1CDF00EB3F29 /* User.swift */; };
 		A9B52C731E6F627100036715 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B52C721E6F627100036715 /* InitialViewController.swift */; };
 		A9B52C751E6F6F4200036715 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9B52C741E6F6F4200036715 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
@@ -86,6 +87,7 @@
 		A82311851814AD7EAF07028D /* Pods-Food4All.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Food4All.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Food4All/Pods-Food4All.debug.xcconfig"; sourceTree = "<group>"; };
 		A90431B61E7B7467001D55B4 /* ItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		A93F7A861E7B3A68003B9DC1 /* DonatedItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonatedItems.swift; sourceTree = "<group>"; };
+		A9408FDC1E7F1CDF00EB3F29 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A9B52C721E6F627100036715 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		A9B52C741E6F6F4200036715 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FC665A2722F0F1F15C31DCEC /* libPods-Food4AllUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Food4AllUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -193,6 +195,7 @@
 				79EBDAA81E3A840E001CAEA0 /* DonatedItem.swift */,
 				A93F7A861E7B3A68003B9DC1 /* DonatedItems.swift */,
 				79783A921E78F5B300916C75 /* MapData.swift */,
+				A9408FDC1E7F1CDF00EB3F29 /* User.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -533,6 +536,7 @@
 				79E5A2E31E3A800200DE2978 /* ViewController.swift in Sources */,
 				A90431B71E7B7467001D55B4 /* ItemViewController.swift in Sources */,
 				792FB18C1E468C360067C1B0 /* GPSViewController.swift in Sources */,
+				A9408FDD1E7F1CDF00EB3F29 /* User.swift in Sources */,
 				792FB1881E4684A80067C1B0 /* BackTableVC.swift in Sources */,
 				795798831E79A77C0055D8E3 /* DonationItemCell.swift in Sources */,
 				79783A931E78F5B300916C75 /* MapData.swift in Sources */,

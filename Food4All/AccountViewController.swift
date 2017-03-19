@@ -7,16 +7,27 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class AccountViewController: UIViewController {
-
+    
+    //MARK: PROPERTIES
     @IBOutlet weak var menuBtn: UIBarButtonItem!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var emailField: UILabel!
+    
+    //MARK: VARIABLES
+    var user = User()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
+        //set view
+        nameLabel.text = user?.buisnessName
+        emailField.text = user?.email
+       
         //button for slide out menu
         menuBtn.target = self.revealViewController()
         menuBtn.action = #selector(SWRevealViewController.revealToggle(_:))
