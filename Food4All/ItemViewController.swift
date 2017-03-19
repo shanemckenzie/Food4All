@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
 
-class ItemViewController: UIViewController {
+class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
     //MARK: PROPERTIES
     @IBOutlet weak var titleLabel: UILabel!
@@ -16,26 +18,82 @@ class ItemViewController: UIViewController {
     @IBOutlet weak var donaterNameField: UILabel!
     @IBOutlet weak var reserveSwitch: UISwitch!
     @IBOutlet weak var descriptionField: UILabel!
+    @IBOutlet weak var availableDateField: UILabel!
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var expiryDateLabel: UILabel!
     
     //Variables
     var donatedItem: DonatedItem?
+    let regionRadius: CLLocationDistance = 1000
+    let locationManager = CLLocationManager()
+    var myLocation: CLLocationCoordinate2D?
+    var mapData: MapData?
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
       
         //delegates
-        /*
+        
         if let donatedItem = donatedItem {
             titleLabel.text = donatedItem.name
             image.image = donatedItem.image!
             donaterNameField.text = donatedItem.name
             descriptionField.text = donatedItem.description
+            expiryDateLabel.text = donatedItem.expiration
+            
+            //MARK: TODO - Add field to item model for reserve and buisness name (linked to account)
+            
+            //set up map
+            self.mapView.showsUserLocation = true
+            
+            // Ask for Authorisation from the User.
+            self.locationManager.requestAlwaysAuthorization()
+            
+            // For use in foreground
+            self.locationManager.requestWhenInUseAuthorization()
+            
+            if CLLocationManager.locationServicesEnabled() {
+                locationManager.delegate = self
+                locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+                locationManager.startUpdatingLocation()
+            }
+            
+            mapView.delegate = self
+            mapView.mapType = .standard
+            mapView.isZoomEnabled = true
+            mapView.isScrollEnabled = true
+            
+            if let coor = mapView.userLocation.location?.coordinate {
+                mapView.setCenter(coor, animated: true)
+            }
+            
+            //add pin for current item location
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = donatedItem.coordinates!
+            mapView.addAnnotation(annotation)
+            
         }
         else{
             print("ERROR: DATA NOT LOADING")
         }
-        */
+ 
+    }
+    
+    //MARK: MAP
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    
+        centerMap((donatedItem?.coordinates)!)
+    }
+    
+    func centerMap(_ center:CLLocationCoordinate2D){
+        //self.saveCurrentLocation(center)
+        
+        let spanX = 0.007
+        let spanY = 0.007
+        
+        let newRegion = MKCoordinateRegion(center:center , span: MKCoordinateSpanMake(spanX, spanY))
+        mapView.setRegion(newRegion, animated: true)
     }
     
     // This method lets you configure a view controller before it's presented.
@@ -58,26 +116,6 @@ class ItemViewController: UIViewController {
         // Set the meal to be passed to MealTableViewController after the unwind segue.
        // item = Item(name: name, notes: notes, photo: photo, dateEntered: dateEntered, priority: selectedPriority, dueDate: myDueDate)
     }
-    
-    /*
-     // Set up view
-     if let donatedItem = donatedItem {
-     navigationItem.title = item.name
-     nameTextField.text   = item.name
-     notesField.text = item.notes
-     imageField.image = item.photo
-     if(item.priority == "High"){
-     pickerView.selectRow(3, inComponent:0, animated:true)
-     }
-     else if(item.priority == "Medium"){
-     pickerView.selectRow(1, inComponent:0, animated:true)
-     }
-     else{
-     pickerView.selectRow(2, inComponent:0, animated:true)
-     }
-     
-     }
-    */
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

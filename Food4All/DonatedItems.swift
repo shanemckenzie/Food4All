@@ -53,11 +53,13 @@ class DonatedItems: NSObject{
         let title2 = "Sample Donation Request"
         let description2 = "Requesting donations of ______"
         let date = NSDate()
+        let date2 = NSDate(timeIntervalSinceNow: -50 * 2000)
         
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM dd, h:mm a"
         
         let dateString: String = formatter.string(from: date as Date)
+        let dateString2: String = formatter.string(from: date2 as Date)
         let coordinates = CLLocationCoordinate2D(latitude: 50.417433, longitude: -104.594179)
         let coordinates2 = CLLocationCoordinate2D(latitude: 50.417439, longitude: -104.59417)
         let coordinates3 = CLLocationCoordinate2D(latitude: 50.495254, longitude: -104.637263)
@@ -71,7 +73,7 @@ class DonatedItems: NSObject{
             fatalError("Unable to instantiate object")
         }
         
-        guard let donation3 = DonatedItem("WALMART", photo!, false, description2, dateString, coordinates3) else {
+        guard let donation3 = DonatedItem("WALMART", photo!, false, description2, dateString2, coordinates3) else {
             fatalError("Unable to instantiate object")
         }
         

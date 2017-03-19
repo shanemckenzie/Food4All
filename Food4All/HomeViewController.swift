@@ -117,13 +117,13 @@ class HomeViewController: UITableViewController {
             os_log("Adding a new donation.", log: OSLog.default, type: .debug)
             
         //an existing item is pressed
-        case "ShowDetailDrill":
+        case "ShowItem":
             
-            //guard let itemViewController = segue.destination as? ItemViewController else {
-              //  fatalError("Unexpected destination: \(segue.destination)")
-            //}
+            guard let itemViewController = segue.destination as? ItemViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
             
-            let itemViewController = segue.destination as? ItemViewController
+            //let itemViewController = segue.destination as? ItemViewController
  
             guard let selectedDonationItemCell = sender as? DonationItemCell else {
                 fatalError("Unexpected sender: \(sender)")
@@ -135,7 +135,7 @@ class HomeViewController: UITableViewController {
  
             let selectedDonation = donatedItems.getItem(index: indexPath.row)
             
-            itemViewController?.donatedItem = selectedDonation
+            itemViewController.donatedItem = selectedDonation
             
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")
