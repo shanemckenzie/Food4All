@@ -41,25 +41,6 @@ class InitialViewController: UIViewController {
         }
     }
     
-    @IBAction func ResgisterUserAction(_ sender: UIButton) {
-        FIRAuth.auth()?.createUser(withEmail: emailField.text!, password: passwordField.text!) { (user, error) in
-            if let error = error {
-                
-                let showMessagePrompt = UIAlertController(title: "Registration Error", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
-                
-                showMessagePrompt.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
-                }))
-                
-                self.present(showMessagePrompt, animated: true, completion: nil)
-                
-                return
-            }
-            else{
-                print("USER HAS BEEN REGISTERED")
-            }
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 

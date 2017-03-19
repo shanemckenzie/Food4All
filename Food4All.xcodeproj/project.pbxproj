@@ -30,6 +30,7 @@
 		A90431B71E7B7467001D55B4 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90431B61E7B7467001D55B4 /* ItemViewController.swift */; };
 		A93F7A871E7B3A68003B9DC1 /* DonatedItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93F7A861E7B3A68003B9DC1 /* DonatedItems.swift */; };
 		A9408FDD1E7F1CDF00EB3F29 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9408FDC1E7F1CDF00EB3F29 /* User.swift */; };
+		A9408FDF1E7F287700EB3F29 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9408FDE1E7F287700EB3F29 /* RegisterViewController.swift */; };
 		A9B52C731E6F627100036715 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B52C721E6F627100036715 /* InitialViewController.swift */; };
 		A9B52C751E6F6F4200036715 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9B52C741E6F6F4200036715 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
@@ -88,6 +89,7 @@
 		A90431B61E7B7467001D55B4 /* ItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		A93F7A861E7B3A68003B9DC1 /* DonatedItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonatedItems.swift; sourceTree = "<group>"; };
 		A9408FDC1E7F1CDF00EB3F29 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A9408FDE1E7F287700EB3F29 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		A9B52C721E6F627100036715 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		A9B52C741E6F6F4200036715 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FC665A2722F0F1F15C31DCEC /* libPods-Food4AllUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Food4AllUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,6 +221,7 @@
 				79E5A2E21E3A800200DE2978 /* ViewController.swift */,
 				792FB1871E4684A80067C1B0 /* BackTableVC.swift */,
 				A90431B61E7B7467001D55B4 /* ItemViewController.swift */,
+				A9408FDE1E7F287700EB3F29 /* RegisterViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				79E5A2E11E3A800200DE2978 /* AppDelegate.swift in Sources */,
 				792FB18A1E468C2B0067C1B0 /* HomeViewController.swift in Sources */,
 				A93F7A871E7B3A68003B9DC1 /* DonatedItems.swift in Sources */,
+				A9408FDF1E7F287700EB3F29 /* RegisterViewController.swift in Sources */,
 				790838541E74EB0F0037A7D2 /* SubmissionVC.swift in Sources */,
 				79EBDAAC1E3A84AD001CAEA0 /* Constants.swift in Sources */,
 				792FB18E1E468C420067C1B0 /* AccountViewController.swift in Sources */,
