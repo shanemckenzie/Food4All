@@ -53,7 +53,7 @@ class RegisterViewController: UIViewController {
                     ref = FIRDatabase.database().reference()
                     let userRef = ref.child("userMeta")
                     //MARK: TODO ADD BUISNESS LOCATION
-                    let newUserData = ["buisnessName": self.nameField.text as Any, "latitude": 50.495254, "longitude": -104.637263] as [String : Any]
+                    let newUserData = ["buisnessName": self.nameField.text! as String] as [String : Any]
                     userRef.child((user?.uid)!).setValue(newUserData)
                     
                     self.performSegue(withIdentifier: "showLogin", sender: nil)
