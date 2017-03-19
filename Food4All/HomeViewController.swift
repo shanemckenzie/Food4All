@@ -119,10 +119,12 @@ class HomeViewController: UITableViewController {
         //an existing item is pressed
         case "ShowDetailDrill":
             
-            guard let ItemViewController = segue.destination as? ItemViewController else {
-                fatalError("Unexpected destination: \(segue.destination)")
-            }
+            //guard let itemViewController = segue.destination as? ItemViewController else {
+              //  fatalError("Unexpected destination: \(segue.destination)")
+            //}
             
+            let itemViewController = segue.destination as? ItemViewController
+ 
             guard let selectedDonationItemCell = sender as? DonationItemCell else {
                 fatalError("Unexpected sender: \(sender)")
             }
@@ -130,12 +132,10 @@ class HomeViewController: UITableViewController {
             guard let indexPath = tableView.indexPath(for: selectedDonationItemCell) else {
                 fatalError("The selected cell is not being displayed by the table")
             }
-            
+ 
             let selectedDonation = donatedItems.getItem(index: indexPath.row)
             
-            //TODO: load this to SubmissionVC
-           
-            ItemViewController.donatedItem = selectedDonation
+            itemViewController?.donatedItem = selectedDonation
             
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")
