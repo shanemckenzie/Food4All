@@ -508,11 +508,12 @@
                     <connections>
                         <outlet property="mapView" destination="Jwt-3Y-ZAl" id="Hq7-or-ayS"/>
                         <outlet property="menuBtn" destination="bOz-dj-5wJ" id="0XQ-QT-MOu"/>
+                        <segue destination="1T4-ue-9Wb" kind="show" identifier="mapShowItem" id="a25-K0-J5T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="abe-3Z-qn3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3486" y="-1030"/>
+            <point key="canvasLocation" x="4497" y="-305"/>
         </scene>
         <!--F4A-->
         <scene sceneID="X4z-3z-ejP">
@@ -677,7 +678,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uok-wZ-Fhw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1769" y="-1030"/>
+            <point key="canvasLocation" x="4497" y="-1081"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sZw-N6-TyD">
@@ -706,6 +707,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="KiN-js-Cri"/>
-        <segue reference="D6H-rA-bcP"/>
+        <segue reference="a25-K0-J5T"/>
+        <segue reference="p8L-qg-Ovl"/>
     </inferredMetricsTieBreakers>
 </document>

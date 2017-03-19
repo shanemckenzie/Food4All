@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import os.log
 
 class ColorPointAnnotation: MKPointAnnotation {
     var pinColor: UIColor
@@ -28,6 +29,7 @@ class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     let locationManager = CLLocationManager()
     var myLocation: CLLocationCoordinate2D?
     var mapData: MapData?
+    var itemIndex = -1
     
     //var annotations = [MKPointAnnotation]()
     var donatedItems = DonatedItems()
@@ -83,7 +85,6 @@ class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             annotation.pinColor = UIColor.green
             annotation.coordinate = donatedItems.getItem(index: index).coordinates!
         
-        
             mapView.addAnnotation(annotation)
         }
 
@@ -111,13 +112,13 @@ class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     //MARK: PIN TAP
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView)
     {
-        //self.performSegue(withIdentifier: "logInSegue", sender: nil)
         let currentAnnotation = view.annotation?.coordinate
         
         //find the donated item that corresponds with the pin that was tapped
         for index in 0 ... (donatedItems.getCount() - 1){
             if(compareCoordinates(c1: currentAnnotation!, c2: donatedItems.getItem(index: index).coordinates!)){
-                print("FOUND IT!!")
+                itemIndex = index
+                self.performSegue(withIdentifier: "mapShowItem", sender: nil)
             }
         }
     }
@@ -157,6 +158,34 @@ class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         // Pass the selected object to the new view controller.
     }
     */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        
+        super.prepare(for: segue,sender: sender)
+        
+        switch(segue.identifier ?? "") {
+        //the add item button is pressed
+        case "AddItem":
+            os_log("Adding a new donation.", log: OSLog.default, type: .debug)
+            
+        //an existing item is pressed
+        case "mapShowItem":
+            
+            guard let itemViewController = segue.destination as? ItemViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            let selectedDonation = donatedItems.getItem(index: itemIndex)
+            
+            itemViewController.donatedItem = selectedDonation
+            
+        default:
+            fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+        }
+        
+    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
