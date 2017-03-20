@@ -15,7 +15,7 @@ class User{
     //MARK USER PROPERTIES
     var userID: String
     var email: String
-    var buisnessName: String
+    var businessName: String
     
     //MARK: Initialization
     init?() {
@@ -26,16 +26,16 @@ class User{
         
         self.email = (user?.email)!;
         self.userID = (user?.uid)!;
-        self.buisnessName = "N/A"
+        self.businessName = "N/A"
         ref.child("userMeta").child((user?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
-            self.buisnessName = value?["buisnessName"] as? String ?? ""
+            self.businessName = value?["businessName"] as? String ?? ""
             
         }) { (error) in
             print(error.localizedDescription)
         }
         
-        //self.buisnessName = metaQuery->(buisnessName
-
+        //self.buisnessName = metaQuery->(businessName
+        
     }
 }
