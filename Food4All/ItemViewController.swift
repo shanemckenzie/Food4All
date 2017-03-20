@@ -42,7 +42,7 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             descriptionField.text = donatedItem.description
             expiryDateLabel.text = donatedItem.expiration
             
-            //MARK: TODO - Add field to item model for reserve and buisness name (linked to account)
+            //MARK: TODO - Add field to item model for reserve and business name (linked to account)
             
             //set up map
             self.mapView.showsUserLocation = true

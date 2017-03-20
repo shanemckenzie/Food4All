@@ -42,6 +42,10 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>To dispaly your current location</string>
+	<string>To display your current location</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow the app to access the camera to add an image to your post</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allow the app to access your photo library to add an image to your post</string>
 </dict>
 </plist>

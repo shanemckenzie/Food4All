@@ -18,6 +18,11 @@ class DonatedItem {
     fileprivate var _expiration: String!
     var donated: Bool!
     
+    //TODO: the reserve switch on the item listing will check if the item has been reserved
+    //if the item has been reserved, then only the reserver (and possibly the poster?) will be allowed to change it
+    //var reserved: Bool!
+    //var reservedBy: Bool!
+    
     var image: UIImage?
     
     var expireDate: NSDate?
@@ -90,7 +95,6 @@ class DonatedItem {
         ]
         
         newDonationItemRef.setValue(newDonationItemData)
-        
         
     }
     

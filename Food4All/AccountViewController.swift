@@ -15,6 +15,8 @@ class AccountViewController: UIViewController {
     @IBOutlet weak var menuBtn: UIBarButtonItem!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailField: UILabel!
+    @IBOutlet weak var emailTxt: UITextField!
+    @IBOutlet weak var nameTxt: UITextField!
     
     //MARK: VARIABLES
     var user = User()
@@ -25,8 +27,8 @@ class AccountViewController: UIViewController {
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
         //set view
-        nameLabel.text = user?.buisnessName
-        emailField.text = user?.email
+        nameTxt.text = user?.businessName
+        emailTxt.text = user?.email
        
         //button for slide out menu
         menuBtn.target = self.revealViewController()

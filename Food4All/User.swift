@@ -35,7 +35,7 @@ class User{
             print(error.localizedDescription)
         }
         
-        //self.buisnessName = metaQuery->(businessName
+        //self.businessName = metaQuery->(businessName
         
     }
 }
