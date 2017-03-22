@@ -14,6 +14,7 @@ import CoreLocation
 class DonatedItem {
     
     fileprivate var _name: String!
+    fileprivate var _userID: String!
     fileprivate var _description: String!
     fileprivate var _expiration: String!
     var donated: Bool!
@@ -46,6 +47,13 @@ class DonatedItem {
         return _name
     }
     
+    var userID: String {
+        if _userID == nil {
+            _userID = ""
+        }
+        return _name
+    }
+    
     var description: String {
         if _description == nil {
             _description = ""
@@ -64,11 +72,13 @@ class DonatedItem {
         _name = ""
         _description = ""
         _expiration = ""
+        _userID = ""
     }
     
-    init?(_ title: String, _ image: UIImage, _ donated: Bool, _ description: String, _ expiration: String, _ coordinates: CLLocationCoordinate2D){
+    init?(_ title: String, _ image: UIImage, _ donated: Bool, _ description: String, _ expiration: String, _ coordinates: CLLocationCoordinate2D, _ userID: String){
         
         self._name = title
+        self._userID = userID
         self.image = image
         self.donated = donated //true = item being donated, false = requesting donations
         self._description = description
@@ -79,22 +89,38 @@ class DonatedItem {
     
     
     func saveToDB() {
+        
+        print("SAVING")
+        
         ref = FIRDatabase.database().reference()
         
         let newDonationItemRef = self.ref!.child("DonationItem").childByAutoId()
         
         let newDonationItemId = newDonationItemRef.key
+
+        let imageData = UIImagePNGRepresentation(self.image!)!
+        var base64ImageString: NSString!
+        
+        base64ImageString = imageData.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters) as NSString!
+        
+        
+        let latitude = self.coordinates?.latitude
+        let longitude = self.coordinates?.longitude
+    
         
         let newDonationItemData: [String : Any] = ["itemID": newDonationItemId,
             "title": _name as NSString,
             "description": _description as NSString,
-            "expiration": _expiration as NSString
-            //user
-            //image
-            //location
+            "expiration": _expiration as NSString,
+            "userID": _userID as NSString,
+            "image": base64ImageString as NSString,
+            "latitude": latitude! as NSNumber,
+            "longitude": longitude! as NSNumber
         ]
         
         newDonationItemRef.setValue(newDonationItemData)
+ 
+
         
     }
     
