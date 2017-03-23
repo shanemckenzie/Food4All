@@ -48,6 +48,8 @@ class HomeViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //TODO: Sorting by distance and date
+    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -150,6 +152,7 @@ class HomeViewController: UITableViewController {
         }
         
     }
+    
     /*
      
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

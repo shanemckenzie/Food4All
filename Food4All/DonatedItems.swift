@@ -36,8 +36,6 @@ class DonatedItems: NSObject{
         donatedItems.append(item)
     }
     
-   
-    
     //MARK: UPDATE FOR SORTING
     func updateItem(item: DonatedItem, index: Int){
         
@@ -48,6 +46,8 @@ class DonatedItems: NSObject{
         donatedItems.append(item)
     }
     
+    //TODO: Sorting by distance and date
+    
     //MARK: Private Functions
     private func loadItems(){
         
@@ -56,28 +56,39 @@ class DonatedItems: NSObject{
         
         ref.child("DonationItem").observeSingleEvent(of: .value, with: { (snapshot) in
             
-            let values = snapshot.value as? NSDictionary
+            if let values = snapshot.value as? NSDictionary {
             
-            for (key,_) in values!{
-                
-                let donationItem: NSObject = values![key] as! NSObject
-                
-                let myTitle: String! = donationItem.value(forKey: "title") as? String
-                
-                let myPhotoString = donationItem.value(forKey: "image") as? String
-                let decodedData = NSData(base64Encoded: myPhotoString!)
-                let myImage = UIImage(data: decodedData as! Data)
-                
-                let myDescription = donationItem.value(forKey: "description") as? String
-                let myDate = donationItem.value(forKey: "expiration") as? String
-                let myLatitude = donationItem.value(forKey: "latitude") as? Double
-                let myLongitude = donationItem.value(forKey: "longitude") as? Double
-                let myCoordinates = CLLocationCoordinate2D(latitude: myLatitude!, longitude: myLongitude!)
-                let myUserID = donationItem.value(forKey: "userID") as? String
-                
-                let donation1 = DonatedItem(myTitle, myImage!, true, myDescription!, myDate!, myCoordinates, myUserID!)
-                self.addItem(item: donation1!)
-                
+                for (key,_) in values{
+                    
+                    let donationItem: NSObject = values[key] as! NSObject
+                    
+                    let myTitle: String! = donationItem.value(forKey: "title") as? String
+                    
+                    let myPhotoString = donationItem.value(forKey: "image") as? String
+                    let decodedData = NSData(base64Encoded: myPhotoString!)
+                    let myImage = UIImage(data: decodedData as! Data)
+                    
+                    let myDescription = donationItem.value(forKey: "description") as? String
+                    let myDate = donationItem.value(forKey: "expiration") as? String
+                    let myLatitude = donationItem.value(forKey: "latitude") as? Double
+                    let myLongitude = donationItem.value(forKey: "longitude") as? Double
+                    let myCoordinates = CLLocationCoordinate2D(latitude: myLatitude!, longitude: myLongitude!)
+                    let myUserID = donationItem.value(forKey: "userID") as? String
+                    
+                    
+                    var  donated: Bool
+                    if let donatedInt = donationItem.value(forKey: "donated") as? Int {
+                        donated = Bool(donatedInt as NSNumber)
+                    } else {
+                        donated = true
+                    }
+                    
+                    
+                    
+                    let donation1 = DonatedItem(myTitle, myImage!, donated, myDescription!, myDate!, myCoordinates, myUserID!)
+                    self.addItem(item: donation1!)
+                    
+                    }
             }
             
             

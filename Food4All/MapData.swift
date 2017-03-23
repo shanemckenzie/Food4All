@@ -12,8 +12,6 @@ import CoreLocation
 
 class MapData {
     
-    
-    
     func loadSampleData(_ mapView: MKMapView) {
         let annotation = MKPointAnnotation()
         

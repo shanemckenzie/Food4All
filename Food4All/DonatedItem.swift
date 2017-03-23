@@ -25,11 +25,8 @@ class DonatedItem {
     //var reservedBy: Bool!
     
     var image: UIImage?
-    
     var expireDate: NSDate?
     var coordinates: CLLocationCoordinate2D?
-    
-    
     
     lazy var expireDateString: String = {
         let formatter = DateFormatter()
@@ -91,22 +88,15 @@ class DonatedItem {
     func saveToDB() {
         
         print("SAVING")
-        
         ref = FIRDatabase.database().reference()
-        
         let newDonationItemRef = self.ref!.child("DonationItem").childByAutoId()
-        
         let newDonationItemId = newDonationItemRef.key
-
         let imageData = UIImagePNGRepresentation(self.image!)!
         var base64ImageString: NSString!
-        
         base64ImageString = imageData.base64EncodedString() as NSString!
-        
         
         let latitude = self.coordinates?.latitude
         let longitude = self.coordinates?.longitude
-    
         
         let newDonationItemData: [String : Any] = ["itemID": newDonationItemId,
             "title": _name as NSString,
@@ -115,7 +105,8 @@ class DonatedItem {
             "userID": _userID as NSString,
             "image": base64ImageString as NSString,
             "latitude": latitude! as NSNumber,
-            "longitude": longitude! as NSNumber
+            "longitude": longitude! as NSNumber,
+            "donated": Int(NSNumber(value:donated!)) as NSNumber
         ]
         
         newDonationItemRef.setValue(newDonationItemData)

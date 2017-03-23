@@ -22,8 +22,11 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     @IBOutlet weak var descTxt: UITextField!
     @IBOutlet weak var expirationDatePicker: UIDatePicker!
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var donateSwitch: UISegmentedControl!
+    
     
     var donatedItem: DonatedItem?
+    var donated = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,13 +94,22 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         formatter.dateFormat = "MMMM dd, h:mm a"
         let expirationDate = formatter.string(from: expirationDatePicker.date)
         
-        //deal with coordinates
+        //TODO: deal with coordinates
         let tempCoord = CLLocationCoordinate2D(latitude: 50.417433, longitude: -104.594179)
         
         let user = FIRAuth.auth()?.currentUser
         
-        //TODO SET UP DONATED BUTTON + COORDINATES
-        donatedItem = DonatedItem(titleTxt.text!, itemImg.image!, true, descTxt.text!, expirationDate, tempCoord, (user?.uid)!)
+        switch donateSwitch.selectedSegmentIndex {
+        case 0:
+            donated = true
+        case 1:
+            donated = false
+        default:
+            donated = true
+        }
+        
+        //TODO: SET UP DONATED BUTTON + COORDINATES
+        donatedItem = DonatedItem(titleTxt.text!, itemImg.image!, donated, descTxt.text!, expirationDate, tempCoord, (user?.uid)!)
         
         donatedItem?.saveToDB()
     }

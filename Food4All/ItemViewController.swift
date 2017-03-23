@@ -64,14 +64,17 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             mapView.isZoomEnabled = true
             mapView.isScrollEnabled = true
             
-            if let coor = mapView.userLocation.location?.coordinate {
-                mapView.setCenter(coor, animated: true)
-            }
             
             //add pin for current item location
             let annotation = MKPointAnnotation()
             annotation.coordinate = donatedItem.coordinates!
             mapView.addAnnotation(annotation)
+            
+            //center map on items location
+            //mapView.setCenter(annotation.coordinate, animated: true)
+            if let coor = donatedItem.coordinates {
+                mapView.setCenter(coor, animated: true)
+            }
             
         }
         else{
@@ -121,7 +124,6 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
 
     /*
