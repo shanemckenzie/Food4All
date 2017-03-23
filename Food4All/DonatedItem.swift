@@ -101,7 +101,7 @@ class DonatedItem {
         let imageData = UIImagePNGRepresentation(self.image!)!
         var base64ImageString: NSString!
         
-        base64ImageString = imageData.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters) as NSString!
+        base64ImageString = imageData.base64EncodedString() as NSString!
         
         
         let latitude = self.coordinates?.latitude

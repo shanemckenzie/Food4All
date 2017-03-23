@@ -33,6 +33,14 @@ class HomeViewController: UITableViewController {
         //button for slide out menu
         menuBtn.target = self.revealViewController()
         menuBtn.action = #selector(SWRevealViewController.revealToggle(_:))
+        
+        //Update table cells every 5 seconds
+        var timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: Selector("repeatingMethod"), userInfo: nil, repeats: true)
+    }
+    
+    func repeatingMethod(){
+        print("REPEATING")
+        self.tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
