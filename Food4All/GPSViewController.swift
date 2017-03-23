@@ -11,6 +11,7 @@ import MapKit
 import CoreLocation
 import os.log
 
+// REMEMBER TO REMOVE THIS
 class ColorPointAnnotation: MKPointAnnotation {
     var pinColor: UIColor
     
