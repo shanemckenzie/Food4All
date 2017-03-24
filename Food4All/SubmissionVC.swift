@@ -24,9 +24,9 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var donateSwitch: UISegmentedControl!
     
-    
     var donatedItem: DonatedItem?
     var donated = true
+    var editingExistingItem = false //so we know whether to save new or update existing item
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +36,28 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         // Enable the Save button only if valid ffields
         saveButton.isEnabled = false
         updateSaveButtonState()
+        
+        // Set up views if editing an existing Item
+        if let donatedItem = donatedItem {
+            editingExistingItem = true
+            
+            titleTxt.text = donatedItem.name
+            descTxt.text = donatedItem.description
+            itemImg.image = donatedItem.image
+            //expirationDatePicker.date = donatedItem.expireDate as! Date
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMMM dd, h:mm a"
+            let expirationDate = formatter.date(from: donatedItem.expiration)
+            expirationDatePicker.date = expirationDate!
+            
+            if(donatedItem.donated == true){
+                donateSwitch.selectedSegmentIndex = 0
+            }
+            else{
+                donateSwitch.selectedSegmentIndex = 1
+            }
+            
+        }
     }
 
     //MARK: Save Button
@@ -109,9 +131,15 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         }
         
         //TODO: SET UP DONATED BUTTON + COORDINATES
-        donatedItem = DonatedItem(titleTxt.text!, itemImg.image!, donated, descTxt.text!, expirationDate, tempCoord, (user?.uid)!)
         
-        donatedItem?.saveToDB()
+        if(!editingExistingItem){
+            donatedItem = DonatedItem(titleTxt.text!, itemImg.image!, donated, descTxt.text!, expirationDate, tempCoord, (user?.uid)!, "TEMP")
+            donatedItem?.saveToDB()
+        }
+        else{
+            donatedItem = DonatedItem(titleTxt.text!, itemImg.image!, donated, descTxt.text!, expirationDate, tempCoord, (user?.uid)!, (donatedItem?.itemID)!)
+            donatedItem?.updateItem()
+        }
     }
     
     //MARK: UIImagePickerControllerDelegate

@@ -48,6 +48,7 @@ class DonatedItems: NSObject{
     
     //TODO: Sorting by distance and date
     
+    //MARK: CLEANUP
     func loadUsersItems(){
         var ref: FIRDatabaseReference!
         ref = FIRDatabase.database().reference()
@@ -61,6 +62,7 @@ class DonatedItems: NSObject{
                     let donationItem: NSObject = values[key] as! NSObject
                     
                     let myTitle: String! = donationItem.value(forKey: "title") as? String
+                    let myItemID: String! = donationItem.value(forKey: "itemID") as? String
                     
                     let myPhotoString = donationItem.value(forKey: "image") as? String
                     let decodedData = NSData(base64Encoded: myPhotoString!)
@@ -86,7 +88,7 @@ class DonatedItems: NSObject{
                     let user = FIRAuth.auth()?.currentUser
                     
                     if(myUserID == user?.uid){
-                        let donation1 = DonatedItem(myTitle, myImage!, donated, myDescription!, myDate!, myCoordinates, myUserID!)
+                        let donation1 = DonatedItem(myTitle, myImage!, donated, myDescription!, myDate!, myCoordinates, myUserID!, myItemID!)
                         self.addItem(item: donation1!)
                     }
                 
@@ -116,7 +118,8 @@ class DonatedItems: NSObject{
                     let donationItem: NSObject = values[key] as! NSObject
                     
                     let myTitle: String! = donationItem.value(forKey: "title") as? String
-                    
+                    let myItemID: String! = donationItem.value(forKey: "itemID") as? String
+
                     let myPhotoString = donationItem.value(forKey: "image") as? String
                     let decodedData = NSData(base64Encoded: myPhotoString!)
                     let myImage = UIImage(data: decodedData as! Data)
@@ -138,7 +141,7 @@ class DonatedItems: NSObject{
                     
                     
                     
-                    let donation1 = DonatedItem(myTitle, myImage!, donated, myDescription!, myDate!, myCoordinates, myUserID!)
+                    let donation1 = DonatedItem(myTitle, myImage!, donated, myDescription!, myDate!, myCoordinates, myUserID!, myItemID!)
                     self.addItem(item: donation1!)
                     
                     }
@@ -150,7 +153,7 @@ class DonatedItems: NSObject{
         }
         
     }
-    
+    /*
     private func loadSampleDonation() {
         
         let photo = UIImage(named: "defaultPhoto")
@@ -189,6 +192,6 @@ class DonatedItems: NSObject{
         
         
     }
-    
+    */
     
 }

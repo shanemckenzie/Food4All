@@ -15,6 +15,7 @@ class DonatedItem {
     
     fileprivate var _name: String!
     fileprivate var _userID: String!
+    fileprivate var _itemID: String!
     fileprivate var _description: String!
     fileprivate var _expiration: String!
     var donated: Bool!
@@ -51,6 +52,13 @@ class DonatedItem {
         return _name
     }
     
+    var itemID: String {
+        if _itemID == nil {
+            _itemID = ""
+        }
+        return _itemID
+    }
+    
     var description: String {
         if _description == nil {
             _description = ""
@@ -70,10 +78,14 @@ class DonatedItem {
         _description = ""
         _expiration = ""
         _userID = ""
+        _itemID = ""
     }
     
-    init?(_ title: String, _ image: UIImage, _ donated: Bool, _ description: String, _ expiration: String, _ coordinates: CLLocationCoordinate2D, _ userID: String){
+
+    
+    init?(_ title: String, _ image: UIImage, _ donated: Bool, _ description: String, _ expiration: String, _ coordinates: CLLocationCoordinate2D, _ userID: String, _ itemID: String){
         
+        self._itemID = itemID
         self._name = title
         self._userID = userID
         self.image = image
@@ -81,9 +93,37 @@ class DonatedItem {
         self._description = description
         self._expiration = expiration
         self.coordinates = coordinates
-        
+        print("ASSIGNINGID")
+        print(itemID)
     }
     
+    func updateItem(){
+        print("WHATSMYID")
+        print(self.itemID)
+        ref = FIRDatabase.database().reference()
+        let newDonationItemRef = self.ref!.child("DonationItem").child(self.itemID)
+        //let newDonationItemId = newDonationItemRef.key
+        let imageData = UIImagePNGRepresentation(self.image!)!
+        var base64ImageString: NSString!
+        base64ImageString = imageData.base64EncodedString() as NSString!
+        
+        let latitude = self.coordinates?.latitude
+        let longitude = self.coordinates?.longitude
+        
+        let newDonationItemData: [String : Any] = ["itemID": self.itemID,
+                                                   "title": _name as NSString,
+                                                   "description": _description as NSString,
+                                                   "expiration": _expiration as NSString,
+                                                   "userID": _userID as NSString,
+                                                   "image": base64ImageString as NSString,
+                                                   "latitude": latitude! as NSNumber,
+                                                   "longitude": longitude! as NSNumber,
+                                                   "donated": Int(NSNumber(value:donated!)) as NSNumber
+        ]
+        
+        newDonationItemRef.setValue(newDonationItemData)
+
+    }
     
     func saveToDB() {
         
@@ -91,6 +131,7 @@ class DonatedItem {
         ref = FIRDatabase.database().reference()
         let newDonationItemRef = self.ref!.child("DonationItem").childByAutoId()
         let newDonationItemId = newDonationItemRef.key
+
         let imageData = UIImagePNGRepresentation(self.image!)!
         var base64ImageString: NSString!
         base64ImageString = imageData.base64EncodedString() as NSString!
@@ -108,11 +149,8 @@ class DonatedItem {
             "longitude": longitude! as NSNumber,
             "donated": Int(NSNumber(value:donated!)) as NSNumber
         ]
-        
+        self._itemID = newDonationItemId
         newDonationItemRef.setValue(newDonationItemData)
- 
-
-        
     }
     
 }
