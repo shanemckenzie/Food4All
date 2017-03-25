@@ -46,7 +46,7 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         menuBtn.action = #selector(SWRevealViewController.revealToggle(_:))
         
         //Update table cells every 5 seconds
-        var timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: Selector("repeatingMethod"), userInfo: nil, repeats: true)
+        var timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(AccountViewController.repeatingMethod), userInfo: nil, repeats: true)
     }
     
     func repeatingMethod(){

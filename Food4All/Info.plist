@@ -47,5 +47,7 @@
 	<string>Allow the app to access the camera to add an image to your post</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Allow the app to access your photo library to add an image to your post</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Allow the app to get your address</string>
 </dict>
 </plist>

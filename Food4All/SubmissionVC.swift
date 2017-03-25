@@ -23,19 +23,34 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     @IBOutlet weak var expirationDatePicker: UIDatePicker!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var donateSwitch: UISegmentedControl!
+    @IBOutlet weak var addressTxt: UITextField!
     
+    let locationManager = CLLocationManager()
     var donatedItem: DonatedItem?
     var donated = true
     var editingExistingItem = false //so we know whether to save new or update existing item
+    var coordinates2D: CLLocationCoordinate2D?
+    var coordinates: CLLocation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         titleTxt.delegate = self
         
-        // Enable the Save button only if valid ffields
+        // Enable the Save button only if valid fields
         saveButton.isEnabled = false
         updateSaveButtonState()
+        
+        //Get user's address
+        if CLLocationManager.locationServicesEnabled() {
+            print("Location services enabled")
+            self.locationManager.delegate = self
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            self.locationManager.requestAlwaysAuthorization()
+            self.locationManager.startUpdatingLocation()
+        }
+        
+  
         
         // Set up views if editing an existing Item
         if let donatedItem = donatedItem {
@@ -44,7 +59,12 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
             titleTxt.text = donatedItem.name
             descTxt.text = donatedItem.description
             itemImg.image = donatedItem.image
+            
+            //TODO
+            //addressTxt.text = donatedItem.address
+            
             //expirationDatePicker.date = donatedItem.expireDate as! Date
+            
             let formatter = DateFormatter()
             formatter.dateFormat = "MMMM dd, h:mm a"
             let expirationDate = formatter.date(from: donatedItem.expiration)
@@ -79,12 +99,10 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         updateSaveButtonState()
     }
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     /* REMOVE
      lazy var expireDateString: String = {
@@ -160,6 +178,7 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         //dismiss the picker
         dismiss(animated: true, completion: nil)
     }
+    
     //MARK: Actions
     
     @IBAction func imgFromLibrary(_ sender: AnyObject) {
@@ -191,7 +210,6 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         
         //UIImagePickerController lets users pick media from photo library
         let imagePickerController = UIImagePickerController()
-        
         //notify ViewController when user picks image
         imagePickerController.delegate = self
         
@@ -208,6 +226,76 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         }
     }
     
+    //MARK: Location
+    
+    //get users location
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        print("Getting address")
+        let userLocation:CLLocation = locations[0]
+        let long = userLocation.coordinate.longitude;
+        let lat = userLocation.coordinate.latitude;
+        //Do What ever you want with it
+        coordinates2D?.latitude = lat
+        coordinates2D?.longitude = long
+        coordinates = CLLocation(latitude: lat, longitude: long)
+        
+        //geocode address
+        setAddress(location: coordinates!) {
+            (originPlacemark, error) in
+            if let err = error {
+                print(err)
+            } else if let placemark = originPlacemark {
+                // Do something with the placemark
+                var placemarkAddress = placemark.addressDictionary
+                
+                let thoroughfare = placemarkAddress?["Thoroughfare"] as! String?
+                let city = placemarkAddress?["City"] as! String?
+                
+                self.addressTxt.text = "\(thoroughfare!), \(city!)"
+                
+                
+                print("Address \(self.addressTxt.text)")
+                
+                self.locationManager.stopUpdatingLocation()
+                
+            }
+        }
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error while updating location " + error.localizedDescription)
+    }
+    
+    
+    //set address using the user's GPS coordinates
+    func setAddress(location: CLLocation, completionHandler: @escaping (CLPlacemark?, String?) -> ()) {
+        let geocoder = CLGeocoder()
+        
+        geocoder.reverseGeocodeLocation(location, completionHandler: {
+            placemarks, error in
+            if let err = error {
+                
+                completionHandler(nil, err.localizedDescription)
+                
+            } else if let placemarkArray = placemarks {
+                
+                if let placemark = placemarkArray.first {
+                    
+                    completionHandler(placemark, nil)
+                    
+                } else {
+                    
+                    completionHandler(nil, "Placemark was nil")
+                    
+                }
+            } else {
+                completionHandler(nil, "Unkown Error")
+            }
+        })
+        
+    }
 
     
 }
