@@ -50,8 +50,6 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
             self.locationManager.startUpdatingLocation()
         }
         
-  
-        
         // Set up views if editing an existing Item
         if let donatedItem = donatedItem {
             editingExistingItem = true
@@ -59,7 +57,6 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
             titleTxt.text = donatedItem.name
             descTxt.text = donatedItem.description
             itemImg.image = donatedItem.image
-            
             //TODO
             //addressTxt.text = donatedItem.address
             
@@ -78,6 +75,29 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
             }
             
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        //geocode address
+        setAddress(location: coordinates!) {
+            (originPlacemark, error) in
+            if let err = error {
+                print(err)
+            } else if let placemark = originPlacemark {
+                // Do something with the placemark
+                var placemarkAddress = placemark.addressDictionary
+                
+                let thoroughfare = placemarkAddress?["Thoroughfare"] as! String?
+                let city = placemarkAddress?["City"] as! String?
+                
+                self.addressTxt.text = "\(thoroughfare!), \(city!)"
+                
+                print("Address \(self.addressTxt.text)")
+                
+                self.locationManager.stopUpdatingLocation()
+            }
+        }
+        
     }
 
     //MARK: Save Button
@@ -151,11 +171,11 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         //TODO: SET UP DONATED BUTTON + COORDINATES
         
         if(!editingExistingItem){
-            donatedItem = DonatedItem(titleTxt.text!, itemImg.image!, donated, descTxt.text!, expirationDate, tempCoord, (user?.uid)!, "TEMP")
+            donatedItem = DonatedItem(titleTxt.text!, itemImg.image!, donated, descTxt.text!, expirationDate, tempCoord, (user?.uid)!, "TEMP", addressTxt.text!)
             donatedItem?.saveToDB()
         }
         else{
-            donatedItem = DonatedItem(titleTxt.text!, itemImg.image!, donated, descTxt.text!, expirationDate, tempCoord, (user?.uid)!, (donatedItem?.itemID)!)
+            donatedItem = DonatedItem(titleTxt.text!, itemImg.image!, donated, descTxt.text!, expirationDate, tempCoord, (user?.uid)!, (donatedItem?.itemID)!, addressTxt.text!)
             donatedItem?.updateItem()
         }
     }
@@ -239,28 +259,6 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         coordinates2D?.latitude = lat
         coordinates2D?.longitude = long
         coordinates = CLLocation(latitude: lat, longitude: long)
-        
-        //geocode address
-        setAddress(location: coordinates!) {
-            (originPlacemark, error) in
-            if let err = error {
-                print(err)
-            } else if let placemark = originPlacemark {
-                // Do something with the placemark
-                var placemarkAddress = placemark.addressDictionary
-                
-                let thoroughfare = placemarkAddress?["Thoroughfare"] as! String?
-                let city = placemarkAddress?["City"] as! String?
-                
-                self.addressTxt.text = "\(thoroughfare!), \(city!)"
-                
-                
-                print("Address \(self.addressTxt.text)")
-                
-                self.locationManager.stopUpdatingLocation()
-                
-            }
-        }
         
     }
     

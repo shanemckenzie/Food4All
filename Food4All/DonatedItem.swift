@@ -18,6 +18,7 @@ class DonatedItem {
     fileprivate var _itemID: String!
     fileprivate var _description: String!
     fileprivate var _expiration: String!
+    var address: String!
     var donated: Bool!
     
     //TODO: the reserve switch on the item listing will check if the item has been reserved
@@ -83,7 +84,7 @@ class DonatedItem {
     
 
     
-    init?(_ title: String, _ image: UIImage, _ donated: Bool, _ description: String, _ expiration: String, _ coordinates: CLLocationCoordinate2D, _ userID: String, _ itemID: String){
+    init?(_ title: String, _ image: UIImage, _ donated: Bool, _ description: String, _ expiration: String, _ coordinates: CLLocationCoordinate2D, _ userID: String, _ itemID: String, _ address: String){
         
         self._itemID = itemID
         self._name = title
@@ -93,6 +94,8 @@ class DonatedItem {
         self._description = description
         self._expiration = expiration
         self.coordinates = coordinates
+        self.address = address
+        
         print("ASSIGNINGID")
         print(itemID)
     }
@@ -118,7 +121,8 @@ class DonatedItem {
                                                    "image": base64ImageString as NSString,
                                                    "latitude": latitude! as NSNumber,
                                                    "longitude": longitude! as NSNumber,
-                                                   "donated": Int(NSNumber(value:donated!)) as NSNumber
+                                                   "donated": Int(NSNumber(value:donated!)) as NSNumber,
+                                                   "address": address! as NSString
         ]
         
         newDonationItemRef.setValue(newDonationItemData)
@@ -147,7 +151,8 @@ class DonatedItem {
             "image": base64ImageString as NSString,
             "latitude": latitude! as NSNumber,
             "longitude": longitude! as NSNumber,
-            "donated": Int(NSNumber(value:donated!)) as NSNumber
+            "donated": Int(NSNumber(value:donated!)) as NSNumber,
+            "address": address! as NSString
         ]
         self._itemID = newDonationItemId
         newDonationItemRef.setValue(newDonationItemData)

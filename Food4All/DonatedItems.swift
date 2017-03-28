@@ -74,6 +74,7 @@ class DonatedItems: NSObject{
                     let myLongitude = donationItem.value(forKey: "longitude") as? Double
                     let myCoordinates = CLLocationCoordinate2D(latitude: myLatitude!, longitude: myLongitude!)
                     let myUserID = donationItem.value(forKey: "userID") as? String
+                    let address = donationItem.value(forKey: "address") as? String
                     
                     
                     var  donated: Bool
@@ -88,7 +89,7 @@ class DonatedItems: NSObject{
                     let user = FIRAuth.auth()?.currentUser
                     
                     if(myUserID == user?.uid){
-                        let donation1 = DonatedItem(myTitle, myImage!, donated, myDescription!, myDate!, myCoordinates, myUserID!, myItemID!)
+                        let donation1 = DonatedItem(myTitle, myImage!, donated, myDescription!, myDate!, myCoordinates, myUserID!, myItemID!, address!)
                         self.addItem(item: donation1!)
                     }
                 
@@ -130,6 +131,7 @@ class DonatedItems: NSObject{
                     let myLongitude = donationItem.value(forKey: "longitude") as? Double
                     let myCoordinates = CLLocationCoordinate2D(latitude: myLatitude!, longitude: myLongitude!)
                     let myUserID = donationItem.value(forKey: "userID") as? String
+                    let myAddress = donationItem.value(forKey: "address") as? String
                     
                     
                     var  donated: Bool
@@ -139,9 +141,7 @@ class DonatedItems: NSObject{
                         donated = true
                     }
                     
-                    
-                    
-                    let donation1 = DonatedItem(myTitle, myImage!, donated, myDescription!, myDate!, myCoordinates, myUserID!, myItemID!)
+                    let donation1 = DonatedItem(myTitle, myImage!, donated, myDescription!, myDate!, myCoordinates, myUserID!, myItemID!, myAddress!)
                     self.addItem(item: donation1!)
                     
                     }

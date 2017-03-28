@@ -42,7 +42,10 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             descriptionField.text = donatedItem.description
             expiryDateLabel.text = donatedItem.expiration
             
+            
             //MARK: TODO - Add field to item model for reserve and business name (linked to account)
+            //TODO: lock the reserve switch if you are not the user who reserved it or the user who created the item
+            //reserveSwitch.isUserInteractionEnabled = false
             
             //set up map
             self.mapView.showsUserLocation = true
@@ -135,5 +138,6 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         // Pass the selected object to the new view controller.
     }
     */
+    
 
 }
