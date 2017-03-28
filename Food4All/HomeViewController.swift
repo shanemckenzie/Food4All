@@ -74,6 +74,8 @@ class HomeViewController: UITableViewController {
         cell.cellTitle.text = item.name
         cell.cellImg.image = item.image
         cell.cellDesc.text = item.description
+        cell.cellAddress.text = "Address: \(item.address!)"
+        cell.cellExpiryDate.text = "Post Expires: \(item.expiration)"
         
         if item.donated == true {
             cell.layer.backgroundColor = UIColor(red: 6/255, green: 201/255, blue: 133/255, alpha: 0.3).cgColor

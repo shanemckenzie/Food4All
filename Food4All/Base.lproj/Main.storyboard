@@ -428,6 +428,9 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="auw-zZ-Dgr">
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="42" id="hHd-zp-WtR"/>
+                                            </constraints>
                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </string>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                             <nil key="textColor"/>
@@ -469,7 +472,6 @@
                                         <constraint firstItem="S56-8m-l6d" firstAttribute="trailing" secondItem="M5Q-po-cJL" secondAttribute="trailingMargin" id="jfO-KQ-4zm"/>
                                         <constraint firstItem="S56-8m-l6d" firstAttribute="top" secondItem="NqV-uy-vIB" secondAttribute="bottom" constant="8" id="kru-rY-qfA"/>
                                         <constraint firstItem="NqV-uy-vIB" firstAttribute="leading" secondItem="M5Q-po-cJL" secondAttribute="leadingMargin" id="rj9-LU-3eI"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="auw-zZ-Dgr" secondAttribute="bottom" constant="3" id="rp7-uU-DBH"/>
                                         <constraint firstItem="iCf-vp-D3d" firstAttribute="leading" secondItem="M5Q-po-cJL" secondAttribute="leadingMargin" id="wOS-Jn-y34"/>
                                         <constraint firstItem="iCf-vp-D3d" firstAttribute="top" secondItem="NqV-uy-vIB" secondAttribute="bottom" constant="7.5" id="zFE-WW-Nlr"/>
                                     </constraints>
@@ -908,8 +910,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="b3A-8V-RTi"/>
-        <segue reference="TbX-OX-Zdl"/>
-        <segue reference="KiN-js-Cri"/>
+        <segue reference="D6H-rA-bcP"/>
         <segue reference="OQL-Dh-niO"/>
+        <segue reference="KiN-js-Cri"/>
     </inferredMetricsTieBreakers>
 </document>
