@@ -35,12 +35,11 @@ class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     //var annotations = [MKPointAnnotation]()
     var donatedItems = DonatedItems()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        donatedItems.initItems()
         
+        donatedItems.initItems()
+
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         self.mapView.showsUserLocation = true
         
@@ -76,8 +75,10 @@ class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         //annotation.coordinate = CLLocationCoordinate2D(latitude: 50.417433, longitude: -104.594179)
         //mapView.addAnnotation(annotation)
         
+        //MARK: ENSURE THIS NEVER RUNS bEFORE data is loaded
+     
         //load pins onto the map
-        
+       
         for index in 0 ... (donatedItems.getCount() - 1){
             //var view : MKPinAnnotationView
          

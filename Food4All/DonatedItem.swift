@@ -136,9 +136,9 @@ class DonatedItem {
         let newDonationItemRef = self.ref!.child("DonationItem").childByAutoId()
         let newDonationItemId = newDonationItemRef.key
 
-        let imageData = UIImagePNGRepresentation(self.image!)!
-        var base64ImageString: NSString!
-        base64ImageString = imageData.base64EncodedString() as NSString!
+       // let imageData = UIImagePNGRepresentation(self.image!)!
+        //var base64ImageString: NSString!
+        //base64ImageString = imageData.base64EncodedString() as NSString!
         
         let latitude = self.coordinates?.latitude
         let longitude = self.coordinates?.longitude
@@ -148,7 +148,7 @@ class DonatedItem {
             "description": _description as NSString,
             "expiration": _expiration as NSString,
             "userID": _userID as NSString,
-            "image": base64ImageString as NSString,
+            //"image": base64ImageString as NSString,
             "latitude": latitude! as NSNumber,
             "longitude": longitude! as NSNumber,
             "donated": Int(NSNumber(value:donated!)) as NSNumber,

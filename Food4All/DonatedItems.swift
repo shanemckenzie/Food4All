@@ -15,11 +15,12 @@ class DonatedItems: NSObject{
     
     //MARK: Properties
     var donatedItems = [DonatedItem]()
+    var isLoaded = false
     
     //MARK: Piblic functions
     
     func initItems(){
-        //loadSampleDonation()
+        loadSampleDonation()
         loadItems()
     }
     
@@ -27,6 +28,8 @@ class DonatedItems: NSObject{
         return donatedItems.count
     }
     
+    
+
     func getItem(index: Int) -> DonatedItem{
         return donatedItems[index]
     }
@@ -35,6 +38,7 @@ class DonatedItems: NSObject{
         print("IM BEING ADDED")
         donatedItems.append(item)
     }
+    
     
     //MARK: UPDATE FOR SORTING
     func updateItem(item: DonatedItem, index: Int){
@@ -64,9 +68,11 @@ class DonatedItems: NSObject{
                     let myTitle: String! = donationItem.value(forKey: "title") as? String
                     let myItemID: String! = donationItem.value(forKey: "itemID") as? String
                     
-                    let myPhotoString = donationItem.value(forKey: "image") as? String
-                    let decodedData = NSData(base64Encoded: myPhotoString!)
-                    let myImage = UIImage(data: decodedData as! Data)
+                    //let myPhotoString = donationItem.value(forKey: "image") as? String
+                    //let decodedData = NSData(base64Encoded: myPhotoString!)
+                    //let myImage = UIImage(data: decodedData as! Data)
+                    let myImage = UIImage(named: "defaultPhoto")
+                    
                     
                     let myDescription = donationItem.value(forKey: "description") as? String
                     let myDate = donationItem.value(forKey: "expiration") as? String
@@ -94,6 +100,7 @@ class DonatedItems: NSObject{
                     }
                 
                 }
+                self.isLoaded = true
             }
             
             
@@ -121,9 +128,10 @@ class DonatedItems: NSObject{
                     let myTitle: String! = donationItem.value(forKey: "title") as? String
                     let myItemID: String! = donationItem.value(forKey: "itemID") as? String
 
-                    let myPhotoString = donationItem.value(forKey: "image") as? String
-                    let decodedData = NSData(base64Encoded: myPhotoString!)
-                    let myImage = UIImage(data: decodedData as! Data)
+                    //let myPhotoString = donationItem.value(forKey: "image") as? String
+                    //let decodedData = NSData(base64Encoded: myPhotoString!)
+                    //let myImage = UIImage(data: decodedData as! Data)
+                    let myImage = UIImage(named: "defaultPhoto")
                     
                     let myDescription = donationItem.value(forKey: "description") as? String
                     let myDate = donationItem.value(forKey: "expiration") as? String
@@ -153,7 +161,7 @@ class DonatedItems: NSObject{
         }
         
     }
-    /*
+    
     private func loadSampleDonation() {
         
         let photo = UIImage(named: "defaultPhoto")
@@ -175,15 +183,15 @@ class DonatedItems: NSObject{
         
         let user = FIRAuth.auth()?.currentUser
         
-        guard let donation1 = DonatedItem(title, photo!, true, description, dateString, coordinates, (user?.uid)!) else {
+        guard let donation1 = DonatedItem(title, photo!, true, description, dateString, coordinates, (user?.uid)!, "123", "123") else {
             fatalError("Unable to instantiate object")
         }
         
-        guard let donation2 = DonatedItem(title2, photo!, false, description2, dateString, coordinates2, (user?.uid)!) else {
+        guard let donation2 = DonatedItem(title2, photo!, false, description2, dateString, coordinates2, (user?.uid)!, "123", "123") else {
             fatalError("Unable to instantiate object")
         }
         
-        guard let donation3 = DonatedItem("WALMART", photo!, false, description2, dateString2, coordinates3, (user?.uid)!) else {
+        guard let donation3 = DonatedItem("WALMART", photo!, false, description2, dateString2, coordinates3, (user?.uid)!, "123", "123") else {
             fatalError("Unable to instantiate object")
         }
         
@@ -192,6 +200,6 @@ class DonatedItems: NSObject{
         
         
     }
-    */
+ 
     
 }
