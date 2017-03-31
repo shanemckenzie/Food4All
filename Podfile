@@ -12,6 +12,7 @@ target 'Food4All' do
   pod 'Firebase/Auth'
 
   pod 'Firebase/Database'
+  pod 'Firebase/Storage'
 
   target 'Food4AllTests' do
     inherit! :search_paths

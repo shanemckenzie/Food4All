@@ -140,7 +140,8 @@ class DonatedItems: NSObject{
                     //let myPhotoString = donationItem.value(forKey: "image") as? String
                     //let decodedData = NSData(base64Encoded: myPhotoString!)
                     //let myImage = UIImage(data: decodedData as! Data)
-                    let myImage = UIImage(named: "defaultPhoto")
+                    
+                    
                     
                     let myDescription = donationItem.value(forKey: "description") as? String
                     let myDate = donationItem.value(forKey: "expiration") as? String
@@ -159,12 +160,41 @@ class DonatedItems: NSObject{
                         donated = true
                     }
                     
-                    let donation1 = DonatedItem(myTitle, myImage!, donated, myDescription!, myDate!, myCoordinates, myUserID!, myItemID!, myAddress!)
-                    self.addItem(item: donation1!)
-                    print("ADDING ITEM")
-                }
+                    //---Load image from storage rather than db
+                    
+                    // Get a reference to the storage service using the default Firebase App
+                    let storage = FIRStorage.storage()
+                    let storageRef = storage.reference()
+                    
+                    // Create a reference to the file you want to download
+                    let url = "images/" + myItemID + ".png"
+                    let imageRef = storageRef.child(url)
+                    
+                    // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+                    var myImage: UIImage?
+                    
+                    imageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) -> Void in
+                        if (error != nil) {
+                            print("STORAGE ERROR")
+                            print(error)
+                        } else {
+                            myImage = UIImage(data: data!)
+                            if(myImage == nil)
+                            {
+                                myImage = UIImage(named: "defaultPhoto")
+                            }
+                            
+                            let donation1 = DonatedItem(myTitle, myImage!, donated, myDescription!, myDate!, myCoordinates, myUserID!, myItemID!, myAddress!)
+                            self.addItem(item: donation1!)
+                        }
+                    }
+                 
+                    
                 
+                print("ADDING ITEM")
             }
+            
+        }
             
             
         }) { (error) in
@@ -172,7 +202,7 @@ class DonatedItems: NSObject{
         }
         
     }
-    
+    /*
     private func loadSampleDonation() {
         
         let photo = UIImage(named: "defaultPhoto")
@@ -211,6 +241,6 @@ class DonatedItems: NSObject{
         
         
     }
- 
+ */
     
 }

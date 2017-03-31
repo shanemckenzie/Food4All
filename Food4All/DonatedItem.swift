@@ -131,7 +131,6 @@ class DonatedItem {
     
     func saveToDB() {
         
-        print("SAVING")
         ref = FIRDatabase.database().reference()
         let newDonationItemRef = self.ref!.child("DonationItem").childByAutoId()
         let newDonationItemId = newDonationItemRef.key
@@ -156,6 +155,27 @@ class DonatedItem {
         ]
         self._itemID = newDonationItemId
         newDonationItemRef.setValue(newDonationItemData)
+        
+        //----Upload image to firebase storage rather than db-----
+        
+        // Get a reference to the storage service using the default Firebase App
+        let storage = FIRStorage.storage()
+        let storageRef = storage.reference()
+        
+        // Create a reference to the file you want to upload
+        let url = "images/" + newDonationItemId + ".png"
+        let imageRef = storageRef.child(url)
+        
+        // Upload the file to the path "images/rivers.jpg"
+        let imageData = UIImagePNGRepresentation(self.image!)!
+        let uploadTask = imageRef.put(imageData, metadata: nil) { (metadata, error) in
+            guard let metadata = metadata else {
+                // Uh-oh, an error occurred!
+                return
+            }
+            // Metadata contains file metadata such as size, content-type, and download URL.
+            let downloadURL = metadata.downloadURL
+        }
     }
     
 }
