@@ -11,6 +11,8 @@ import Foundation
 import Firebase
 import FirebaseAuth
 
+
+
 class DonatedItems: NSObject{
     
     //MARK: Properties
@@ -167,7 +169,7 @@ class DonatedItems: NSObject{
                     let storageRef = storage.reference()
                     
                     // Create a reference to the file you want to download
-                    let url = "images/" + myItemID + ".png"
+                    let url = "images/" + myItemID + ".jpg"
                     let imageRef = storageRef.child(url)
                     
                     // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
