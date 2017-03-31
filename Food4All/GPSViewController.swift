@@ -11,16 +11,6 @@ import MapKit
 import CoreLocation
 import os.log
 
-// REMEMBER TO REMOVE THIS
-class ColorPointAnnotation: MKPointAnnotation {
-    var pinColor: UIColor
-    
-    init(pinColor: UIColor) {
-        self.pinColor = pinColor
-        super.init()
-    }
-}
-
 class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
@@ -31,6 +21,7 @@ class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var myLocation: CLLocationCoordinate2D?
     var mapData: MapData?
     var itemIndex = -1
+    var isDataLoaded = false
     
     //var annotations = [MKPointAnnotation]()
     var donatedItems = DonatedItems()
@@ -75,41 +66,30 @@ class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         //annotation.coordinate = CLLocationCoordinate2D(latitude: 50.417433, longitude: -104.594179)
         //mapView.addAnnotation(annotation)
         
-        //MARK: ENSURE THIS NEVER RUNS bEFORE data is loaded
-     
-        //load pins onto the map
-       
-        for index in 0 ... (donatedItems.getCount() - 1){
-            //var view : MKPinAnnotationView
-         
-            
-            let annotation = ColorPointAnnotation(pinColor: UIColor.green)
-            annotation.pinColor = UIColor.green
-            annotation.coordinate = donatedItems.getItem(index: index).coordinates!
-        
-            mapView.addAnnotation(annotation)
-        }
-
         //button for slide out menu
         menuBtn.target = self.revealViewController()
         menuBtn.action = #selector(SWRevealViewController.revealToggle(_:))
         
+        let timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(GPSViewController.repeatingMethod), userInfo: nil, repeats: true)
     }
     
-    //MARK: COLOR
-    /*
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        var view : MKPinAnnotationView
-        guard let annotation = annotation as? PizzaLocation else {return nil}
-        if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(annotation.identifier) as? MKPinAnnotationView {
-            view = dequeuedView
-        }else {
-            view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: annotation.identifier)
+    //MARK: ADD PINS TO MAP
+    func repeatingMethod(){
+        if(donatedItems.getCount() > 0 && !isDataLoaded)
+        {
+            addAnnotations()
         }
-        view.pinTintColor = pinColor(annotation.title!)
-        return view
     }
-    */
+    
+    func addAnnotations(){
+        for index in 0 ... (donatedItems.getCount() - 1){
+            
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = donatedItems.getItem(index: index).coordinates!
+            mapView.addAnnotation(annotation)
+        }
+        isDataLoaded = true
+    }
     
     //MARK: PIN TAP
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView)

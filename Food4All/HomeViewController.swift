@@ -37,7 +37,7 @@ class HomeViewController: UITableViewController {
     }
     
     func repeatingMethod(){
-        print("REPEATING")
+        //print("REPEATING")
         self.tableView.reloadData()
     }
     

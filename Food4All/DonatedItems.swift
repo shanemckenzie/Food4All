@@ -20,7 +20,8 @@ class DonatedItems: NSObject{
     //MARK: Piblic functions
     
     func initItems(){
-        loadSampleDonation()
+        //loadSampleDonation()
+        print("CALLING LOAD")
         loadItems()
     }
     
@@ -28,8 +29,14 @@ class DonatedItems: NSObject{
         return donatedItems.count
     }
     
-    
+    func setIsLoaded(setIsLoaded: Bool){
+        isLoaded = setIsLoaded
+    }
 
+    func isLDataLoaded() -> Bool{
+        return isLoaded
+    }
+    
     func getItem(index: Int) -> DonatedItem{
         return donatedItems[index]
     }
@@ -98,14 +105,14 @@ class DonatedItems: NSObject{
                         let donation1 = DonatedItem(myTitle, myImage!, donated, myDescription!, myDate!, myCoordinates, myUserID!, myItemID!, address!)
                         self.addItem(item: donation1!)
                     }
-                
+                    
                 }
-                self.isLoaded = true
+                
             }
             
             
         }) { (error) in
-            print(error.localizedDescription)
+            print("Failed to load from FireBase")
         }
         
     }
@@ -113,15 +120,17 @@ class DonatedItems: NSObject{
     //MARK: Private Functions
     
     private func loadItems(){
-        
+        print("INSIDE LOAD FUNCTION")
         var ref: FIRDatabaseReference!
         ref = FIRDatabase.database().reference()
         
         ref.child("DonationItem").observeSingleEvent(of: .value, with: { (snapshot) in
             
-            if let values = snapshot.value as? NSDictionary {
-            
-                for (key,_) in values{
+            if let values = snapshot.value as? NSDictionary
+            {
+            print("AM I ALIVE?")
+                for (key,_) in values
+                {
                     
                     let donationItem: NSObject = values[key] as! NSObject
                     
@@ -145,19 +154,21 @@ class DonatedItems: NSObject{
                     var  donated: Bool
                     if let donatedInt = donationItem.value(forKey: "donated") as? Int {
                         donated = Bool(donatedInt as NSNumber)
-                    } else {
+                    }
+                    else {
                         donated = true
                     }
                     
                     let donation1 = DonatedItem(myTitle, myImage!, donated, myDescription!, myDate!, myCoordinates, myUserID!, myItemID!, myAddress!)
                     self.addItem(item: donation1!)
-                    
-                    }
+                    print("ADDING ITEM")
+                }
+                
             }
             
             
         }) { (error) in
-            print(error.localizedDescription)
+            print("Failed to load from firebase db")
         }
         
     }

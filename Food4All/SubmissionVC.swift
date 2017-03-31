@@ -155,7 +155,7 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         let expirationDate = formatter.string(from: expirationDatePicker.date)
         
         //TODO: deal with coordinates
-        let tempCoord = CLLocationCoordinate2D(latitude: 50.417433, longitude: -104.594179)
+        let tempCoord = CLLocationCoordinate2D(latitude: 50.495254, longitude: -104.637263)
         
         let user = FIRAuth.auth()?.currentUser
         
