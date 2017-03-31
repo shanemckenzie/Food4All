@@ -12,9 +12,9 @@ import MapKit
 import CoreLocation
 import Firebase
 import FirebaseAuth
+import Contacts
 
-
-class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, CLLocationManagerDelegate {
+class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, CLLocationManagerDelegate{
 
     //MARK: PROPERTIES
     @IBOutlet weak var itemImg: UIImageView!
@@ -85,13 +85,14 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                 print(err)
             } else if let placemark = originPlacemark {
                 // Do something with the placemark
-                var placemarkAddress = placemark.addressDictionary
+                let placemarkAddress = placemark.addressDictionary
                 
-                let thoroughfare = placemarkAddress?["Thoroughfare"] as! String?
-                let city = placemarkAddress?["City"] as! String?
+                //let thoroughfare = placemarkAddress?["Thoroughfare"] as! String?
+                //let city = placemarkAddress?["City"] as! String?
+                let address = self.postalAddressFromAddressDictionary(placemarkAddress as! Dictionary<NSObject, AnyObject>)
                 
-                self.addressTxt.text = "\(thoroughfare!), \(city!)"
-                
+                //self.addressTxt.text = "\(thoroughfare!), \(city!)"
+                self.addressTxt.text = address.street
                 print("Address \(self.addressTxt.text)")
                 
                 self.locationManager.stopUpdatingLocation()
@@ -247,6 +248,23 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     }
     
     //MARK: Location
+    // Convert to the newer CNPostalAddress
+    func postalAddressFromAddressDictionary(_ addressdictionary: Dictionary<NSObject,AnyObject>) -> CNMutablePostalAddress {
+        let address = CNMutablePostalAddress()
+        
+        address.street = addressdictionary["Street" as NSObject] as? String ?? ""
+        address.state = addressdictionary["State" as NSObject] as? String ?? ""
+        address.city = addressdictionary["City" as NSObject] as? String ?? ""
+        address.country = addressdictionary["Country" as NSObject] as? String ?? ""
+        address.postalCode = addressdictionary["ZIP" as NSObject] as? String ?? ""
+        
+        return address
+    }
+    
+    // Create a localized address string from an Address Dictionary
+    func localizedStringForAddressDictionary(addressDictionary: Dictionary<NSObject,AnyObject>) -> String {
+        return CNPostalAddressFormatter.string(from: postalAddressFromAddressDictionary(addressDictionary), style: .mailingAddress)
+    }
     
     //get users location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
