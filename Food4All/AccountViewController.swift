@@ -50,8 +50,10 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func repeatingMethod(){
-        print("REPEATING")
         self.tableView.reloadData()
+        
+        //sort any added items
+        donatedItems.sortByDate()
     }
 
     override func didReceiveMemoryWarning() {

@@ -59,7 +59,10 @@ class DonatedItems: NSObject{
         donatedItems.append(item)
     }
     
-    //TODO: Sorting by distance and date
+    //MARK: SORTING
+    func sortByDate(){
+        donatedItems.sort(by: {$0.expiration.compare($1.expiration) == .orderedAscending})
+    }
     
     //MARK: CLEANUP
     func loadUsersItems(){
@@ -80,8 +83,6 @@ class DonatedItems: NSObject{
                     //let myPhotoString = donationItem.value(forKey: "image") as? String
                     //let decodedData = NSData(base64Encoded: myPhotoString!)
                     //let myImage = UIImage(data: decodedData as! Data)
-                    let myImage = UIImage(named: "defaultPhoto")
-                    
                     
                     let myDescription = donationItem.value(forKey: "description") as? String
                     let myDate = donationItem.value(forKey: "expiration") as? String
@@ -104,8 +105,38 @@ class DonatedItems: NSObject{
                     let user = FIRAuth.auth()?.currentUser
                     
                     if(myUserID == user?.uid){
-                        let donation1 = DonatedItem(myTitle, myImage!, donated, myDescription!, myDate!, myCoordinates, myUserID!, myItemID!, address!)
-                        self.addItem(item: donation1!)
+                        
+                        //---Load image from storage rather than db
+                        
+                        // Get a reference to the storage service using the default Firebase App
+                        let storage = FIRStorage.storage()
+                        let storageRef = storage.reference()
+                        
+                        // Create a reference to the file you want to download
+                        let url = "images/" + myItemID + ".jpg"
+                        let imageRef = storageRef.child(url)
+                        
+                        // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+                        var myImage: UIImage?
+                        
+                        imageRef.data(withMaxSize: 1 * 1024 * 1024)
+                        { (data, error) -> Void in
+                            if (error != nil) {
+                                print("STORAGE ERROR")
+                                print(error)
+                            }
+                            else
+                            {
+                                myImage = UIImage(data: data!)
+                                if(myImage == nil)
+                                {
+                                    myImage = UIImage(named: "defaultPhoto")
+                                }
+                                
+                                let donation1 = DonatedItem(myTitle, myImage!, donated, myDescription!, myDate!, myCoordinates, myUserID!, myItemID!, address!)
+                                self.addItem(item: donation1!)
+                            }
+                        }
                     }
                     
                 }
@@ -175,11 +206,14 @@ class DonatedItems: NSObject{
                     // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
                     var myImage: UIImage?
                     
-                    imageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) -> Void in
+                    imageRef.data(withMaxSize: 1 * 1024 * 1024)
+                    { (data, error) -> Void in
                         if (error != nil) {
                             print("STORAGE ERROR")
                             print(error)
-                        } else {
+                        }
+                        else
+                        {
                             myImage = UIImage(data: data!)
                             if(myImage == nil)
                             {
@@ -191,12 +225,9 @@ class DonatedItems: NSObject{
                         }
                     }
                  
-                    
-                
-                print("ADDING ITEM")
-            }
+                }
             
-        }
+            }
             
             
         }) { (error) in
