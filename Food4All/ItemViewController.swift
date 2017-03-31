@@ -70,8 +70,25 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             
             //add pin for current item location
             let annotation = MKPointAnnotation()
-            annotation.coordinate = donatedItem.coordinates!
-            mapView.addAnnotation(annotation)
+           // annotation.coordinate = donatedItem.coordinates!
+            //mapView.addAnnotation(annotation)
+            
+            let address = donatedItem.address
+            
+            //convert address to coordinates
+            let geoCoder = CLGeocoder()
+            geoCoder.geocodeAddressString(address!) { (placemarks, error) in
+                guard
+                    let placemarks = placemarks,
+                    let location = placemarks.first?.location
+                    else {
+                        // handle no location found
+                        return
+                }
+                
+                annotation.coordinate = location.coordinate
+                self.mapView.addAnnotation(annotation)
+            }
             
             //center map on items location
             //mapView.setCenter(annotation.coordinate, animated: true)
