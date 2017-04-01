@@ -95,9 +95,9 @@ class HomeViewController: UITableViewController {
         cell.cellExpiryDate.text = "Post Expires: \(formatter.string(from: expDate!))"
         
         if item.donated == true {
-            cell.layer.backgroundColor = UIColor(red: 6/255, green: 201/255, blue: 133/255, alpha: 0.3).cgColor
+            cell.layer.backgroundColor = UIColor(red: 6/255, green: 201/255, blue: 133/255, alpha: 0.6).cgColor
         } else {
-            cell.layer.backgroundColor = UIColor(red: 245/255, green: 159/255, blue: 22/255, alpha: 0.3).cgColor
+            cell.layer.backgroundColor = UIColor(red: 245/255, green: 159/255, blue: 22/255, alpha: 0.6).cgColor
         }
         
         os_log("Due date changed ", log: OSLog.default, type: .debug)
