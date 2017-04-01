@@ -10,14 +10,16 @@ import CoreLocation
 import Foundation
 import Firebase
 import FirebaseAuth
+import MapKit
 
 
 
-class DonatedItems: NSObject{
+class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
     
     //MARK: Properties
     var donatedItems = [DonatedItem]()
     var isLoaded = false
+    private let locationManager = CLLocationManager()
     
     //MARK: Piblic functions
     
@@ -62,6 +64,38 @@ class DonatedItems: NSObject{
     //MARK: SORTING
     func sortByDate(){
         donatedItems.sort(by: {$0.expiration.compare($1.expiration) == .orderedAscending})
+    }
+    
+    func sortByDistance(){
+        let geoCoder = CLGeocoder()
+        
+        //get users location
+        // Ask for Authorisation from the User.
+        self.locationManager.requestAlwaysAuthorization()
+        
+        // For use in foreground
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+
+        let myLocation = locationManager.location
+        print("MYLOCATION")
+        print(myLocation)
+        //measure distance between point and user and record
+        for item in donatedItems{
+            print("ITEMS LOCATION")
+            print(item.coordinates)
+            let itemsLocation = CLLocation(latitude: (item.coordinates?.latitude)!, longitude: (item.coordinates?.longitude)!)
+            item.distanceFromUser = (myLocation?.distance(from: itemsLocation))!
+        }
+        self.donatedItems.sort(by: {$0.distanceFromUser < $1.distanceFromUser})
+        for item in donatedItems{
+            print(item.distanceFromUser)
+        }
     }
     
     //MARK: CLEANUP

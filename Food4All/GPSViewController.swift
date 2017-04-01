@@ -85,24 +85,8 @@ class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         for index in 0 ... (donatedItems.getCount() - 1){
             
             let annotation = MKPointAnnotation()
-            //annotation.coordinate = donatedItems.getItem(index: index).coordinates!
-            //mapView.addAnnotation(annotation)
-            let address = donatedItems.getItem(index: index).address
-            
-            //convert address to coordinates
-            let geoCoder = CLGeocoder()
-            geoCoder.geocodeAddressString(address!) { (placemarks, error) in
-                guard
-                    let placemarks = placemarks,
-                    let location = placemarks.first?.location
-                    else {
-                        // handle no location found
-                        return
-                }
-                
-                annotation.coordinate = location.coordinate
-                self.mapView.addAnnotation(annotation)
-            }
+            annotation.coordinate = donatedItems.getItem(index: index).coordinates!
+            mapView.addAnnotation(annotation)
         }
         isDataLoaded = true
     }

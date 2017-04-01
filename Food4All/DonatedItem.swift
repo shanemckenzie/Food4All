@@ -20,6 +20,7 @@ class DonatedItem {
     fileprivate var _expiration: String!
     var address: String!
     var donated: Bool!
+    var distanceFromUser = 0 as Double
     
     //TODO: the reserve switch on the item listing will check if the item has been reserved
     //if the item has been reserved, then only the reserver (and possibly the poster?) will be allowed to change it

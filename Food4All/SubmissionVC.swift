@@ -31,7 +31,7 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     var editingExistingItem = false //so we know whether to save new or update existing item
     var coordinates2D: CLLocationCoordinate2D?
     var coordinates: CLLocation?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -93,6 +93,7 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                 
                 //self.addressTxt.text = "\(thoroughfare!), \(city!)"
                 self.addressTxt.text = address.street
+
                 print("Address \(self.addressTxt.text)")
                 
                 self.locationManager.stopUpdatingLocation()
@@ -156,7 +157,7 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         let expirationDate = formatter.string(from: expirationDatePicker.date)
         
         //TODO: deal with coordinates
-        let tempCoord = CLLocationCoordinate2D(latitude: 50.495254, longitude: -104.637263)
+       // let tempCoord = CLLocationCoordinate2D(latitude: (thisItemsLocation?.coordinate.latitude)!, longitude: (thisItemsLocation?.coordinate.longitude)!)
         
         let user = FIRAuth.auth()?.currentUser
         
@@ -169,16 +170,29 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
             donated = true
         }
         
-        //TODO: SET UP DONATED BUTTON + COORDINATES
+        //convert address to coordinates
+        let geoCoder = CLGeocoder()
+        geoCoder.geocodeAddressString(addressTxt.text!) { (placemarks, error) in
+            guard
+                let placemarks = placemarks,
+                let location = placemarks.first?.location
+                else {
+                    // handle no location found
+                    return
+            }
+            
+            if(!self.editingExistingItem){
+                let tempCoord = CLLocationCoordinate2D(latitude: (location.coordinate.latitude), longitude: (location.coordinate.longitude))
+                self.donatedItem = DonatedItem(self.titleTxt.text!, self.itemImg.image!, self.donated, self.descTxt.text!, expirationDate, tempCoord, (user?.uid)!, "TEMP", self.addressTxt.text!)
+                self.donatedItem?.saveToDB()
+            }
+            else{
+                let tempCoord = CLLocationCoordinate2D(latitude: (location.coordinate.latitude), longitude: (location.coordinate.longitude))
+                self.donatedItem = DonatedItem(self.titleTxt.text!, self.itemImg.image!, self.donated, self.descTxt.text!, expirationDate, tempCoord, (user?.uid)!, (self.donatedItem?.itemID)!, self.addressTxt.text!)
+                self.donatedItem?.updateItem()
+            }
+        }
         
-        if(!editingExistingItem){
-            donatedItem = DonatedItem(titleTxt.text!, itemImg.image!, donated, descTxt.text!, expirationDate, tempCoord, (user?.uid)!, "TEMP", addressTxt.text!)
-            donatedItem?.saveToDB()
-        }
-        else{
-            donatedItem = DonatedItem(titleTxt.text!, itemImg.image!, donated, descTxt.text!, expirationDate, tempCoord, (user?.uid)!, (donatedItem?.itemID)!, addressTxt.text!)
-            donatedItem?.updateItem()
-        }
     }
     
     //MARK: UIImagePickerControllerDelegate
@@ -251,7 +265,7 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     // Convert to the newer CNPostalAddress
     func postalAddressFromAddressDictionary(_ addressdictionary: Dictionary<NSObject,AnyObject>) -> CNMutablePostalAddress {
         let address = CNMutablePostalAddress()
-        
+    
         address.street = addressdictionary["Street" as NSObject] as? String ?? ""
         address.state = addressdictionary["State" as NSObject] as? String ?? ""
         address.city = addressdictionary["City" as NSObject] as? String ?? ""

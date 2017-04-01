@@ -37,10 +37,11 @@ class HomeViewController: UITableViewController {
     }
     
     func repeatingMethod(){
-        self.tableView.reloadData()
-        
         //sort any added items
-        donatedItems.sortByDate()
+        //donatedItems.sortByDate()
+        
+        donatedItems.sortByDistance()
+        self.tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
