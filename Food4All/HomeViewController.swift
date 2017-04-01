@@ -76,16 +76,29 @@ class HomeViewController: UITableViewController {
         cell.cellImg.image = item.image
         cell.cellDesc.text = item.description
         cell.cellAddress.text = "Address: \(item.address!)"
-        cell.cellExpiryDate.text = "Post Expires: \(item.expiration)"
+        
+        let formatter = DateFormatter()
+        
+        //let expirationDate = formatter.string(from: item.expiration)
+//        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//        let expirationDate = formatter.date(from: item.expiration)
+//        
+//        formatter.dateFormat = "MMMM dd, h:mm a"
+//        cell.cellExpiryDate.text = "Post Expires: \(formatter.string(from: expirationDate!))"
+        
+        //convert the date string back to a date object
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+        let expDate = formatter.date(from: item.expiration)
+        
+        //convert the date to an easy to read format
+        formatter.dateFormat = "MMMM dd, YYYY, h:mm a"
+        cell.cellExpiryDate.text = "Post Expires: \(formatter.string(from: expDate!))"
         
         if item.donated == true {
             cell.layer.backgroundColor = UIColor(red: 6/255, green: 201/255, blue: 133/255, alpha: 0.3).cgColor
         } else {
             cell.layer.backgroundColor = UIColor(red: 245/255, green: 159/255, blue: 22/255, alpha: 0.3).cgColor
         }
-        
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM dd, h:mm a"
         
         os_log("Due date changed ", log: OSLog.default, type: .debug)
         

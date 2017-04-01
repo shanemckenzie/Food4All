@@ -38,9 +38,22 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         if let donatedItem = donatedItem {
             titleLabel.text = donatedItem.name
             image.image = donatedItem.image!
+            
+            //TODO: Load user name
             donaterNameField.text = donatedItem.name
             descriptionField.text = donatedItem.description
-            expiryDateLabel.text = donatedItem.expiration
+            
+            let formatter = DateFormatter()
+            
+            //convert the date string back to a date object
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+            let expDate = formatter.date(from: donatedItem.expiration)
+            
+            //convert the date to an easy to read format
+            formatter.dateFormat = "MMMM dd, YYYY, h:mm a"
+            
+            expiryDateLabel.text = formatter.string(from: expDate!)
+            
             
             
             //MARK: TODO - Add field to item model for reserve and business name (linked to account)

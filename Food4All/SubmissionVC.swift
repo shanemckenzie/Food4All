@@ -64,6 +64,7 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
             
             let formatter = DateFormatter()
             formatter.dateFormat = "YYYY MMMM dd, h:mm a"
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
             let expirationDate = formatter.date(from: donatedItem.expiration)
             expirationDatePicker.date = expirationDate!
             
@@ -153,8 +154,21 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         
         //format the date to a string
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM dd, h:mm a"
+        
+        //needs to be stored in a format that will allow it to be turned back into
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
         let expirationDate = formatter.string(from: expirationDatePicker.date)
+        print("Expiration date: \(expirationDate)")
+        
+        //convert the date string back to a date object
+        let expDate = formatter.date(from: expirationDate)
+        print("EXPIRING \(expDate)")
+        
+        //convert the date to an easy to read format
+        formatter.dateFormat = "MMMM dd, YYYY, h:mm a"
+        print(formatter.string(from: expDate!))
+        
+        
         
         //TODO: deal with coordinates
        // let tempCoord = CLLocationCoordinate2D(latitude: (thisItemsLocation?.coordinate.latitude)!, longitude: (thisItemsLocation?.coordinate.longitude)!)

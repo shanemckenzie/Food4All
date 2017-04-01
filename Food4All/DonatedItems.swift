@@ -104,6 +104,8 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
             print("ITEMS LOCATION")
             print(item.coordinates)
             let itemsLocation = CLLocation(latitude: (item.coordinates?.latitude)!, longitude: (item.coordinates?.longitude)!)
+            
+            //FIXME: app occassionally crashing here, may just be simulator
             item.distanceFromUser = (myLocation?.distance(from: itemsLocation))!
         }
         self.donatedItems.sort(by: {$0.distanceFromUser < $1.distanceFromUser})
@@ -219,20 +221,25 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
                     
                     let myDate = donationItem.value(forKey: "expiration") as? String
                     
-                    //TODO: If date is past, delete from DB, otherwise load the rest of the data
+                //TODO: If date is past, delete from DB, otherwise load the rest of the data
                     
-                    formatter.dateFormat = "MMMM dd, h:mm a"
-                    //let currentDate = formatter.string(from: self.currentDate)
-                    let expirationDate = formatter.date(from: myDate!)
+                    //convert the date string back to a date object
+                    formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+                    let expDate = formatter.date(from: myDate!)!
+                    
+                    print("EXPIRING \(expDate)")
                     
                     print("Current Date: \(self.currentDate)")
-                    print("Expiration Date: \(expirationDate)")
+                    print("Exp Date: \(expDate)")
                     
-//                    if expirationDate! > self.currentDate {
-//                        //removes items
-//                        self.deleteFromDb(itemToRemove: myItemID)
-//                        
-//                    } //else {
+                    
+                    
+                    if expDate < self.currentDate {
+                        //removes items
+                        self.deleteFromDb(itemToRemove: myItemID)
+                        print("DELETING \(myItemID)")
+                      
+                    } else {
                     
                         let myTitle: String! = donationItem.value(forKey: "title") as? String
                         
@@ -292,7 +299,7 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
                     }
                 }
             
-            //}
+            }
             
             
         }) { (error) in
