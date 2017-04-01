@@ -10,6 +10,8 @@ import Foundation
 import Firebase
 import FirebaseAuth
 import CoreLocation
+import FirebaseStorage
+
 
 class DonatedItem {
     

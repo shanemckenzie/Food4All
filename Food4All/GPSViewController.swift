@@ -66,6 +66,7 @@ class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         //annotation.coordinate = CLLocationCoordinate2D(latitude: 50.417433, longitude: -104.594179)
         //mapView.addAnnotation(annotation)
         
+//<<<<<<< Updated upstream
         //button for slide out menu
         menuBtn.target = self.revealViewController()
         menuBtn.action = #selector(SWRevealViewController.revealToggle(_:))
@@ -90,6 +91,78 @@ class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
         isDataLoaded = true
     }
+//=======
+//        //load pins onto the map
+//        
+//        
+//        if donatedItems.getCount() != 0 {
+//            for index in 0 ... (donatedItems.getCount() - 1){
+//                //var view : MKPinAnnotationView
+//             
+////                if donatedItems.getItem(index: index).donated == true {
+////                    let annotation = ColorPointAnnotation(pinColor: UIColor.green)
+////                    annotation.pinColor = UIColor.green
+////                    annotation.coordinate = donatedItems.getItem(index: index).coordinates!
+////                    print(donatedItems.getItem(index: index).coordinates!)
+////                    
+////                } else {
+////                    let annotation = ColorPointAnnotation(pinColor: UIColor.green)
+////                    annotation.pinColor = UIColor.green
+////                    annotation.coordinate = donatedItems.getItem(index: index).coordinates!
+////                    print(donatedItems.getItem(index: index).coordinates!)
+////                }
+//                print(index)
+//                let annotation = ColorPointAnnotation(pinColor: UIColor.green)
+//                annotation.pinColor = UIColor.green
+//                annotation.coordinate = donatedItems.getItem(index: index).coordinates!
+//                print(donatedItems.getItem(index: index).coordinates!)
+//            
+//                mapView.addAnnotation(annotation)
+//            }
+//
+//            //button for slide out menu
+//            menuBtn.target = self.revealViewController()
+//            menuBtn.action = #selector(SWRevealViewController.revealToggle(_:))
+//            
+//        }
+//    }
+//    
+//    //override func viewW
+//    
+//    //MARK: COLOR
+////    
+////    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//        /*var view : MKPinAnnotationView
+//        
+//        guard let annotation = annotation as? PizzaLocation else {return nil}
+//        if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(annotation.identifier) as? MKPinAnnotationView {
+//            view = dequeuedView
+//        }else {
+//            view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: annotation.identifier)
+//        }
+//        view.pinTintColor = pinColor(annotation.title!)
+//        return view*/
+////
+////        if !(annotation is MKPointAnnotation) {
+////            return nil
+////        }
+////        
+////        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "colour")
+////        
+////        if annotationView == nil {
+////            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "colour")
+////            annotationView!.canShowCallout = true
+////        } else {
+////            annotationView!.annotation = annotation
+////        }
+////        
+////        annotationView!.image = UIImage(named: "camera")
+////        
+////        return annotationView
+////        
+////    }
+    
+//>>>>>>> Stashed changes
     
     //MARK: PIN TAP
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView)
@@ -98,12 +171,16 @@ class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
         //find the donated item that corresponds with the pin that was tapped
         for index in 0 ... (donatedItems.getCount() - 1){
+            
+            
             if(compareCoordinates(c1: currentAnnotation!, c2: donatedItems.getItem(index: index).coordinates!)){
                 itemIndex = index
                 self.performSegue(withIdentifier: "mapShowItem", sender: nil)
             }
         }
     }
+    
+    
     
     func compareCoordinates(c1: CLLocationCoordinate2D, c2: CLLocationCoordinate2D) -> Bool{
         if(c1.latitude == c2.latitude && c1.longitude == c2.longitude)

@@ -11,8 +11,7 @@ import Foundation
 import Firebase
 import FirebaseAuth
 import MapKit
-
-
+import FirebaseStorage
 
 class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
     
@@ -21,7 +20,11 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
     var isLoaded = false
     private let locationManager = CLLocationManager()
     
-    //MARK: Piblic functions
+    //for removal of expired posts
+    let currentDate = Date()
+    
+    
+    //MARK: Public functions
     
     func initItems(){
         //loadSampleDonation()
@@ -48,6 +51,17 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
     func addItem(item: DonatedItem){
         print("IM BEING ADDED")
         donatedItems.append(item)
+    }
+    
+    
+    //pass in the item id
+    func deleteFromDb(itemToRemove: String) {
+        var ref: FIRDatabaseReference!
+        ref = FIRDatabase.database().reference()
+        
+        
+        ref.child("DonationItem").child(itemToRemove).removeValue()
+        
     }
     
     
@@ -190,78 +204,95 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
         print("INSIDE LOAD FUNCTION")
         var ref: FIRDatabaseReference!
         ref = FIRDatabase.database().reference()
+        let formatter = DateFormatter()
         
         ref.child("DonationItem").observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let values = snapshot.value as? NSDictionary
             {
-            print("AM I ALIVE?")
+                print("AM I ALIVE?")
                 for (key,_) in values
                 {
                     
                     let donationItem: NSObject = values[key] as! NSObject
-                    
-                    let myTitle: String! = donationItem.value(forKey: "title") as? String
                     let myItemID: String! = donationItem.value(forKey: "itemID") as? String
-
-                    //let myPhotoString = donationItem.value(forKey: "image") as? String
-                    //let decodedData = NSData(base64Encoded: myPhotoString!)
-                    //let myImage = UIImage(data: decodedData as! Data)
                     
-                    
-                    
-                    let myDescription = donationItem.value(forKey: "description") as? String
                     let myDate = donationItem.value(forKey: "expiration") as? String
-                    let myLatitude = donationItem.value(forKey: "latitude") as? Double
-                    let myLongitude = donationItem.value(forKey: "longitude") as? Double
-                    let myCoordinates = CLLocationCoordinate2D(latitude: myLatitude!, longitude: myLongitude!)
-                    let myUserID = donationItem.value(forKey: "userID") as? String
-                    let myAddress = donationItem.value(forKey: "address") as? String
                     
+                    //TODO: If date is past, delete from DB, otherwise load the rest of the data
                     
-                    var  donated: Bool
-                    if let donatedInt = donationItem.value(forKey: "donated") as? Int {
-                        donated = Bool(donatedInt as NSNumber)
-                    }
-                    else {
-                        donated = true
-                    }
+                    formatter.dateFormat = "MMMM dd, h:mm a"
+                    //let currentDate = formatter.string(from: self.currentDate)
+                    let expirationDate = formatter.date(from: myDate!)
                     
-                    //---Load image from storage rather than db
+                    print("Current Date: \(self.currentDate)")
+                    print("Expiration Date: \(expirationDate)")
                     
-                    // Get a reference to the storage service using the default Firebase App
-                    let storage = FIRStorage.storage()
-                    let storageRef = storage.reference()
+//                    if expirationDate! > self.currentDate {
+//                        //removes items
+//                        self.deleteFromDb(itemToRemove: myItemID)
+//                        
+//                    } //else {
                     
-                    // Create a reference to the file you want to download
-                    let url = "images/" + myItemID + ".jpg"
-                    let imageRef = storageRef.child(url)
-                    
-                    // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
-                    var myImage: UIImage?
-                    
-                    imageRef.data(withMaxSize: 1 * 1024 * 1024)
-                    { (data, error) -> Void in
-                        if (error != nil) {
-                            print("STORAGE ERROR")
-                            print(error)
+                        let myTitle: String! = donationItem.value(forKey: "title") as? String
+                        
+                        //let myPhotoString = donationItem.value(forKey: "image") as? String
+                        //let decodedData = NSData(base64Encoded: myPhotoString!)
+                        //let myImage = UIImage(data: decodedData as! Data)
+                        
+                        let myDescription = donationItem.value(forKey: "description") as? String
+                        
+                        let myLatitude = donationItem.value(forKey: "latitude") as? Double
+                        let myLongitude = donationItem.value(forKey: "longitude") as? Double
+                        let myCoordinates = CLLocationCoordinate2D(latitude: myLatitude!, longitude: myLongitude!)
+                        let myUserID = donationItem.value(forKey: "userID") as? String
+                        let myAddress = donationItem.value(forKey: "address") as? String
+                        
+                        
+                        var  donated: Bool
+                        if let donatedInt = donationItem.value(forKey: "donated") as? Int {
+                            donated = Bool(donatedInt as NSNumber)
                         }
-                        else
-                        {
-                            myImage = UIImage(data: data!)
-                            if(myImage == nil)
-                            {
-                                myImage = UIImage(named: "defaultPhoto")
+                        else {
+                            donated = true
+                        }
+                        
+                        //---Load image from storage rather than db
+                        
+                        // Get a reference to the storage service using the default Firebase App
+                        let storage = FIRStorage.storage()
+                        let storageRef = storage.reference()
+                        
+                        // Create a reference to the file you want to download
+                        let url = "images/" + myItemID + ".jpg"
+                        let imageRef = storageRef.child(url)
+                        
+                        // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+                        var myImage: UIImage?
+                        
+                        imageRef.data(withMaxSize: 1 * 1024 * 1024)
+                        { (data, error) -> Void in
+                            if (error != nil) {
+                                print("STORAGE ERROR")
+                                print(error)
                             }
-                            
-                            let donation1 = DonatedItem(myTitle, myImage!, donated, myDescription!, myDate!, myCoordinates, myUserID!, myItemID!, myAddress!)
-                            self.addItem(item: donation1!)
+                            else
+                            {
+                                myImage = UIImage(data: data!)
+                                if(myImage == nil)
+                                {
+                                    myImage = UIImage(named: "defaultPhoto")
+                                }
+                                
+                                let donation1 = DonatedItem(myTitle, myImage!, donated, myDescription!, myDate!, myCoordinates, myUserID!, myItemID!, myAddress!)
+                                self.addItem(item: donation1!)
+                            }
                         }
+                     
                     }
-                 
                 }
             
-            }
+            //}
             
             
         }) { (error) in
@@ -269,6 +300,8 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
         }
         
     }
+    
+    
     /*
     private func loadSampleDonation() {
         

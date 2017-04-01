@@ -16,6 +16,7 @@
 		792FB18A1E468C2B0067C1B0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792FB1891E468C2B0067C1B0 /* HomeViewController.swift */; };
 		792FB18C1E468C360067C1B0 /* GPSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792FB18B1E468C360067C1B0 /* GPSViewController.swift */; };
 		792FB18E1E468C420067C1B0 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792FB18D1E468C420067C1B0 /* AccountViewController.swift */; };
+		7952BCF31E8F434F00EC1BE3 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7952BCF21E8F434F00EC1BE3 /* NSDate.swift */; };
 		795798831E79A77C0055D8E3 /* DonationItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795798821E79A77C0055D8E3 /* DonationItemCell.swift */; };
 		79783A931E78F5B300916C75 /* MapData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79783A921E78F5B300916C75 /* MapData.swift */; };
 		79E5A2E11E3A800200DE2978 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E5A2E01E3A800200DE2978 /* AppDelegate.swift */; };
@@ -67,6 +68,7 @@
 		792FB1891E468C2B0067C1B0 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		792FB18B1E468C360067C1B0 /* GPSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPSViewController.swift; sourceTree = "<group>"; };
 		792FB18D1E468C420067C1B0 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		7952BCF21E8F434F00EC1BE3 /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
 		795798821E79A77C0055D8E3 /* DonationItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonationItemCell.swift; sourceTree = "<group>"; };
 		79783A921E78F5B300916C75 /* MapData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapData.swift; sourceTree = "<group>"; };
 		79E5A2DD1E3A800200DE2978 /* Food4All.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Food4All.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -198,6 +200,7 @@
 				A93F7A861E7B3A68003B9DC1 /* DonatedItems.swift */,
 				79783A921E78F5B300916C75 /* MapData.swift */,
 				A9408FDC1E7F1CDF00EB3F29 /* User.swift */,
+				7952BCF21E8F434F00EC1BE3 /* NSDate.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				79E5A2E31E3A800200DE2978 /* ViewController.swift in Sources */,
 				A90431B71E7B7467001D55B4 /* ItemViewController.swift in Sources */,
 				792FB18C1E468C360067C1B0 /* GPSViewController.swift in Sources */,
+				7952BCF31E8F434F00EC1BE3 /* NSDate.swift in Sources */,
 				A9408FDD1E7F1CDF00EB3F29 /* User.swift in Sources */,
 				792FB1881E4684A80067C1B0 /* BackTableVC.swift in Sources */,
 				795798831E79A77C0055D8E3 /* DonationItemCell.swift in Sources */,

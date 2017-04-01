@@ -63,7 +63,7 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
             //expirationDatePicker.date = donatedItem.expireDate as! Date
             
             let formatter = DateFormatter()
-            formatter.dateFormat = "MMMM dd, h:mm a"
+            formatter.dateFormat = "YYYY MMMM dd, h:mm a"
             let expirationDate = formatter.date(from: donatedItem.expiration)
             expirationDatePicker.date = expirationDate!
             
