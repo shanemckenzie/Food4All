@@ -528,6 +528,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="menuBtn" destination="und-mh-gj6" id="2P0-3U-9d0"/>
+                        <outlet property="sortingController" destination="BlG-X2-s9e" id="312-Ci-f12"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aIZ-m2-Z8Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -936,8 +937,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="KiN-js-Cri"/>
+        <segue reference="TbX-OX-Zdl"/>
         <segue reference="rzf-9y-9No"/>
         <segue reference="OQL-Dh-niO"/>
-        <segue reference="D6H-rA-bcP"/>
     </inferredMetricsTieBreakers>
 </document>

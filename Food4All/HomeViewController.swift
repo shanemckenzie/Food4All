@@ -14,6 +14,8 @@ import os.log
 
 class HomeViewController: UITableViewController {
     
+    @IBOutlet weak var sortingController: UISegmentedControl!
+    
     let donatedItems = DonatedItems();
     var ref: FIRDatabaseReference!
     
@@ -33,14 +35,27 @@ class HomeViewController: UITableViewController {
         menuBtn.action = #selector(SWRevealViewController.revealToggle(_:))
         
         //Update table cells every 5 seconds
-        var timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(HomeViewController.repeatingMethod), userInfo: nil, repeats: true)
+        var timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.repeatingMethod), userInfo: nil, repeats: true)
     }
     
-    func repeatingMethod(){
+    @objc func repeatingMethod(){
         //sort any added items
         //donatedItems.sortByDate()
         
-        donatedItems.sortByDistance()
+        //donatedItems.sortByDistance()
+        
+        switch sortingController.selectedSegmentIndex {
+        case 0:
+            print("Sorting by distance")
+            donatedItems.sortByDistance()
+        case 1:
+            donatedItems.sortByDate()
+            print("Sorting by date")
+        default:
+            donatedItems.sortByDistance()
+        }
+        
+        
         self.tableView.reloadData()
     }
     
@@ -78,13 +93,6 @@ class HomeViewController: UITableViewController {
         cell.cellAddress.text = "Address: \(item.address!)"
         
         let formatter = DateFormatter()
-        
-        //let expirationDate = formatter.string(from: item.expiration)
-//        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-//        let expirationDate = formatter.date(from: item.expiration)
-//        
-//        formatter.dateFormat = "MMMM dd, h:mm a"
-//        cell.cellExpiryDate.text = "Post Expires: \(formatter.string(from: expirationDate!))"
         
         //convert the date string back to a date object
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
