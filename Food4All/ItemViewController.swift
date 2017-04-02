@@ -16,7 +16,11 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var donaterNameField: UILabel!
+    
     @IBOutlet weak var reserveSwitch: UISwitch!
+    @IBOutlet weak var reserveLbl: UILabel!
+    
+    
     @IBOutlet weak var descriptionField: UILabel!
     @IBOutlet weak var availableDateField: UILabel!
     @IBOutlet weak var mapView: MKMapView!
@@ -24,10 +28,14 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     
     //Variables
     var donatedItem: DonatedItem?
+    var userID: String?
+    var reserverID: String?
     let regionRadius: CLLocationDistance = 1000
     let locationManager = CLLocationManager()
     var myLocation: CLLocationCoordinate2D?
     var mapData: MapData?
+    var reserved: Bool?
+    
     
 
     override func viewDidLoad() {
@@ -42,6 +50,11 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             //TODO: Load user name
             donaterNameField.text = donatedItem.name
             descriptionField.text = donatedItem.description
+            
+            reserved = donatedItem.reserved
+            
+            checkSwitch()
+ 
             
             let formatter = DateFormatter()
             
@@ -169,5 +182,39 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     }
     */
     
+    //MARK: Actions
+    @IBAction func reserveSwitched(_ sender: AnyObject) {
+        
+        if reserveSwitch.isOn {
+            reserved = true
+            checkSwitch()
+        } else {
+            
+            reserved = false
+            checkSwitch()
+            
+        }
+        
+    }
+    
+    //MARK: Functions
+    
+    func checkSwitch() {
+        
+        if reserved == true {
+            
+            reserveSwitch.isUserInteractionEnabled = false
+            reserveSwitch.alpha = 0.3
+            reserveLbl.text = "Reserved"
+            
+        } else {
+            
+            reserveSwitch.isUserInteractionEnabled = true
+            reserveSwitch.alpha = 1.0
+            reserveLbl.text = "Reserve"
+            
+        }
+        
+    }
 
 }
