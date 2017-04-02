@@ -29,6 +29,7 @@
 		79EBDAA91E3A840E001CAEA0 /* DonatedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EBDAA81E3A840E001CAEA0 /* DonatedItem.swift */; };
 		79EBDAAC1E3A84AD001CAEA0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EBDAAB1E3A84AD001CAEA0 /* Constants.swift */; };
 		A90431B71E7B7467001D55B4 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90431B61E7B7467001D55B4 /* ItemViewController.swift */; };
+		A9185C491E90A28100EAECFF /* CustomPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9185C481E90A28100EAECFF /* CustomPin.swift */; };
 		A93F7A871E7B3A68003B9DC1 /* DonatedItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93F7A861E7B3A68003B9DC1 /* DonatedItems.swift */; };
 		A9408FDD1E7F1CDF00EB3F29 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9408FDC1E7F1CDF00EB3F29 /* User.swift */; };
 		A9408FDF1E7F287700EB3F29 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9408FDE1E7F287700EB3F29 /* RegisterViewController.swift */; };
@@ -89,6 +90,7 @@
 		980DEC61E16DF66BDFCBE221 /* Pods-Food4AllTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Food4AllTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Food4AllTests/Pods-Food4AllTests.release.xcconfig"; sourceTree = "<group>"; };
 		A82311851814AD7EAF07028D /* Pods-Food4All.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Food4All.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Food4All/Pods-Food4All.debug.xcconfig"; sourceTree = "<group>"; };
 		A90431B61E7B7467001D55B4 /* ItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
+		A9185C481E90A28100EAECFF /* CustomPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPin.swift; sourceTree = "<group>"; };
 		A93F7A861E7B3A68003B9DC1 /* DonatedItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonatedItems.swift; sourceTree = "<group>"; };
 		A9408FDC1E7F1CDF00EB3F29 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A9408FDE1E7F287700EB3F29 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				795798821E79A77C0055D8E3 /* DonationItemCell.swift */,
+				A9185C481E90A28100EAECFF /* CustomPin.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 				792FB1861E4682230067C1B0 /* SWRevealViewController.m in Sources */,
 				A9B52C731E6F627100036715 /* InitialViewController.swift in Sources */,
 				79E5A2E11E3A800200DE2978 /* AppDelegate.swift in Sources */,
+				A9185C491E90A28100EAECFF /* CustomPin.swift in Sources */,
 				792FB18A1E468C2B0067C1B0 /* HomeViewController.swift in Sources */,
 				A93F7A871E7B3A68003B9DC1 /* DonatedItems.swift in Sources */,
 				A9408FDF1E7F287700EB3F29 /* RegisterViewController.swift in Sources */,

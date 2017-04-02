@@ -84,17 +84,61 @@ class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     func addAnnotations(){
         for index in 0 ... (donatedItems.getCount() - 1){
+            var annotation: CustomPin
+            if(donatedItems.getItem(index: index).donated == true){
+                annotation = CustomPin(color: "green", coordinate: donatedItems.getItem(index: index).coordinates!)
+            }
+            else{
+                annotation = CustomPin(color: "red", coordinate: donatedItems.getItem(index: index).coordinates!)
+            }
             
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = donatedItems.getItem(index: index).coordinates!
             mapView.addAnnotation(annotation)
         }
         isDataLoaded = true
     }
+    
+    //Check pin color attribure and set color accordingly
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
+    {
+        //let customAnnotation = CustomPin(color: "red", coordinate: annotation.coordinate)
+        if let customAnnotation = annotation as? CustomPin {
+        
+            let annotationView = MKPinAnnotationView(annotation: customAnnotation, reuseIdentifier: "pin")
+    
+            if(customAnnotation.color == "green"){
+                annotationView.pinTintColor = MKPinAnnotationView.greenPinColor()
+            }
+            else{
+                annotationView.pinTintColor = MKPinAnnotationView.redPinColor()
+            }
+            return annotationView
+        }
+        return nil
+    }
+    
+    /*
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
+    {
+        let identifier = "pin"
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = donatedItems.getItem(index: 0).coordinates!
+        let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+        for index in 0 ... (donatedItems.getCount() - 1){
+            if(donatedItems.getItem(index: index).donated == true){
+                annotationView.pinTintColor = MKPinAnnotationView.greenPinColor()
+            }
+            else{
+                
+            }
+        }
+        
+        return annotationView
+    }
+    */
 //=======
 //        //load pins onto the map
 //        
-//        
+//
 //        if donatedItems.getCount() != 0 {
 //            for index in 0 ... (donatedItems.getCount() - 1){
 //                //var view : MKPinAnnotationView
