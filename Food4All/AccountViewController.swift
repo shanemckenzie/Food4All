@@ -15,8 +15,10 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var menuBtn: UIBarButtonItem!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailField: UILabel!
-    @IBOutlet weak var emailTxt: UITextField!
-    @IBOutlet weak var nameTxt: UITextField!
+    
+    @IBOutlet weak var nameTxt: UILabel!
+    @IBOutlet weak var emailTxt: UILabel!
+    
     @IBOutlet weak var tableView: UITableView!
     
     
