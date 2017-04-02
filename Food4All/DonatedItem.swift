@@ -20,9 +20,12 @@ class DonatedItem {
     fileprivate var _itemID: String!
     fileprivate var _description: String!
     fileprivate var _expiration: String!
+    
     var address: String!
     var donated: Bool!
     var distanceFromUser = 0 as Double
+    var reserved: Bool?
+    var reservedBy: String?
     
     //TODO: the reserve switch on the item listing will check if the item has been reserved
     //if the item has been reserved, then only the reserver (and possibly the poster?) will be allowed to change it
@@ -126,6 +129,7 @@ class DonatedItem {
                                                    "longitude": longitude! as NSNumber,
                                                    "donated": Int(NSNumber(value:donated!)) as NSNumber,
                                                    "address": address! as NSString
+                                                   
         ]
         
         newDonationItemRef.setValue(newDonationItemData)

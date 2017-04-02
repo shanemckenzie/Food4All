@@ -220,11 +220,11 @@
 				792FB18B1E468C360067C1B0 /* GPSViewController.swift */,
 				792FB18D1E468C420067C1B0 /* AccountViewController.swift */,
 				790838531E74EB0F0037A7D2 /* SubmissionVC.swift */,
+				A90431B61E7B7467001D55B4 /* ItemViewController.swift */,
+				A9408FDE1E7F287700EB3F29 /* RegisterViewController.swift */,
 				A9B52C721E6F627100036715 /* InitialViewController.swift */,
 				79E5A2E21E3A800200DE2978 /* ViewController.swift */,
 				792FB1871E4684A80067C1B0 /* BackTableVC.swift */,
-				A90431B61E7B7467001D55B4 /* ItemViewController.swift */,
-				A9408FDE1E7F287700EB3F29 /* RegisterViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
