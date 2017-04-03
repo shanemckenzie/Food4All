@@ -221,9 +221,8 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
                     
                     let myDate = donationItem.value(forKey: "expiration") as? String
                     
-                //TODO: If date is past, delete from DB, otherwise load the rest of the data
-                    
-                    //convert the date string back to a date object
+                //If date is past, delete from DB, otherwise load the rest of the data
+                    //convert the date string back to a date object for comparison
                     formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
                     let expDate = formatter.date(from: myDate!)!
                     
@@ -232,8 +231,7 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
                     print("Current Date: \(self.currentDate)")
                     print("Exp Date: \(expDate)")
                     
-                    
-                    
+                
                     if expDate < self.currentDate {
                         //removes items
                         self.deleteFromDb(itemToRemove: myItemID)

@@ -133,30 +133,27 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM dd, h:mm a"
         
-        
-        //        if toDo.enteredDate != nil {
-        //            cell.toDoDateEntered.text = "Date Entered: \(formatter.string(from: toDo.enteredDate as! Date))"
-        //        }
-        
-        //cell.toDoDateDue.text = toDo.dueDate
-        
-        //        if toDo.notes != "" {
-        //            cell.toDoNotes.text = "Notes: \(toDo.notes!)"
-        //        } else {
-        //            cell.toDoNotes.text = "Notes:"
-        //        }
-        //        print("Priority: \(toDo.priority)")
-        //
-        //        if toDo.priority! == 1 {
-        //            cell.layer.backgroundColor = UIColor(red: 255/255, green: 51/255, blue: 17/255, alpha: 0.4).cgColor
-        //        } else if toDo.priority! == 2 {
-        //            cell.layer.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 102/255, alpha: 0.4).cgColor
-        //        } else if toDo.priority! == 3 {
-        //            cell.layer.backgroundColor = UIColor(red: 94/255, green: 255/255, blue: 151/255, alpha: 0.4).cgColor
-        //        }
-        
         return cell
     }
-
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            
+            //remove from DB
+            let item = donatedItems.getItem(index: indexPath.row)
+            
+            //tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+            donatedItems.deleteFromDb(itemToRemove: item.itemID)
+            print("Deleted")
+            
+            donatedItems.loadUsersItems()
+            donatedItems.sortByDate()
+            
+            self.tableView.reloadData()
+            
+            //donatedItems.loadUsersItems()
+            
+        }
+    }
 
 }

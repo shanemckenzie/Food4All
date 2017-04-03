@@ -110,27 +110,6 @@ class HomeViewController: UITableViewController {
         
         os_log("Due date changed ", log: OSLog.default, type: .debug)
         
-        //        if toDo.enteredDate != nil {
-        //            cell.toDoDateEntered.text = "Date Entered: \(formatter.string(from: toDo.enteredDate as! Date))"
-        //        }
-        
-        //cell.toDoDateDue.text = toDo.dueDate
-        
-        //        if toDo.notes != "" {
-        //            cell.toDoNotes.text = "Notes: \(toDo.notes!)"
-        //        } else {
-        //            cell.toDoNotes.text = "Notes:"
-        //        }
-        //        print("Priority: \(toDo.priority)")
-        //
-        //        if toDo.priority! == 1 {
-        //            cell.layer.backgroundColor = UIColor(red: 255/255, green: 51/255, blue: 17/255, alpha: 0.4).cgColor
-        //        } else if toDo.priority! == 2 {
-        //            cell.layer.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 102/255, alpha: 0.4).cgColor
-        //        } else if toDo.priority! == 3 {
-        //            cell.layer.backgroundColor = UIColor(red: 94/255, green: 255/255, blue: 151/255, alpha: 0.4).cgColor
-        //        }
-        
         return cell
     }
     
@@ -175,65 +154,11 @@ class HomeViewController: UITableViewController {
         
     }
     
-    /*
-     
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     
-     super.prepare(for: segue, sender: sender)
-     
-     switch(segue.identifier ?? "") {
-     
-     case "AddItem":
-     os_log("Adding a new to-do item.", log: OSLog.default, type: .debug)
-     
-     case "ShowDetail":
-     guard let itemDetailViewController = segue.destination as? ViewController else {
-     fatalError("Unexpected destination: \(segue.destination)")
-     }
-     
-     guard let selectedItemCell = sender as? itemTableViewCell else {
-     fatalError("Unexpected sender: \(sender)")
-     }
-     
-     guard let indexPath = tableView.indexPath(for: selectedItemCell) else {
-     fatalError("The selected cell is not being displayed by the table")
-     }
-     
-     let selectedItem = itemsList.getItem(index: indexPath.row)
-     itemDetailViewController.item = selectedItem
-     
-     default:
-     fatalError("Unexpected Segue Identifier; \(segue.identifier)")
-     }
-     }
-     
-     @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
-     if let sourceViewController = sender.source as? ViewController, let item = sourceViewController.item {
-     
-     if let selectedIndexPath = tableView.indexPathForSelectedRow {
-     // Update an existing item.
-     itemsList.updateItem(item: item, index: selectedIndexPath.row)
-     //update all rows since we don't know where the sorted item ends up
-     tableView.reloadData()
-     }
-     else {
-     // Add a new item.
-     
-     itemsList.addItem(item: item)
-     let newIndexPath = IndexPath(row: itemsList.getIndex(item: item), section: 0)
-     
-     tableView.insertRows(at: [newIndexPath], with: .automatic)
-     }
-     // Save the items.
-     itemsList.saveItems()
-     }
-     
-     
-     */
+
     
     
     //MARK: Actions
-    @IBAction func unwindToToDoList(sender: UIStoryboardSegue) {
+    @IBAction func unwindToHome(sender: UIStoryboardSegue) {
         
         if let sourceViewController = sender.source as? SubmissionVC, let donatedItem = sourceViewController.donatedItem {
             //add new item
@@ -264,53 +189,6 @@ class HomeViewController: UITableViewController {
     }
     
     
-    //    private func loadSampleToDo() {
-    //
-    //        let photo = UIImage(named: "defaultPhoto")
-    //
-    //        guard let toDo1 = ToDoItem("Get milk", photo, "go to store get milk", "Due Immediately", NSDate() , NSDate(), 1) else {
-    //            fatalError("Unable to instantiate todoitem1")
-    //        }
-    //
-    //        toDoItems += [toDo1]
-    //        sortedList = TableSort(toSort: toDoItems)
-    //        toDoItems = (sortedList?.sortedList)!
-    //
-    //    }
-    
-    //    private func saveDonation() {
-    //        //let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(toDoItems, toFile: ToDoItem.ArchiveURL.path)
-    //
-    //        ref = FIRDatabase.database().reference()
-    //
-    //        let newDonationItemRef = self.ref!.child("DonationItem").childByAutoId()
-    //
-    //        let newDonationItemId = newDonationItemRef.key
-    //
-    //        let newDonationItemData: [String : Any] = ["itemID": newDonationItemId,
-    //            "title": title as NSString,
-    //            "description": description as NSString,
-    //             "expiration": date as NSString
-    //            //user
-    //            //image
-    //            //location
-    //        ]
-    //
-    //        newDonationItemRef.setValue(newDonationItemData)
-    
-    //        if isSuccessfulSave {
-    //            os_log("toDoItems saved.", log: OSLog.default, type: .debug)
-    //
-    //        } else {
-    //            os_log("failed to save toDoItems", log: OSLog.default, type: .error)
-    //        }
-    
-    //    }
-    //
-    //    private func loadToDo() -> [ToDoItem]? {
-    //        return NSKeyedUnarchiver.unarchiveObject(withFile: ToDoItem.ArchiveURL.path) as? [ToDoItem]
-    //        
-    //    }
-    
+
     
 }
