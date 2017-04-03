@@ -76,8 +76,8 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         case "AddItem":
             print("Adding a new donation.")
             
-        case "showItem":
-            guard let submissionVC = segue.destination as? SubmissionVC else {
+        case "ShowItemFromAccount":
+            guard let itemVC = segue.destination as? ItemViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             
@@ -90,7 +90,8 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             
             let selectedItem = donatedItems.getItem(index: indexPath.row)
-            submissionVC.donatedItem = selectedItem
+            itemVC.donatedItem = selectedItem
+            
             
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")

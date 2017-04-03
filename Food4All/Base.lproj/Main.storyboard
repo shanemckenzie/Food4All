@@ -404,7 +404,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qnd-tH-7Ws" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2748" y="454"/>
+            <point key="canvasLocation" x="2428" y="472"/>
         </scene>
         <!--F4A-->
         <scene sceneID="4mp-AT-pOk">
@@ -440,7 +440,7 @@
                                 <rect key="frame" x="0.0" y="138" width="375" height="135"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zw6-Qh-HdN" id="M5Q-po-cJL">
-                                    <frame key="frameInset" width="375" height="134"/>
+                                    <frame key="frameInset" width="375" height="135"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sample Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NqV-uy-vIB">
@@ -690,7 +690,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="abe-3Z-qn3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3313" y="-305"/>
+            <point key="canvasLocation" x="3831" y="-305"/>
         </scene>
         <!--F4A-->
         <scene sceneID="X4z-3z-ejP">
@@ -711,7 +711,7 @@
                                         <rect key="frame" x="0.0" y="65" width="375" height="135"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y8G-f5-ton" id="KWY-96-1Vt">
-                                            <frame key="frameInset" width="375" height="134"/>
+                                            <frame key="frameInset" width="375" height="135"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sample Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPN-71-FI5">
@@ -776,6 +776,7 @@
                                             <outlet property="cellExpiryDate" destination="ted-WK-7XM" id="GKy-ld-Cfm"/>
                                             <outlet property="cellImg" destination="c83-uh-OQv" id="lpK-jW-Ueb"/>
                                             <outlet property="cellTitle" destination="hPN-71-FI5" id="gUu-sd-1qI"/>
+                                            <segue destination="1T4-ue-9Wb" kind="show" identifier="ShowItemFromAccount" id="dE8-Jj-uUk"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -852,7 +853,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZBr-d4-z87" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2517.5999999999999" y="-305.39730134932535"/>
+            <point key="canvasLocation" x="2898" y="-345"/>
         </scene>
         <!--Back TableVC-->
         <scene sceneID="UiT-xw-WQM">
@@ -867,7 +868,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d50-gN-eEf" id="Pfg-bO-Bqh">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -878,7 +879,7 @@
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dpw-cf-bis" id="RPd-5K-Z9e">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -889,7 +890,7 @@
                                 <rect key="frame" x="0.0" y="116" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E8a-Wr-T6D" id="pT6-kH-lfp">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -952,9 +953,9 @@
         <image name="menu_btn" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KiN-js-Cri"/>
+        <segue reference="b3A-8V-RTi"/>
         <segue reference="TbX-OX-Zdl"/>
-        <segue reference="rzf-9y-9No"/>
-        <segue reference="OQL-Dh-niO"/>
+        <segue reference="KiN-js-Cri"/>
+        <segue reference="dE8-Jj-uUk"/>
     </inferredMetricsTieBreakers>
 </document>
