@@ -143,7 +143,6 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         super.prepare(for: segue, sender: sender)
-        var stall = true
         
         // Configure the destination view controller only when the save button is pressed.
         guard let button = sender as? UIBarButtonItem, button === saveButton else {
@@ -198,15 +197,14 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
             
             if(!self.editingExistingItem){
                 let tempCoord = CLLocationCoordinate2D(latitude: (location.coordinate.latitude), longitude: (location.coordinate.longitude))
-                self.donatedItem = DonatedItem(self.titleTxt.text!, self.itemImg.image!, self.donated, self.descTxt.text!, expirationDate, tempCoord, (user?.uid)!, "TEMP", self.addressTxt.text!)
+                self.donatedItem = DonatedItem(self.titleTxt.text!, self.itemImg.image!, self.donated, self.descTxt.text!, expirationDate, tempCoord, (user?.uid)!, "TEMP", self.addressTxt.text!, reserved: false, reservedBy: "NA")
                 self.donatedItem?.saveToDB()
             }
             else{
                 let tempCoord = CLLocationCoordinate2D(latitude: (location.coordinate.latitude), longitude: (location.coordinate.longitude))
-                self.donatedItem = DonatedItem(self.titleTxt.text!, self.itemImg.image!, self.donated, self.descTxt.text!, expirationDate, tempCoord, (user?.uid)!, (self.donatedItem?.itemID)!, self.addressTxt.text!)
+                self.donatedItem = DonatedItem(self.titleTxt.text!, self.itemImg.image!, self.donated, self.descTxt.text!, expirationDate, tempCoord, (user?.uid)!, (self.donatedItem?.itemID)!, self.addressTxt.text!, reserved: false, reservedBy: "NA")
                 self.donatedItem?.updateItem()
             }
-            stall = false
         }
         
         switch(segue.identifier ?? "") {
@@ -218,7 +216,7 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
             }
             let tempCoord = CLLocationCoordinate2D(latitude: 50.495655, longitude: -104.641791)
             //let tempCoord = CLLocationCoordinate2D(latitude: (location.coordinate.latitude), longitude: (location.coordinate.longitude))
-            self.donatedItem = DonatedItem(self.titleTxt.text!, self.itemImg.image!, self.donated, self.descTxt.text!, expirationDate, tempCoord, (user?.uid)!, "TEMP", self.addressTxt.text!)
+            self.donatedItem = DonatedItem(self.titleTxt.text!, self.itemImg.image!, self.donated, self.descTxt.text!, expirationDate, tempCoord, (user?.uid)!, "TEMP", self.addressTxt.text!, reserved: false, reservedBy: "NA")
             homeViewController.isReturningSegue = true
             homeViewController.tempItem = self.donatedItem
             print("PRINTING NAME")

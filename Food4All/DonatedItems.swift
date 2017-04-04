@@ -146,6 +146,7 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
                     let myCoordinates = CLLocationCoordinate2D(latitude: myLatitude!, longitude: myLongitude!)
                     let myUserID = donationItem.value(forKey: "userID") as? String
                     let address = donationItem.value(forKey: "address") as? String
+                    let reservedBy = donationItem.value(forKey: "reservedBy") as? String
                     
                     
                     var  donated: Bool
@@ -155,6 +156,12 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
                         donated = true
                     }
                     
+                    var  reserved: Bool
+                    if let reservedInt = donationItem.value(forKey: "reserved") as? Int {
+                        reserved = Bool(reservedInt as NSNumber)
+                    } else {
+                        reserved = true
+                    }
                     
                     //Messy ... clean up if time
                     let user = FIRAuth.auth()?.currentUser
@@ -188,7 +195,7 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
                                     myImage = UIImage(named: "defaultPhoto")
                                 }
                                 
-                                let donation1 = DonatedItem(myTitle, myImage!, donated, myDescription!, myDate!, myCoordinates, myUserID!, myItemID!, address!)
+                                let donation1 = DonatedItem(myTitle, myImage!, donated, myDescription!, myDate!, myCoordinates, myUserID!, myItemID!, address!, reserved: reserved, reservedBy: reservedBy!)
                                 self.addItem(item: donation1!)
                             }
                         }
@@ -257,6 +264,7 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
                         let myCoordinates = CLLocationCoordinate2D(latitude: myLatitude!, longitude: myLongitude!)
                         let myUserID = donationItem.value(forKey: "userID") as? String
                         let myAddress = donationItem.value(forKey: "address") as? String
+                        let reservedBy = donationItem.value(forKey: "reservedBy") as? String
                         
                         
                         var  donated: Bool
@@ -265,6 +273,13 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
                         }
                         else {
                             donated = true
+                        }
+                        
+                        var  reserved: Bool
+                        if let reservedInt = donationItem.value(forKey: "reserved") as? Int {
+                            reserved = Bool(reservedInt as NSNumber)
+                        } else {
+                            reserved = true
                         }
                         
                         //---Load image from storage rather than db
@@ -294,7 +309,7 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
                                     myImage = UIImage(named: "defaultPhoto")
                                 }
                                 
-                                let donation1 = DonatedItem(myTitle, myImage!, donated, myDescription!, myDate!, myCoordinates, myUserID!, myItemID!, myAddress!)
+                                let donation1 = DonatedItem(myTitle, myImage!, donated, myDescription!, myDate!, myCoordinates, myUserID!, myItemID!, myAddress!, reserved: reserved, reservedBy: reservedBy!)
                                 self.addItem(item: donation1!)
                             }
                         }

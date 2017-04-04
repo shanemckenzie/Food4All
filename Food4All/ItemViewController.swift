@@ -188,6 +188,7 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         if reserveSwitch.isOn {
             reserved = true
             checkSwitch()
+            donatedItem?.reserveItem()
         } else {
             
             reserved = false

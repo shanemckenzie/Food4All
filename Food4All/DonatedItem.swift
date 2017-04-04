@@ -90,7 +90,7 @@ class DonatedItem {
     
 
     
-    init?(_ title: String, _ image: UIImage, _ donated: Bool, _ description: String, _ expiration: String, _ coordinates: CLLocationCoordinate2D, _ userID: String, _ itemID: String, _ address: String){
+    init?(_ title: String, _ image: UIImage, _ donated: Bool, _ description: String, _ expiration: String, _ coordinates: CLLocationCoordinate2D, _ userID: String, _ itemID: String, _ address: String, reserved: Bool, reservedBy: String){
         
         self._itemID = itemID
         self._name = title
@@ -101,9 +101,20 @@ class DonatedItem {
         self._expiration = expiration
         self.coordinates = coordinates
         self.address = address
+        self.reserved = reserved
+        self.reservedBy = reservedBy
         
         print("ASSIGNINGID")
         print(itemID)
+    }
+    
+    func reserveItem(){
+        let user = FIRAuth.auth()?.currentUser
+        
+        reserved = true
+        reservedBy = user?.uid
+        
+        updateItem()
     }
     
     func updateItem(){
@@ -128,8 +139,9 @@ class DonatedItem {
                                                    "latitude": latitude! as NSNumber,
                                                    "longitude": longitude! as NSNumber,
                                                    "donated": Int(NSNumber(value:donated!)) as NSNumber,
-                                                   "address": address! as NSString
-                                                   
+                                                   "address": address! as NSString,
+                                                   "reserved": Int(NSNumber(value:reserved!)) as NSNumber,
+                                                   "reservedBy": reservedBy! as NSString
         ]
         
         newDonationItemRef.setValue(newDonationItemData)
@@ -158,7 +170,9 @@ class DonatedItem {
             "latitude": latitude! as NSNumber,
             "longitude": longitude! as NSNumber,
             "donated": Int(NSNumber(value:donated!)) as NSNumber,
-            "address": address! as NSString
+            "address": address! as NSString,
+            "reserved": Int(NSNumber(value:reserved!)) as NSNumber,
+            "reservedBy": reservedBy! as NSString
         ]
         self._itemID = newDonationItemId
         newDonationItemRef.setValue(newDonationItemData)
