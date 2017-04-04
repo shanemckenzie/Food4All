@@ -15,7 +15,7 @@ import FirebaseAuth
 import Contacts
 
 class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, CLLocationManagerDelegate{
-
+    
     //MARK: PROPERTIES
     @IBOutlet weak var itemImg: UIImageView!
     @IBOutlet weak var titleTxt: UITextField!
@@ -31,10 +31,10 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     var editingExistingItem = false //so we know whether to save new or update existing item
     var coordinates2D: CLLocationCoordinate2D?
     var coordinates: CLLocation?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         titleTxt.delegate = self
         
         // Enable the Save button only if valid fields
@@ -94,7 +94,7 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                 
                 //self.addressTxt.text = "\(thoroughfare!), \(city!)"
                 self.addressTxt.text = address.street
-
+                
                 print("Address \(self.addressTxt.text)")
                 
                 self.locationManager.stopUpdatingLocation()
@@ -102,7 +102,7 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         }
         
     }
-
+    
     //MARK: Save Button
     func textFieldDidBeginEditing(_ textField: UITextField) {
         // Disable the Save button while editing.
@@ -135,7 +135,7 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
      return formatter.string(from: self.expireDate as! Date)
      }()
      */
-
+    
     
     // MARK: - Navigation
     
@@ -143,6 +143,7 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         super.prepare(for: segue, sender: sender)
+        var stall = true
         
         // Configure the destination view controller only when the save button is pressed.
         guard let button = sender as? UIBarButtonItem, button === saveButton else {
@@ -171,7 +172,7 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         
         
         //TODO: deal with coordinates
-       // let tempCoord = CLLocationCoordinate2D(latitude: (thisItemsLocation?.coordinate.latitude)!, longitude: (thisItemsLocation?.coordinate.longitude)!)
+        // let tempCoord = CLLocationCoordinate2D(latitude: (thisItemsLocation?.coordinate.latitude)!, longitude: (thisItemsLocation?.coordinate.longitude)!)
         
         let user = FIRAuth.auth()?.currentUser
         
@@ -205,6 +206,25 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                 self.donatedItem = DonatedItem(self.titleTxt.text!, self.itemImg.image!, self.donated, self.descTxt.text!, expirationDate, tempCoord, (user?.uid)!, (self.donatedItem?.itemID)!, self.addressTxt.text!)
                 self.donatedItem?.updateItem()
             }
+            stall = false
+        }
+        
+        switch(segue.identifier ?? "") {
+        //the add item button is pressed
+        case "saveItem":
+            
+            guard let homeViewController = segue.destination as? HomeViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            let tempCoord = CLLocationCoordinate2D(latitude: 50.495655, longitude: -104.641791)
+            //let tempCoord = CLLocationCoordinate2D(latitude: (location.coordinate.latitude), longitude: (location.coordinate.longitude))
+            self.donatedItem = DonatedItem(self.titleTxt.text!, self.itemImg.image!, self.donated, self.descTxt.text!, expirationDate, tempCoord, (user?.uid)!, "TEMP", self.addressTxt.text!)
+            homeViewController.isReturningSegue = true
+            homeViewController.tempItem = self.donatedItem
+            print("PRINTING NAME")
+            print(self.donatedItem?.name)
+        default:
+            print("Undefined segue")
         }
         
     }
@@ -279,7 +299,7 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     // Convert to the newer CNPostalAddress
     func postalAddressFromAddressDictionary(_ addressdictionary: Dictionary<NSObject,AnyObject>) -> CNMutablePostalAddress {
         let address = CNMutablePostalAddress()
-    
+        
         address.street = addressdictionary["Street" as NSObject] as? String ?? ""
         address.state = addressdictionary["State" as NSObject] as? String ?? ""
         address.city = addressdictionary["City" as NSObject] as? String ?? ""
@@ -340,6 +360,6 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         })
         
     }
-
+    
     
 }

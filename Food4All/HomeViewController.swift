@@ -18,17 +18,25 @@ class HomeViewController: UITableViewController {
     
     let donatedItems = DonatedItems();
     var ref: FIRDatabaseReference!
+    var isReturningSegue = false
+    var tempItem: DonatedItem? //for rewinding from the submission view (loeading occurs before the item's saved to the db so we have to fake it)
     
     @IBOutlet weak var menuBtn: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //load sample data
+        //load data
         donatedItems.initItems()
-        
+        print("tempsName")
+        print(tempItem?.name)
+        if let tempItem = tempItem{
+            print("ADDING TEMP")
+            isReturningSegue = false
+            donatedItems.addItem(item: tempItem)
+        }
+    
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        
         
         //button for slide out menu
         menuBtn.target = self.revealViewController()
@@ -38,6 +46,16 @@ class HomeViewController: UITableViewController {
         var timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.repeatingMethod), userInfo: nil, repeats: true)
     }
     
+    /*
+    override func viewWillAppear(_ animated: Bool) {
+        if(isReturningSegue){
+            donatedItems.reInitItems()
+            self.tableView.reloadData()
+            isReturningSegue = false
+        }
+    }
+    */
+ 
     @objc func repeatingMethod(){
         //sort any added items
         //donatedItems.sortByDate()
@@ -57,6 +75,14 @@ class HomeViewController: UITableViewController {
         
         
         self.tableView.reloadData()
+        /*
+        seconds += 1
+        if(seconds % 10 == 0){
+            donatedItems.reInitItems()
+            self.tableView.reloadData()
+            seconds = 0
+        }
+ */
     }
     
     override func didReceiveMemoryWarning() {

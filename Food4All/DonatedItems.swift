@@ -32,6 +32,11 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
         loadItems()
     }
     
+    func reInitItems(){
+        donatedItems.removeAll()
+        loadItems()
+    }
+    
     func getCount () -> Int{
         return donatedItems.count
     }
