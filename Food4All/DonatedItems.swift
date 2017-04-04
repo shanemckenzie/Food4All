@@ -243,8 +243,16 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
                     print("Current Date: \(self.currentDate)")
                     print("Exp Date: \(expDate)")
                     
+                    let calendar = NSCalendar.current
+                    
+                    
+                    let currDay = calendar.startOfDay(for: self.currentDate)
+                    let expDay = calendar.startOfDay(for: expDate)
+                    
+                    
+                    
                 
-                    if expDate < self.currentDate {
+                    if /*expDate < self.currentDate*/expDay < currDay {
                         //removes items
                         self.deleteFromDb(itemToRemove: myItemID)
                         print("DELETING \(myItemID)")

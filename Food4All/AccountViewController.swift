@@ -134,6 +134,16 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM dd, h:mm a"
         
+        //convert the date string back to a date object
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+        let expDate = formatter.date(from: item.expiration)
+        
+        //convert the date to an easy to read format
+        formatter.dateFormat = "MMMM dd, YYYY, h:mm a"
+        cell.cellExpiryDate.text = "Post Expires: \(formatter.string(from: expDate!))"
+        
+        
+        
         return cell
     }
     
