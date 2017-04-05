@@ -30,6 +30,7 @@
 		79EBDAAC1E3A84AD001CAEA0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EBDAAB1E3A84AD001CAEA0 /* Constants.swift */; };
 		A90431B71E7B7467001D55B4 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90431B61E7B7467001D55B4 /* ItemViewController.swift */; };
 		A9185C491E90A28100EAECFF /* CustomPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9185C481E90A28100EAECFF /* CustomPin.swift */; };
+		A92247851E9565AD009721A8 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A92247841E9565AD009721A8 /* MBProgressHUD.m */; };
 		A93F7A871E7B3A68003B9DC1 /* DonatedItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93F7A861E7B3A68003B9DC1 /* DonatedItems.swift */; };
 		A9408FDD1E7F1CDF00EB3F29 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9408FDC1E7F1CDF00EB3F29 /* User.swift */; };
 		A9408FDF1E7F287700EB3F29 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9408FDE1E7F287700EB3F29 /* RegisterViewController.swift */; };
@@ -91,6 +92,8 @@
 		A82311851814AD7EAF07028D /* Pods-Food4All.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Food4All.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Food4All/Pods-Food4All.debug.xcconfig"; sourceTree = "<group>"; };
 		A90431B61E7B7467001D55B4 /* ItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		A9185C481E90A28100EAECFF /* CustomPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPin.swift; sourceTree = "<group>"; };
+		A92247831E9565A2009721A8 /* MBProgressHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = "MBProgressHUD-master/MBProgressHUD.h"; sourceTree = SOURCE_ROOT; };
+		A92247841E9565AD009721A8 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = "MBProgressHUD-master/MBProgressHUD.m"; sourceTree = SOURCE_ROOT; };
 		A93F7A861E7B3A68003B9DC1 /* DonatedItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonatedItems.swift; sourceTree = "<group>"; };
 		A9408FDC1E7F1CDF00EB3F29 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A9408FDE1E7F287700EB3F29 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -235,6 +238,8 @@
 		79EBDAAA1E3A849F001CAEA0 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				A92247831E9565A2009721A8 /* MBProgressHUD.h */,
+				A92247841E9565AD009721A8 /* MBProgressHUD.m */,
 				A9B52C741E6F6F4200036715 /* GoogleService-Info.plist */,
 				79E5A2EC1E3A800200DE2978 /* Info.plist */,
 				792FB1841E4682230067C1B0 /* SWRevealViewController.h */,
@@ -548,6 +553,7 @@
 				7952BCF31E8F434F00EC1BE3 /* NSDate.swift in Sources */,
 				A9408FDD1E7F1CDF00EB3F29 /* User.swift in Sources */,
 				792FB1881E4684A80067C1B0 /* BackTableVC.swift in Sources */,
+				A92247851E9565AD009721A8 /* MBProgressHUD.m in Sources */,
 				795798831E79A77C0055D8E3 /* DonationItemCell.swift in Sources */,
 				79783A931E78F5B300916C75 /* MapData.swift in Sources */,
 				792FB1861E4682230067C1B0 /* SWRevealViewController.m in Sources */,

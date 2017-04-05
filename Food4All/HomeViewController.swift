@@ -22,12 +22,18 @@ class HomeViewController: UITableViewController {
     var tempItem: DonatedItem? //for rewinding from the submission view (loeading occurs before the item's saved to the db so we have to fake it)
     var tempItemIndex = -1
     var isExistingItem = false //since the unwind is never called for saving
+    var hud: MBProgressHUD = MBProgressHUD()
     
     
     @IBOutlet weak var menuBtn: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //loading wheel
+        let loadingNotification = MBProgressHUD.showAdded(to: self.view, animated: true)
+        loadingNotification.mode = MBProgressHUDMode.indeterminate
+        loadingNotification.label.text = "Loading"
         
         //load data
         donatedItems.initItems()
@@ -66,9 +72,11 @@ class HomeViewController: UITableViewController {
  
     @objc func repeatingMethod(){
         //sort any added items
-        //donatedItems.sortByDate()
         
-        //donatedItems.sortByDistance()
+        //dismiss loading wheel
+        if(donatedItems.getCount() > 0){
+            MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
+        }
         
         if(isExistingItem && donatedItems.getCount() != 0)
         {

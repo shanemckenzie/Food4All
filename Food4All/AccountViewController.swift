@@ -33,6 +33,11 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         self.tableView.allowsMultipleSelectionDuringEditing = false
         
+        //loading wheel
+        let loadingNotification = MBProgressHUD.showAdded(to: self.view, animated: true)
+        loadingNotification.mode = MBProgressHUDMode.indeterminate
+        loadingNotification.label.text = "Loading"
+        
         //setup table view
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DonationItemCell")
         tableView.delegate = self
@@ -55,6 +60,12 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     func repeatingMethod(){
+        
+        //dismiss loading wheel
+        if(donatedItems.getCount() > 0){
+            MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
+        }
+        
         self.tableView.reloadData()
         
         //sort any added items
