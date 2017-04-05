@@ -21,6 +21,7 @@ class DonatedItem {
     fileprivate var _description: String!
     fileprivate var _expiration: String!
     
+    var username: String?
     var address: String!
     var donated: Bool!
     var distanceFromUser = 0 as Double
@@ -104,6 +105,11 @@ class DonatedItem {
         self.reserved = reserved
         self.reservedBy = reservedBy
         
+        
+        
+        
+        
+        
         print("ASSIGNINGID")
         print(itemID)
     }
@@ -143,6 +149,8 @@ class DonatedItem {
                                                    "reserved": Int(NSNumber(value:reserved!)) as NSNumber,
                                                    "reservedBy": reservedBy! as NSString
         ]
+        
+        
         
         newDonationItemRef.setValue(newDonationItemData)
 

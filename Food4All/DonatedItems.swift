@@ -163,7 +163,7 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
                         reserved = true
                     }
                     
-                    //Messy ... clean up if time
+                    //TODO: Messy ... clean up if time
                     let user = FIRAuth.auth()?.currentUser
                     
                     if(myUserID == user?.uid){
@@ -326,6 +326,8 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
                 }
             
             }
+            
+            
             
             
         }) { (error) in

@@ -49,6 +49,8 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             
             //TODO: Load user name
             donaterNameField.text = donatedItem.name
+
+            
             descriptionField.text = donatedItem.description
             
             reserved = donatedItem.reserved
@@ -69,9 +71,8 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             
             
             
-            //MARK: TODO - Add field to item model for reserve and business name (linked to account)
-            //TODO: lock the reserve switch if you are not the user who reserved it or the user who created the item
-            //reserveSwitch.isUserInteractionEnabled = false
+        //TODO: - Add field to item model for reserve and business name (linked to account)
+        //TODO: lock the reserve switch if you are not the user who reserved it or the user who created the item
             
             //set up map
             self.mapView.showsUserLocation = true
@@ -204,6 +205,7 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         
         if reserved == true {
             
+            reserveSwitch.isOn = true
             reserveSwitch.isUserInteractionEnabled = false
             reserveSwitch.alpha = 0.3
             reserveLbl.text = "Reserved"
