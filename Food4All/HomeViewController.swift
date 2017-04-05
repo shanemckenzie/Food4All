@@ -24,7 +24,6 @@ class HomeViewController: UITableViewController {
     var isExistingItem = false //since the unwind is never called for saving
     var hud: MBProgressHUD = MBProgressHUD()
     
-    
     @IBOutlet weak var menuBtn: UIBarButtonItem!
     
     override func viewDidLoad() {
@@ -86,9 +85,22 @@ class HomeViewController: UITableViewController {
         }
         
         self.tableView.reloadData()
-
+        
+        //check for table updates in background thread
+        DispatchQueue.global(qos: .userInitiated).async {
+            var index = 0
+            while(index < self.donatedItems.getCount()-1)
+            {
+                //remove any reserved items (these items will still be in array on segue unwinds from item view)
+                if(self.donatedItems.donatedItems[index].reserved)!
+                {
+                    self.donatedItems.removeFromArray(index: index)
+                }
+                
+                index += 1
+            }
+        }
     }
-
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

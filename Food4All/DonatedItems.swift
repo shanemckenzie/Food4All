@@ -58,6 +58,9 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
         donatedItems.append(item)
     }
     
+    func removeFromArray(index: Int){
+        donatedItems.remove(at: index)
+    }
     
     //pass in the item id
     func deleteFromDb(itemToRemove: String) {
