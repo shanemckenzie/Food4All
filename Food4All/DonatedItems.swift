@@ -71,7 +71,9 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
         
     }
     
-    
+    func updateItemCoordinates(coordinates: CLLocationCoordinate2D, index: Int){
+        donatedItems[index].coordinates = coordinates
+    }
     
     //MARK: UPDATE FOR SORTING
     func updateItem(item: DonatedItem, index: Int){
@@ -83,23 +85,22 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
         donatedItems.append(item)
     }
 
-    func updateItem(newItem: DonatedItem){
-        print("NEWUPDATE")
+    func updateItem(newItem: DonatedItem) -> Int{
         print(newItem.name)
         //find item in array and update it
         var index = 0
-        print("SIZE OF ITEMS")
-        print(donatedItems.count)
+
         for item in donatedItems{
-            print("MOVING ITEM")
             print(item.name)
             if (item.itemID == newItem.itemID)
             {
                 donatedItems.remove(at: index)
                 donatedItems.append(newItem)
+                return index
             }
             index += 1
         }
+        return -1 //item not found
     }
     
     //MARK: SORTING

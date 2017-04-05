@@ -20,7 +20,9 @@ class HomeViewController: UITableViewController {
     var ref: FIRDatabaseReference!
     var isReturningSegue = false
     var tempItem: DonatedItem? //for rewinding from the submission view (loeading occurs before the item's saved to the db so we have to fake it)
+    var tempItemIndex = -1
     var isExistingItem = false //since the unwind is never called for saving
+    
     
     @IBOutlet weak var menuBtn: UIBarButtonItem!
     
@@ -40,6 +42,8 @@ class HomeViewController: UITableViewController {
             }
         }
     
+        NotificationCenter.default.addObserver(self, selector: #selector(self.methodOfReceivedNotification(notification:)), name: Notification.Name("locationUpdated"), object: nil)
+        
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
         //button for slide out menu
@@ -69,7 +73,7 @@ class HomeViewController: UITableViewController {
         if(isExistingItem && donatedItems.getCount() != 0)
         {
             isExistingItem = false
-            donatedItems.updateItem(newItem: tempItem!)
+            tempItemIndex = donatedItems.updateItem(newItem: tempItem!)
         }
         
         switch sortingController.selectedSegmentIndex {
@@ -90,6 +94,17 @@ class HomeViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: Notification events
+    
+    func methodOfReceivedNotification(notification: Notification){
+
+        if let upadtedCoord = notification.object as? CLLocationCoordinate2D{
+            if(tempItemIndex > 0){ //should always be the case
+                donatedItems.updateItemCoordinates(coordinates: upadtedCoord, index: tempItemIndex)
+            }
+        }
     }
     
     // MARK: - Table view data source

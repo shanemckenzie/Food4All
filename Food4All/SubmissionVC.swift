@@ -193,25 +193,23 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
             guard
                 let placemarks = placemarks,
                 let location = placemarks.first?.location
-                else {
+            else {
                     // handle no location found
                     return
             }
+            let tempCoord = CLLocationCoordinate2D(latitude: (location.coordinate.latitude), longitude: (location.coordinate.longitude))
+            
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "locationUpdated"), object: tempCoord)
             
             if(!self.editingExistingItem){
-                let tempCoord = CLLocationCoordinate2D(latitude: (location.coordinate.latitude), longitude: (location.coordinate.longitude))
                 self.donatedItem = DonatedItem(self.titleTxt.text!, self.itemImg.image!, self.donated, self.descTxt.text!, expirationDate, tempCoord, (user?.uid)!, "TEMP", self.addressTxt.text!, reserved: false, reservedBy: "NA")
                 self.donatedItem?.saveToDB()
             }
             else{
-                let tempCoord = CLLocationCoordinate2D(latitude: (location.coordinate.latitude), longitude: (location.coordinate.longitude))
                 self.donatedItem = DonatedItem(self.titleTxt.text!, self.itemImg.image!, self.donated, self.descTxt.text!, expirationDate, tempCoord, (user?.uid)!, (self.donatedItem?.itemID)!, self.addressTxt.text!, reserved: false, reservedBy: "NA")
-                print("UPDATING ITEM")
-                print(self.donatedItem?.itemID)
                 self.donatedItem?.updateItem()
             }
         }
-        
 
         switch(segue.identifier ?? "") {
         //the add item button is pressed
@@ -221,12 +219,10 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             let tempCoord = CLLocationCoordinate2D(latitude: 50.495655, longitude: -104.641791)
-            //let tempCoord = CLLocationCoordinate2D(latitude: (location.coordinate.latitude), longitude: (location.coordinate.longitude))
             if(!self.editingExistingItem){
                 self.donatedItem = DonatedItem(self.titleTxt.text!, self.itemImg.image!, self.donated, self.descTxt.text!, expirationDate, tempCoord, (user?.uid)!, "TEMP", self.addressTxt.text!, reserved: false, reservedBy: "NA")
             }
             else{
-                //MARK: WILL HAVE TO CHECK FOR EDITED ADDRESS HERE
                 self.donatedItem = DonatedItem(self.titleTxt.text!, self.itemImg.image!, self.donated, self.descTxt.text!, expirationDate, tempCoord, (user?.uid)!, (self.donatedItem?.itemID)!, self.addressTxt.text!, reserved: false, reservedBy: "NA")
                 homeViewController.isExistingItem = true
             }
