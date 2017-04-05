@@ -149,8 +149,7 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
             print(item.distanceFromUser)
         }
     }
-    
-    //MARK: CLEANUP
+
     func loadUsersItems(){
         var ref: FIRDatabaseReference!
         ref = FIRDatabase.database().reference()
@@ -197,7 +196,7 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
                     //TODO: Messy ... clean up if time
                     let user = FIRAuth.auth()?.currentUser
                     
-                    if(myUserID == user?.uid){
+                    if(myUserID == user?.uid || reservedBy == user?.uid){
                         
                         //---Load image from storage rather than db
                         
