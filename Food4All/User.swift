@@ -15,6 +15,7 @@ class User{
     //MARK USER PROPERTIES
     var userID: String
     var email: String
+    
     var businessName: String
     
     //MARK: Initialization
@@ -38,4 +39,27 @@ class User{
         //self.businessName = metaQuery->(businessName
         
     }
+    
+//    init(userID: String!) {
+//        var ref: FIRDatabaseReference!
+//        ref = FIRDatabase.database().reference()
+//        let userRef = ref!.child("userMeta").child(userID)
+//        
+//        
+//        
+//        userRef.observeSingleEvent(of: .value, with: { (snapshot) in
+//            let value = snapshot.value as? NSDictionary
+//            self.businessName = value?["businessName"] as? String ?? ""
+//            self.userID = userID
+//            //TODO: get email
+//            self.email = ""
+//            
+//        }) { (error) in
+//            print(error.localizedDescription)
+//        }
+//        
+//        
+//    }
+    
+    
 }

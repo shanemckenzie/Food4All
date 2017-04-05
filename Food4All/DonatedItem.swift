@@ -21,6 +21,7 @@ class DonatedItem {
     fileprivate var _description: String!
     fileprivate var _expiration: String!
     
+    var username: String?
     var address: String!
     var donated: Bool!
     var distanceFromUser = 0 as Double
@@ -103,6 +104,11 @@ class DonatedItem {
         self.address = address
         self.reserved = reserved
         self.reservedBy = reservedBy
+        
+        
+        
+        
+        
         
         print("ASSIGNINGID")
         print(itemID)
