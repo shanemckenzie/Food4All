@@ -125,12 +125,10 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
         }
 
         let myLocation = locationManager.location
-        print("MYLOCATION")
-        print(myLocation)
+
         //measure distance between point and user and record
         for item in donatedItems{
-            print("ITEMS LOCATION")
-            print(item.coordinates)
+            
             let itemsLocation = CLLocation(latitude: (item.coordinates?.latitude)!, longitude: (item.coordinates?.longitude)!)
             
             //FIXME: app occassionally crashing here, may just be simulator
@@ -347,8 +345,11 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
                                     myImage = UIImage(named: "defaultPhoto")
                                 }
                                 
-                                let donation1 = DonatedItem(myTitle, myImage!, donated, myDescription!, myDate!, myCoordinates, myUserID!, myItemID!, myAddress!, reserved: reserved, reservedBy: reservedBy!)
-                                self.addItem(item: donation1!)
+                                //don't load reserved items
+                                if(!reserved){
+                                    let donation1 = DonatedItem(myTitle, myImage!, donated, myDescription!, myDate!, myCoordinates, myUserID!, myItemID!, myAddress!, reserved: reserved, reservedBy: reservedBy!)
+                                    self.addItem(item: donation1!)
+                                }
                             }
                         }
                      

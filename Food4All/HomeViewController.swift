@@ -59,16 +59,6 @@ class HomeViewController: UITableViewController {
         //Update table cells every 5 seconds
         var timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.repeatingMethod), userInfo: nil, repeats: true)
     }
-    
-    /*
-    override func viewWillAppear(_ animated: Bool) {
-        if(isReturningSegue){
-            donatedItems.reInitItems()
-            self.tableView.reloadData()
-            isReturningSegue = false
-        }
-    }
-    */
  
     @objc func repeatingMethod(){
         //sort any added items
@@ -98,6 +88,7 @@ class HomeViewController: UITableViewController {
         self.tableView.reloadData()
 
     }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

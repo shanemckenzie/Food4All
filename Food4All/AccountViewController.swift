@@ -139,9 +139,13 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.cellImg.image = item.image
         cell.cellDesc.text = item.description
         
-        if item.donated == true {
+        if item.reserved! {
+            cell.layer.backgroundColor = UIColor(red: 181/255, green: 36/255, blue: 48/255, alpha: 0.6).cgColor //red
+        }
+        else if(item.donated == true){
             cell.layer.backgroundColor = UIColor(red: 6/255, green: 201/255, blue: 133/255, alpha: 0.3).cgColor
-        } else {
+        }
+        else {
             cell.layer.backgroundColor = UIColor(red: 245/255, green: 159/255, blue: 22/255, alpha: 0.3).cgColor
         }
         
