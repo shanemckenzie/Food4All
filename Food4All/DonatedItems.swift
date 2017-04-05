@@ -66,7 +66,11 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
         
         ref.child("DonationItem").child(itemToRemove).removeValue()
         
+        donatedItems = donatedItems.filter { $0.itemID != itemToRemove }
+        
+        
     }
+    
     
     
     //MARK: UPDATE FOR SORTING

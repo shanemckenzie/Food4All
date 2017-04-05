@@ -31,6 +31,8 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
+        self.tableView.allowsMultipleSelectionDuringEditing = false
+        
         //setup table view
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DonationItemCell")
         tableView.delegate = self
@@ -48,8 +50,9 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         menuBtn.action = #selector(SWRevealViewController.revealToggle(_:))
         
         //Update table cells every 5 seconds
-        var timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(AccountViewController.repeatingMethod), userInfo: nil, repeats: true)
+        var timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(AccountViewController.repeatingMethod), userInfo: nil, repeats: false)
     }
+    
     
     func repeatingMethod(){
         self.tableView.reloadData()
@@ -132,7 +135,7 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM dd, h:mm a"
+        //formatter.dateFormat = "MMMM dd, h:mm a"
         
         //convert the date string back to a date object
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
@@ -142,27 +145,24 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         formatter.dateFormat = "MMMM dd, YYYY, h:mm a"
         cell.cellExpiryDate.text = "Post Expires: \(formatter.string(from: expDate!))"
         
-        
-        
         return cell
     }
     
+    //MARK: Item Deletion
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.delete {
+        if editingStyle == .delete {
             
             //remove from DB
             let item = donatedItems.getItem(index: indexPath.row)
-            
             //tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
             donatedItems.deleteFromDb(itemToRemove: item.itemID)
             print("Deleted")
-            
-            donatedItems.loadUsersItems()
-            donatedItems.sortByDate()
-            
-            self.tableView.reloadData()
-            
-            //donatedItems.loadUsersItems()
+
+            tableView.deleteRows(at: [indexPath], with: .left)
             
         }
     }
