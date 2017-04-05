@@ -118,55 +118,37 @@ class DonatedItem {
     }
     
     func updateItem(){
-        print("WHATSMYID")
-        print(self.itemID)
-        ref = FIRDatabase.database().reference()
-        let newDonationItemRef = self.ref!.child("DonationItem").child(self.itemID)
-        //let newDonationItemId = newDonationItemRef.key
-        let imageData = UIImagePNGRepresentation(self.image!)!
-        var base64ImageString: NSString!
-        base64ImageString = imageData.base64EncodedString() as NSString!
-        
-        let latitude = self.coordinates?.latitude
-        let longitude = self.coordinates?.longitude
-        
-        let newDonationItemData: [String : Any] = ["itemID": self.itemID,
-                                                   "title": _name as NSString,
-                                                   "description": _description as NSString,
-                                                   "expiration": _expiration as NSString,
-                                                   "userID": _userID as NSString,
-                                                   "image": base64ImageString as NSString,
-                                                   "latitude": latitude! as NSNumber,
-                                                   "longitude": longitude! as NSNumber,
-                                                   "donated": Int(NSNumber(value:donated!)) as NSNumber,
-                                                   "address": address! as NSString,
-                                                   "reserved": Int(NSNumber(value:reserved!)) as NSNumber,
-                                                   "reservedBy": reservedBy! as NSString
-        ]
-        
-        newDonationItemRef.setValue(newDonationItemData)
-
+        writeToDB(itemID: self._itemID)
+        print("ITEMSAVING1")
     }
     
     func saveToDB() {
-        
+        print("ITEMSAVING2")
+        //generate new item id
         ref = FIRDatabase.database().reference()
         let newDonationItemRef = self.ref!.child("DonationItem").childByAutoId()
         let newDonationItemId = newDonationItemRef.key
-
-       // let imageData = UIImagePNGRepresentation(self.image!)!
+        
+        writeToDB(itemID: newDonationItemId)
+    }
+    
+    private func writeToDB(itemID: String){
+        ref = FIRDatabase.database().reference()
+        let newDonationItemRef = self.ref!.child("DonationItem").child(itemID)
+        
+        // let imageData = UIImagePNGRepresentation(self.image!)!
         //var base64ImageString: NSString!
         //base64ImageString = imageData.base64EncodedString() as NSString!
         
         let latitude = self.coordinates?.latitude
         let longitude = self.coordinates?.longitude
         
-        let newDonationItemData: [String : Any] = ["itemID": newDonationItemId,
-            "title": _name as NSString,
-            "description": _description as NSString,
-            "expiration": _expiration as NSString,
-            "userID": _userID as NSString,
-            //"image": base64ImageString as NSString,
+        let newDonationItemData: [String : Any] = ["itemID": itemID,
+                                                   "title": _name as NSString,
+                                                   "description": _description as NSString,
+                                                   "expiration": _expiration as NSString,
+                                                   "userID": _userID as NSString,
+                                                   //"image": base64ImageString as NSString,
             "latitude": latitude! as NSNumber,
             "longitude": longitude! as NSNumber,
             "donated": Int(NSNumber(value:donated!)) as NSNumber,
@@ -174,7 +156,7 @@ class DonatedItem {
             "reserved": Int(NSNumber(value:reserved!)) as NSNumber,
             "reservedBy": reservedBy! as NSString
         ]
-        self._itemID = newDonationItemId
+        self._itemID = itemID
         newDonationItemRef.setValue(newDonationItemData)
         
         //----Upload image to firebase storage rather than db-----
@@ -184,7 +166,7 @@ class DonatedItem {
         let storageRef = storage.reference()
         
         // Create a reference to the file you want to upload
-        let url = "images/" + newDonationItemId + ".jpg"
+        let url = "images/" + itemID + ".jpg"
         let imageRef = storageRef.child(url)
         
         // Upload the file to the path "images/rivers.jpg"

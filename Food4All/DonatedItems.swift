@@ -64,7 +64,6 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
         var ref: FIRDatabaseReference!
         ref = FIRDatabase.database().reference()
         
-        
         ref.child("DonationItem").child(itemToRemove).removeValue()
         
     }
@@ -78,6 +77,25 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
         
         //replace item at index
         donatedItems.append(item)
+    }
+
+    func updateItem(newItem: DonatedItem){
+        print("NEWUPDATE")
+        print(newItem.name)
+        //find item in array and update it
+        var index = 0
+        print("SIZE OF ITEMS")
+        print(donatedItems.count)
+        for item in donatedItems{
+            print("MOVING ITEM")
+            print(item.name)
+            if (item.itemID == newItem.itemID)
+            {
+                donatedItems.remove(at: index)
+                donatedItems.append(newItem)
+            }
+            index += 1
+        }
     }
     
     //MARK: SORTING
@@ -111,7 +129,14 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
             let itemsLocation = CLLocation(latitude: (item.coordinates?.latitude)!, longitude: (item.coordinates?.longitude)!)
             
             //FIXME: app occassionally crashing here, may just be simulator
-            item.distanceFromUser = (myLocation?.distance(from: itemsLocation))!
+            if(myLocation != nil) //does this help?
+            {
+                item.distanceFromUser = (myLocation?.distance(from: itemsLocation))!
+            }
+            else
+            {
+                item.distanceFromUser = 0
+            }
         }
         self.donatedItems.sort(by: {$0.distanceFromUser < $1.distanceFromUser})
         for item in donatedItems{

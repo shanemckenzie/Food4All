@@ -20,6 +20,7 @@ class HomeViewController: UITableViewController {
     var ref: FIRDatabaseReference!
     var isReturningSegue = false
     var tempItem: DonatedItem? //for rewinding from the submission view (loeading occurs before the item's saved to the db so we have to fake it)
+    var isExistingItem = false //since the unwind is never called for saving
     
     @IBOutlet weak var menuBtn: UIBarButtonItem!
     
@@ -33,7 +34,10 @@ class HomeViewController: UITableViewController {
         if let tempItem = tempItem{
             print("ADDING TEMP")
             isReturningSegue = false
-            donatedItems.addItem(item: tempItem)
+            if(!isExistingItem)
+            {
+                donatedItems.addItem(item: tempItem)
+            }
         }
     
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
@@ -62,6 +66,12 @@ class HomeViewController: UITableViewController {
         
         //donatedItems.sortByDistance()
         
+        if(isExistingItem && donatedItems.getCount() != 0)
+        {
+            isExistingItem = false
+            donatedItems.updateItem(newItem: tempItem!)
+        }
+        
         switch sortingController.selectedSegmentIndex {
         case 0:
             print("Sorting by distance")
@@ -73,16 +83,8 @@ class HomeViewController: UITableViewController {
             donatedItems.sortByDistance()
         }
         
-        
         self.tableView.reloadData()
-        /*
-        seconds += 1
-        if(seconds % 10 == 0){
-            donatedItems.reInitItems()
-            self.tableView.reloadData()
-            seconds = 0
-        }
- */
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -151,7 +153,8 @@ class HomeViewController: UITableViewController {
         switch(segue.identifier ?? "") {
         //the add item button is pressed
         case "AddItem":
-            os_log("Adding a new donation.", log: OSLog.default, type: .debug)
+            
+            print("ADDING ITEM")
             
         //an existing item is pressed
         case "ShowItem":
@@ -202,7 +205,6 @@ class HomeViewController: UITableViewController {
                 let newIndexPath = IndexPath(row: donatedItems.getCount(), section: 0)
                 
                 donatedItems.addItem(item: donatedItem)
-                
                 
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
                 tableView.reloadData()

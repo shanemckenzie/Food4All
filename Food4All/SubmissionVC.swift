@@ -57,6 +57,7 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
             titleTxt.text = donatedItem.name
             descTxt.text = donatedItem.description
             itemImg.image = donatedItem.image
+            addressTxt.text = donatedItem.address
             //TODO
             //addressTxt.text = donatedItem.address
             
@@ -93,8 +94,10 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                 let address = self.postalAddressFromAddressDictionary(placemarkAddress as! Dictionary<NSObject, AnyObject>)
                 
                 //self.addressTxt.text = "\(thoroughfare!), \(city!)"
-                self.addressTxt.text = address.street
-                
+                if(!self.editingExistingItem)
+                {
+                    self.addressTxt.text = address.street
+                }
                 print("Address \(self.addressTxt.text)")
                 
                 self.locationManager.stopUpdatingLocation()
@@ -203,10 +206,13 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
             else{
                 let tempCoord = CLLocationCoordinate2D(latitude: (location.coordinate.latitude), longitude: (location.coordinate.longitude))
                 self.donatedItem = DonatedItem(self.titleTxt.text!, self.itemImg.image!, self.donated, self.descTxt.text!, expirationDate, tempCoord, (user?.uid)!, (self.donatedItem?.itemID)!, self.addressTxt.text!, reserved: false, reservedBy: "NA")
+                print("UPDATING ITEM")
+                print(self.donatedItem?.itemID)
                 self.donatedItem?.updateItem()
             }
         }
         
+
         switch(segue.identifier ?? "") {
         //the add item button is pressed
         case "saveItem":
@@ -216,15 +222,21 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
             }
             let tempCoord = CLLocationCoordinate2D(latitude: 50.495655, longitude: -104.641791)
             //let tempCoord = CLLocationCoordinate2D(latitude: (location.coordinate.latitude), longitude: (location.coordinate.longitude))
-            self.donatedItem = DonatedItem(self.titleTxt.text!, self.itemImg.image!, self.donated, self.descTxt.text!, expirationDate, tempCoord, (user?.uid)!, "TEMP", self.addressTxt.text!, reserved: false, reservedBy: "NA")
+            if(!self.editingExistingItem){
+                self.donatedItem = DonatedItem(self.titleTxt.text!, self.itemImg.image!, self.donated, self.descTxt.text!, expirationDate, tempCoord, (user?.uid)!, "TEMP", self.addressTxt.text!, reserved: false, reservedBy: "NA")
+            }
+            else{
+                //MARK: WILL HAVE TO CHECK FOR EDITED ADDRESS HERE
+                self.donatedItem = DonatedItem(self.titleTxt.text!, self.itemImg.image!, self.donated, self.descTxt.text!, expirationDate, tempCoord, (user?.uid)!, (self.donatedItem?.itemID)!, self.addressTxt.text!, reserved: false, reservedBy: "NA")
+                homeViewController.isExistingItem = true
+            }
             homeViewController.isReturningSegue = true
             homeViewController.tempItem = self.donatedItem
-            print("PRINTING NAME")
-            print(self.donatedItem?.name)
+
         default:
             print("Undefined segue")
         }
-        
+ 
     }
     
     //MARK: UIImagePickerControllerDelegate
