@@ -131,6 +131,13 @@ class DonatedItem {
         updateItem()
     }
     
+    func unreserveItem() {
+        reserved = false
+        reservedBy = ""
+        
+        updateItem()
+    }
+    
     func updateItem(){
         writeToDB(itemID: self._itemID)
         print("ITEMSAVING1")

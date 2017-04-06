@@ -60,6 +60,10 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         var timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(AccountViewController.repeatingMethod), userInfo: nil, repeats: false)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+    
     
     func repeatingMethod(){
         
@@ -115,8 +119,6 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
 //        
 //        let selectedItem = donatedItems.getItem(index: indexPath.row)
         
-        let selectedItem = sender as! DonatedItem
-        
         
         switch(segue.identifier ?? "") {
             
@@ -124,12 +126,16 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
             print("Adding a new donation.")
             
         case "ReservedView":
+            let selectedItem = sender as! DonatedItem
+
             guard let itemVC = segue.destination as? ItemViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             itemVC.donatedItem = selectedItem
 
         case "OwnedView":
+            let selectedItem = sender as! DonatedItem
+
             //let selectedItem = donatedItems.getItem(index: indexPath.row)
             guard let itemVC = segue.destination as? SubmissionVC else {
                 fatalError("Unexpected destination: \(segue.destination)")
@@ -171,13 +177,13 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         
         if item.reserved! {
-            cell.layer.backgroundColor = UIColor(red: 181/255, green: 36/255, blue: 48/255, alpha: 0.6).cgColor //red
+            cell.layer.backgroundColor = UIColor(red: 181/255, green: 36/255, blue: 48/255, alpha: 0.7).cgColor //red
         }
         else if(item.donated == true){
-            cell.layer.backgroundColor = UIColor(red: 6/255, green: 201/255, blue: 133/255, alpha: 0.3).cgColor
+            cell.layer.backgroundColor = UIColor(red: 6/255, green: 201/255, blue: 133/255, alpha: 0.7).cgColor
         }
         else {
-            cell.layer.backgroundColor = UIColor(red: 245/255, green: 159/255, blue: 22/255, alpha: 0.3).cgColor
+            cell.layer.backgroundColor = UIColor(red: 255/255, green: 103/255, blue: 0/255, alpha: 0.7).cgColor
         }
         
         let formatter = DateFormatter()
