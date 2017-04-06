@@ -106,6 +106,11 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        view.endEditing(true)
+        super.touchesBegan(touches, with: event)
+    }
+    
     //MARK: Save Button
     func textFieldDidBeginEditing(_ textField: UITextField) {
         // Disable the Save button while editing.
