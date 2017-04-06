@@ -68,14 +68,16 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
     func repeatingMethod(){
         
         //dismiss loading wheel
-        if(donatedItems.getCount() > 0){
-            MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
-        }
+        //if(donatedItems.getCount() > 0){
+            //MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
+        //}
         
         self.tableView.reloadData()
         
         //sort any added items
         donatedItems.sortByDate()
+        
+        MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
     }
 
     override func didReceiveMemoryWarning() {
