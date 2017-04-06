@@ -21,7 +21,7 @@ class DonatedItem {
     fileprivate var _description: String!
     fileprivate var _expiration: String!
     
-    var username: String?
+    var businessName = ""
     var address: String!
     var donated: Bool!
     var distanceFromUser = 0 as Double
@@ -106,8 +106,16 @@ class DonatedItem {
         self.reservedBy = reservedBy
         
         
+        ref = FIRDatabase.database().reference()
         
+        ref.child("userMeta").child(self._userID).observeSingleEvent(of: .value, with: { (snapshot) in
         
+            let value = snapshot.value as? NSDictionary
+            
+            self.businessName = value?["businessName"] as? String ?? ""
+        }) { (error) in
+            print(error.localizedDescription)
+        }
         
         
         print("ASSIGNINGID")

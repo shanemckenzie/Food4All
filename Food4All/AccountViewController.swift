@@ -167,6 +167,8 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.cellTitle.text = item.name
         cell.cellImg.image = item.image
         cell.cellDesc.text = item.description
+        cell.cellAddress.text = item.address
+        
         
         if item.reserved! {
             cell.layer.backgroundColor = UIColor(red: 181/255, green: 36/255, blue: 48/255, alpha: 0.6).cgColor //red

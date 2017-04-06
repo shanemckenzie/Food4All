@@ -48,8 +48,9 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             image.image = donatedItem.image!
             
             //TODO: Load user name
-            donaterNameField.text = donatedItem.name
-
+            donaterNameField.text = donatedItem.businessName
+            
+            
             
             descriptionField.text = donatedItem.description
             
