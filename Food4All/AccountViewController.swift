@@ -49,6 +49,8 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         //set view
         nameTxt.text = user?.businessName
         emailTxt.text = user?.email
+        
+        
        
         //button for slide out menu
         menuBtn.target = self.revealViewController()
@@ -80,32 +82,59 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     
     // MARK: - Navigation
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let selectedItem = donatedItems.getItem(index: indexPath.row)
+        
+                    if selectedItem.reservedBy == user?.userID {
+
+                        self.performSegue(withIdentifier: "ReservedView", sender: selectedItem)
+                        
+                        
+                    } else {
+                        
+                        self.performSegue(withIdentifier: "OwnedView", sender: selectedItem)
+                        
+                        //itemVC.donatedItem = selectedItem
+                    }
+        
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         super.prepare(for: segue, sender: sender)
+        
+//        guard let selectedItemCell = sender as? DonationItemCell else {
+//            fatalError("Unexpected sender: \(sender)")
+//        }
+//        
+//        guard let indexPath = tableView.indexPath(for: selectedItemCell) else {
+//            fatalError("The selected cell is not being displayed by the table")
+//        }
+//        
+//        let selectedItem = donatedItems.getItem(index: indexPath.row)
+        
+        let selectedItem = sender as! DonatedItem
+        
         
         switch(segue.identifier ?? "") {
             
         case "AddItem":
             print("Adding a new donation.")
             
-        case "ShowItemFromAccount":
-            guard let submissionVC = segue.destination as? SubmissionVC else {
+        case "ReservedView":
+            guard let itemVC = segue.destination as? ItemViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-            
-            guard let selectedItemCell = sender as? DonationItemCell else {
-                fatalError("Unexpected sender: \(sender)")
+            itemVC.donatedItem = selectedItem
+
+        case "OwnedView":
+            //let selectedItem = donatedItems.getItem(index: indexPath.row)
+            guard let itemVC = segue.destination as? SubmissionVC else {
+                fatalError("Unexpected destination: \(segue.destination)")
             }
-            
-            guard let indexPath = tableView.indexPath(for: selectedItemCell) else {
-                fatalError("The selected cell is not being displayed by the table")
-            }
-            
-            let selectedItem = donatedItems.getItem(index: indexPath.row)
-            submissionVC.donatedItem = selectedItem
-            
+            itemVC.donatedItem = selectedItem
             
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")
