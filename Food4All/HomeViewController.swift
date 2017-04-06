@@ -63,9 +63,9 @@ class HomeViewController: UITableViewController {
         //sort any added items
         
         //dismiss loading wheel
-        if(donatedItems.getCount() > 0){
-            MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
-        }
+//        if(donatedItems.getCount() > 0){
+//            MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
+//        }
         
         if(isExistingItem && donatedItems.getCount() != 0)
         {
@@ -100,6 +100,9 @@ class HomeViewController: UITableViewController {
                 index += 1
             }
         }
+        
+        //dismiss loading bar
+        MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
     }
     
     override func didReceiveMemoryWarning() {

@@ -173,6 +173,7 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         } else {
             
             reserved = false
+            donatedItem?.unreserveItem()
             checkSwitch()
             
         }
@@ -186,13 +187,13 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         if reserved == true {
             
             reserveSwitch.isOn = true
-            reserveSwitch.isUserInteractionEnabled = false
+            //reserveSwitch.isUserInteractionEnabled = false
             reserveSwitch.alpha = 0.3
             reserveLbl.text = "Reserved"
             
         } else {
             
-            reserveSwitch.isUserInteractionEnabled = true
+            //reserveSwitch.isUserInteractionEnabled = true
             reserveSwitch.alpha = 1.0
             reserveLbl.text = "Reserve"
             
