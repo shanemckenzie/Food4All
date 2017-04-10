@@ -24,6 +24,11 @@ class RegisterViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        view.endEditing(true)
+        super.touchesBegan(touches, with: event)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -31,19 +36,20 @@ class RegisterViewController: UIViewController {
     }
     
     //MARK: ACTIONS
-    @IBAction func regsiterAttempt(_ sender: UIButton) {
+    
+    @IBAction func registerAttempt(_ sender: UIButton) {
         if(nameField.text != "")
         {
             FIRAuth.auth()?.createUser(withEmail: emailField.text!, password: passwordField.text!) { (user, error) in
                 if let error = error {
-                
+                    
                     let showMessagePrompt = UIAlertController(title: "Registration Error", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
-                
+                    
                     showMessagePrompt.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
                     }))
-                
+                    
                     self.present(showMessagePrompt, animated: true, completion: nil)
-                
+                    
                     return
                 }
                 else{
@@ -71,6 +77,7 @@ class RegisterViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
     }
+    
     
     
 

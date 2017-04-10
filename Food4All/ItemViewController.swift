@@ -168,8 +168,15 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         
         if reserveSwitch.isOn {
             reserved = true
-            checkSwitch()
-            donatedItem?.reserveItem()
+            if (donatedItem?.reserveItem())! {
+                checkSwitch()
+            } else {
+                let alert = UIAlertController(title: "Already Reserved", message: "We're sorry, this item has already been reserved by another user.", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                checkSwitch()
+            }
+            
         } else {
             
             reserved = false

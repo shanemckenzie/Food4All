@@ -122,13 +122,34 @@ class DonatedItem {
         print(itemID)
     }
     
-    func reserveItem(){
+    func reserveItem() -> Bool {
         let user = FIRAuth.auth()?.currentUser
+        var currentReservedStatus = 0
         
-        reserved = true
-        reservedBy = user?.uid
+        var ref: FIRDatabaseReference!
+        ref = FIRDatabase.database().reference()
+
+        ref.child("DonationItem").child(self._itemID).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let value = snapshot.value as? NSDictionary
+            
+            currentReservedStatus = (value?["reserved"] as? Int)!
+        }) { (error) in
+            print(error.localizedDescription)
+        }
         
-        updateItem()
+        
+        if currentReservedStatus == 0 {
+            //the item has not been reserved since the user started viewing it, so it will be reserved under their ID
+            reserved = true
+            reservedBy = user?.uid
+            
+            updateItem()
+            return true
+        } else {
+            return false
+        }
+  
     }
     
     func unreserveItem() {
