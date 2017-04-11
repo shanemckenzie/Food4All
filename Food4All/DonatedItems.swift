@@ -50,7 +50,13 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
     }
     
     func getItem(index: Int) -> DonatedItem{
-        return donatedItems[index]
+        
+        if(donatedItems[index] != nil){
+            return donatedItems[index]
+        }
+        else{
+            return donatedItems[0]
+        }
     }
     
     func addItem(item: DonatedItem){

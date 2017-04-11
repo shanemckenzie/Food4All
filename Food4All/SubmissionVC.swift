@@ -36,6 +36,7 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         super.viewDidLoad()
         
         titleTxt.delegate = self
+        addressTxt.delegate = self
         
         // Enable the Save button only if valid fields
         saveButton.isEnabled = false
@@ -120,7 +121,8 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     private func updateSaveButtonState() {
         // Disable the Save button if the text field is empty.
         let text = titleTxt.text ?? ""
-        if(!text.isEmpty)
+        let addressText = addressTxt.text ?? ""
+        if(!text.isEmpty && !addressText.isEmpty)
         {
             saveButton.isEnabled = true
         }
