@@ -37,6 +37,7 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         
         titleTxt.delegate = self
         addressTxt.delegate = self
+        descTxt.delegate = self
         
         // Enable the Save button only if valid fields
         saveButton.isEnabled = false
@@ -130,6 +131,12 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         updateSaveButtonState()
+    }
+    
+    //dismiss keyboard on enter key
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     override func didReceiveMemoryWarning() {

@@ -12,7 +12,7 @@ import FirebaseAuth
 import os.log
 
 
-class InitialViewController: UIViewController {
+class InitialViewController: UIViewController, UITextFieldDelegate {
 
     //MARK: PROPERTIES
     @IBOutlet weak var emailField: UITextField!
@@ -44,7 +44,8 @@ class InitialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        emailField.delegate = self
+        passwordField.delegate = self
 
         // Do any additional setup after loading the view.
     }
@@ -59,6 +60,12 @@ class InitialViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //dismiss keyboard on enter key
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
 
