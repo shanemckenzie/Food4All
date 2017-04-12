@@ -28,11 +28,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
 
         // Do any additional setup after loading the view.
     }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-        view.endEditing(true)
-        super.touchesBegan(touches, with: event)
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -43,6 +38,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        view.endEditing(true)
+        super.touchesBegan(touches, with: event)
     }
     
     //MARK: ACTIONS
@@ -68,7 +68,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                     var ref: FIRDatabaseReference!
                     ref = FIRDatabase.database().reference()
                     let userRef = ref.child("userMeta")
-                    //MARK: TODO ADD BUSINESS LOCATION
                     let newUserData = ["businessName": self.nameField.text! as String] as [String : Any]
                     userRef.child((user?.uid)!).setValue(newUserData)
                     
@@ -87,18 +86,5 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             self.present(alert, animated: true, completion: nil)
         }
     }
-    
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

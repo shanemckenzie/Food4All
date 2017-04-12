@@ -56,16 +56,11 @@ class HomeViewController: UITableViewController {
         menuBtn.action = #selector(SWRevealViewController.revealToggle(_:))
         
         //Update table cells every 5 seconds
-        var timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.repeatingMethod), userInfo: nil, repeats: true)
+        _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.repeatingMethod), userInfo: nil, repeats: true)
     }
  
     @objc func repeatingMethod(){
         //sort any added items
-        
-        //dismiss loading wheel
-//        if(donatedItems.getCount() > 0){
-//            MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
-//        }
         
         if(isExistingItem && donatedItems.getCount() != 0)
         {
@@ -143,7 +138,6 @@ class HomeViewController: UITableViewController {
         let item = donatedItems.getItem(index: indexPath.row)
         print("Loading cells")
         
-        //TODO: DO assign values to cell
         cell.cellTitle.text = item.name
         cell.cellImg.image = item.image
         cell.cellDesc.text = item.description
@@ -192,8 +186,6 @@ class HomeViewController: UITableViewController {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             
-            //let itemViewController = segue.destination as? ItemViewController
- 
             guard let selectedDonationItemCell = sender as? DonationItemCell else {
                 fatalError("Unexpected sender: \(sender)")
             }
@@ -212,9 +204,6 @@ class HomeViewController: UITableViewController {
         
     }
     
-
-    
-    
     //MARK: Actions
     @IBAction func unwindToHome(sender: UIStoryboardSegue) {
         
@@ -226,7 +215,6 @@ class HomeViewController: UITableViewController {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 donatedItems.updateItem(item: donatedItem, index: selectedIndexPath.row)
                 
-                //donatedItems[selectedIndexPath.row] = donatedItem
                 tableView.reloadRows(at: [selectedIndexPath], with: .none)
                 tableView.reloadData()
                 
@@ -241,7 +229,6 @@ class HomeViewController: UITableViewController {
             }
             
             os_log("Trying to save.", log: OSLog.default, type: .debug)
-            //saveDonation()
         }
     }
     

@@ -60,10 +60,6 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
             descTxt.text = donatedItem.description
             itemImg.image = donatedItem.image
             addressTxt.text = donatedItem.address
-            //TODO
-            //addressTxt.text = donatedItem.address
-            
-            //expirationDatePicker.date = donatedItem.expireDate as! Date
             
             let formatter = DateFormatter()
             formatter.dateFormat = "YYYY MMMM dd, h:mm a"
@@ -88,14 +84,10 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
             if let err = error {
                 print(err)
             } else if let placemark = originPlacemark {
-                // Do something with the placemark
                 let placemarkAddress = placemark.addressDictionary
                 
-                //let thoroughfare = placemarkAddress?["Thoroughfare"] as! String?
-                //let city = placemarkAddress?["City"] as! String?
                 let address = self.postalAddressFromAddressDictionary(placemarkAddress as! Dictionary<NSObject, AnyObject>)
                 
-                //self.addressTxt.text = "\(thoroughfare!), \(city!)"
                 if(!self.editingExistingItem)
                 {
                     self.addressTxt.text = address.street
@@ -143,17 +135,7 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    /* REMOVE
-     lazy var expireDateString: String = {
-     let formatter = DateFormatter()
-     formatter.dateFormat = "MMMM dd, h:mm a"
-     
-     return formatter.string(from: self.expireDate as! Date)
-     }()
-     */
-    
-    
+
     // MARK: - Navigation
     
     // This method lets you configure a view controller before it's presented.
@@ -184,11 +166,6 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         //convert the date to an easy to read format
         formatter.dateFormat = "MMMM dd, YYYY, h:mm a"
         print(formatter.string(from: expDate!))
-        
-        
-        
-        //TODO: deal with coordinates
-        // let tempCoord = CLLocationCoordinate2D(latitude: (thisItemsLocation?.coordinate.latitude)!, longitude: (thisItemsLocation?.coordinate.longitude)!)
         
         let user = FIRAuth.auth()?.currentUser
         
@@ -272,11 +249,7 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     
     @IBAction func imgFromLibrary(_ sender: AnyObject) {
         os_log("Picking image from library", log: OSLog.default, type: .debug)
-        //hide keyboard
         
-        //toDoTitle.resignFirstResponder()
-        
-        //UIImagePickerController lets users pick media from photo library
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         
@@ -293,9 +266,6 @@ class SubmissionVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     
     @IBAction func imgFromCamera(_ sender: AnyObject) {
         os_log("Picking image from camera", log: OSLog.default, type: .debug)
-        
-        //hide keyboard
-        //toDoTitle.resignFirstResponder()
         
         //UIImagePickerController lets users pick media from photo library
         let imagePickerController = UIImagePickerController()

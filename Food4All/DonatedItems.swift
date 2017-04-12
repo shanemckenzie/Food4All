@@ -76,8 +76,6 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
         ref.child("DonationItem").child(itemToRemove).removeValue()
         
         donatedItems = donatedItems.filter { $0.itemID != itemToRemove }
-        
-        
     }
     
     func updateItemCoordinates(coordinates: CLLocationCoordinate2D, index: Int){
@@ -86,7 +84,6 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
     
     //MARK: UPDATE FOR SORTING
     func updateItem(item: DonatedItem, index: Int){
-        
         //remove item from index
         donatedItems.remove(at: index)
         
@@ -118,8 +115,6 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
     }
     
     func sortByDistance(){
-        let geoCoder = CLGeocoder()
-        
         //get users location
         // Ask for Authorisation from the User.
         self.locationManager.requestAlwaysAuthorization()
@@ -140,7 +135,6 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
             
             let itemsLocation = CLLocation(latitude: (item.coordinates?.latitude)!, longitude: (item.coordinates?.longitude)!)
             
-            //FIXME: app occassionally crashing here, may just be simulator
             if(myLocation != nil) //does this help?
             {
                 item.distanceFromUser = (myLocation?.distance(from: itemsLocation))!
@@ -170,10 +164,6 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
                     
                     let myTitle: String! = donationItem.value(forKey: "title") as? String
                     let myItemID: String! = donationItem.value(forKey: "itemID") as? String
-                    
-                    //let myPhotoString = donationItem.value(forKey: "image") as? String
-                    //let decodedData = NSData(base64Encoded: myPhotoString!)
-                    //let myImage = UIImage(data: decodedData as! Data)
                     
                     let myDescription = donationItem.value(forKey: "description") as? String
                     let myDate = donationItem.value(forKey: "expiration") as? String
@@ -284,12 +274,9 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
                     
                     let currDay = calendar.startOfDay(for: self.currentDate)
                     let expDay = calendar.startOfDay(for: expDate)
-                    
-                    
-                    
                 
                     if /*expDate < self.currentDate*/expDay < currDay {
-                        //removes items
+                        //removes items based on expiration date
                         self.deleteFromDb(itemToRemove: myItemID)
                         print("DELETING \(myItemID)")
                       
@@ -297,9 +284,6 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
                     
                         let myTitle: String! = donationItem.value(forKey: "title") as? String
                         
-                        //let myPhotoString = donationItem.value(forKey: "image") as? String
-                        //let decodedData = NSData(base64Encoded: myPhotoString!)
-                        //let myImage = UIImage(data: decodedData as! Data)
                         
                         let myDescription = donationItem.value(forKey: "description") as? String
                         
@@ -367,54 +351,10 @@ class DonatedItems: NSObject, CLLocationManagerDelegate, MKMapViewDelegate {
             }
             
             
-            
-            
         }) { (error) in
             print("Failed to load from firebase db")
         }
         
     }
-    
-    
-    /*
-    private func loadSampleDonation() {
-        
-        let photo = UIImage(named: "defaultPhoto")
-        let title = "Sample Donation"
-        let description = "Sample donation description"
-        let title2 = "Sample Donation Request"
-        let description2 = "Requesting donations of ______"
-        let date = NSDate()
-        let date2 = NSDate(timeIntervalSinceNow: -50 * 2000)
-        
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM dd, h:mm a"
-        
-        let dateString: String = formatter.string(from: date as Date)
-        let dateString2: String = formatter.string(from: date2 as Date)
-        let coordinates = CLLocationCoordinate2D(latitude: 50.417433, longitude: -104.594179)
-        let coordinates2 = CLLocationCoordinate2D(latitude: 50.417439, longitude: -104.59417)
-        let coordinates3 = CLLocationCoordinate2D(latitude: 50.495254, longitude: -104.637263)
-        
-        let user = FIRAuth.auth()?.currentUser
-        
-        guard let donation1 = DonatedItem(title, photo!, true, description, dateString, coordinates, (user?.uid)!, "123", "123") else {
-            fatalError("Unable to instantiate object")
-        }
-        
-        guard let donation2 = DonatedItem(title2, photo!, false, description2, dateString, coordinates2, (user?.uid)!, "123", "123") else {
-            fatalError("Unable to instantiate object")
-        }
-        
-        guard let donation3 = DonatedItem("WALMART", photo!, false, description2, dateString2, coordinates3, (user?.uid)!, "123", "123") else {
-            fatalError("Unable to instantiate object")
-        }
-        
-        
-        donatedItems += [donation1, donation2, donation3]
-        
-        
-    }
- */
     
 }

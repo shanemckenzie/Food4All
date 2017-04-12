@@ -50,8 +50,6 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             //TODO: Load user name
             donaterNameField.text = donatedItem.businessName
             
-            
-            
             descriptionField.text = donatedItem.description
             
             reserved = donatedItem.reserved
@@ -69,11 +67,6 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             formatter.dateFormat = "MMMM dd, YYYY, h:mm a"
             
             expiryDateLabel.text = formatter.string(from: expDate!)
-            
-            
-            
-        //TODO: - Add field to item model for reserve and business name (linked to account)
-        //TODO: lock the reserve switch if you are not the user who reserved it or the user who created the item
             
             //set up map
             self.mapView.showsUserLocation = true
@@ -98,9 +91,7 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             
             //add pin for current item location
             let annotation = MKPointAnnotation()
-           // annotation.coordinate = donatedItem.coordinates!
-            //mapView.addAnnotation(annotation)
-            
+
             let address = donatedItem.address
             
             //convert address to coordinates
@@ -119,7 +110,6 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             }
             
             //center map on items location
-            //mapView.setCenter(annotation.coordinate, animated: true)
             if let coor = donatedItem.coordinates {
                 mapView.setCenter(coor, animated: true)
             }
@@ -133,13 +123,10 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     
     //MARK: MAP
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    
         centerMap((donatedItem?.coordinates)!)
     }
     
     func centerMap(_ center:CLLocationCoordinate2D){
-        //self.saveCurrentLocation(center)
-        
         let spanX = 0.007
         let spanY = 0.007
         
@@ -194,13 +181,10 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         if reserved == true {
             
             reserveSwitch.isOn = true
-            //reserveSwitch.isUserInteractionEnabled = false
             reserveSwitch.alpha = 0.3
             reserveLbl.text = "Reserved"
             
         } else {
-            
-            //reserveSwitch.isUserInteractionEnabled = true
             reserveSwitch.alpha = 1.0
             reserveLbl.text = "Reserve"
             

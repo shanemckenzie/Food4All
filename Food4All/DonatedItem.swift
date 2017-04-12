@@ -28,11 +28,6 @@ class DonatedItem {
     var reserved: Bool?
     var reservedBy: String?
     
-    //TODO: the reserve switch on the item listing will check if the item has been reserved
-    //if the item has been reserved, then only the reserver (and possibly the poster?) will be allowed to change it
-    //var reserved: Bool!
-    //var reservedBy: Bool!
-    
     var image: UIImage?
     var expireDate: NSDate?
     var coordinates: CLLocationCoordinate2D?
@@ -108,15 +103,14 @@ class DonatedItem {
         
         ref = FIRDatabase.database().reference()
         
+        //get the business name from the submitting user's id
         ref.child("userMeta").child(self._userID).observeSingleEvent(of: .value, with: { (snapshot) in
-        
             let value = snapshot.value as? NSDictionary
             
             self.businessName = value?["businessName"] as? String ?? ""
         }) { (error) in
             print(error.localizedDescription)
         }
-        
         
         print("ASSIGNINGID")
         print(itemID)
@@ -143,7 +137,6 @@ class DonatedItem {
             //the item has not been reserved since the user started viewing it, so it will be reserved under their ID
             reserved = true
             reservedBy = user?.uid
-            
             updateItem()
             return true
         } else {
@@ -177,11 +170,7 @@ class DonatedItem {
     private func writeToDB(itemID: String){
         ref = FIRDatabase.database().reference()
         let newDonationItemRef = self.ref!.child("DonationItem").child(itemID)
-        
-        // let imageData = UIImagePNGRepresentation(self.image!)!
-        //var base64ImageString: NSString!
-        //base64ImageString = imageData.base64EncodedString() as NSString!
-        
+
         let latitude = self.coordinates?.latitude
         let longitude = self.coordinates?.longitude
         
@@ -190,19 +179,17 @@ class DonatedItem {
                                                    "description": _description as NSString,
                                                    "expiration": _expiration as NSString,
                                                    "userID": _userID as NSString,
-                                                   //"image": base64ImageString as NSString,
-            "latitude": latitude! as NSNumber,
-            "longitude": longitude! as NSNumber,
-            "donated": Int(NSNumber(value:donated!)) as NSNumber,
-            "address": address! as NSString,
-            "reserved": Int(NSNumber(value:reserved!)) as NSNumber,
-            "reservedBy": reservedBy! as NSString
-        ]
+                                                   "latitude": latitude! as NSNumber,
+                                                   "longitude": longitude! as NSNumber,
+                                                   "donated": Int(NSNumber(value:donated!)) as NSNumber,
+                                                   "address": address! as NSString,
+                                                   "reserved": Int(NSNumber(value:reserved!)) as NSNumber,
+                                                   "reservedBy": reservedBy! as NSString
+            ]
         self._itemID = itemID
         newDonationItemRef.setValue(newDonationItemData)
         
         //----Upload image to firebase storage rather than db-----
-        
         // Get a reference to the storage service using the default Firebase App
         let storage = FIRStorage.storage()
         let storageRef = storage.reference()
@@ -213,13 +200,13 @@ class DonatedItem {
         
         // Upload the file to the path "images/rivers.jpg"
         let imageData = UIImageJPEGRepresentation(self.image!, 0.1)! //number refers to compression
-        let uploadTask = imageRef.put(imageData, metadata: nil) { (metadata, error) in
+        _ = imageRef.put(imageData, metadata: nil) { (metadata, error) in
             guard let metadata = metadata else {
                 // Uh-oh, an error occurred!
                 return
             }
             // Metadata contains file metadata such as size, content-type, and download URL.
-            let downloadURL = metadata.downloadURL
+            _ = metadata.downloadURL
         }
     }
     

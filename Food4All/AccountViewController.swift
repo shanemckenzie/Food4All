@@ -49,15 +49,13 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         //set view
         nameTxt.text = user?.businessName
         emailTxt.text = user?.email
-        
-        
        
         //button for slide out menu
         menuBtn.target = self.revealViewController()
         menuBtn.action = #selector(SWRevealViewController.revealToggle(_:))
         
         //Update table cells every 5 seconds
-        var timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(AccountViewController.repeatingMethod), userInfo: nil, repeats: false)
+        _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(AccountViewController.repeatingMethod), userInfo: nil, repeats: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,12 +64,6 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     func repeatingMethod(){
-        
-        //dismiss loading wheel
-        //if(donatedItems.getCount() > 0){
-            //MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
-        //}
-        
         self.tableView.reloadData()
         
         //sort any added items
@@ -84,25 +76,16 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
-    
     // MARK: - Navigation
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let selectedItem = donatedItems.getItem(index: indexPath.row)
         
                     if selectedItem.reservedBy == user?.userID {
-
                         self.performSegue(withIdentifier: "ReservedView", sender: selectedItem)
-                        
-                        
                     } else {
-                        
                         self.performSegue(withIdentifier: "OwnedView", sender: selectedItem)
-                        
-                        //itemVC.donatedItem = selectedItem
                     }
         
     }
@@ -110,17 +93,6 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         super.prepare(for: segue, sender: sender)
-        
-//        guard let selectedItemCell = sender as? DonationItemCell else {
-//            fatalError("Unexpected sender: \(sender)")
-//        }
-//        
-//        guard let indexPath = tableView.indexPath(for: selectedItemCell) else {
-//            fatalError("The selected cell is not being displayed by the table")
-//        }
-//        
-//        let selectedItem = donatedItems.getItem(index: indexPath.row)
-        
         
         switch(segue.identifier ?? "") {
             
@@ -138,7 +110,6 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         case "OwnedView":
             let selectedItem = sender as! DonatedItem
 
-            //let selectedItem = donatedItems.getItem(index: indexPath.row)
             guard let itemVC = segue.destination as? SubmissionVC else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
@@ -148,7 +119,6 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
             fatalError("Unexpected Segue Identifier; \(segue.identifier)")
         }
     }
-    
     
     //MARK: TABLE SECTION
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -171,12 +141,10 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         let item = donatedItems.getItem(index: indexPath.row)
         print("Loading cells")
         
-        //TODO: DO assign values to cell
         cell.cellTitle.text = item.name
         cell.cellImg.image = item.image
         cell.cellDesc.text = item.description
         cell.cellAddress.text = item.address
-        
         
         if item.reserved! {
             cell.layer.backgroundColor = UIColor(red: 181/255, green: 36/255, blue: 48/255, alpha: 0.7).cgColor //red
@@ -189,8 +157,7 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         
         let formatter = DateFormatter()
-        //formatter.dateFormat = "MMMM dd, h:mm a"
-        
+
         //convert the date string back to a date object
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
         let expDate = formatter.date(from: item.expiration)
@@ -212,7 +179,7 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             //remove from DB
             let item = donatedItems.getItem(index: indexPath.row)
-            //tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+
             donatedItems.deleteFromDb(itemToRemove: item.itemID)
             print("Deleted")
 

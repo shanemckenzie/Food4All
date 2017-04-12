@@ -13,7 +13,6 @@ class ViewController: UIViewController {
     //button to open side menu
     @IBOutlet weak var open: UIBarButtonItem!
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
