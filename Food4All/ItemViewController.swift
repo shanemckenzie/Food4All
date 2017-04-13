@@ -35,8 +35,6 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     var myLocation: CLLocationCoordinate2D?
     var mapData: MapData?
     var reserved: Bool?
-    
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,7 +86,6 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             mapView.isZoomEnabled = true
             mapView.isScrollEnabled = true
             
-            
             //add pin for current item location
             let annotation = MKPointAnnotation()
 
@@ -114,6 +111,8 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
                 mapView.setCenter(coor, animated: true)
             }
             
+            centerMap((donatedItem.coordinates)!)
+            
         }
         else{
             print("ERROR: DATA NOT LOADING")
@@ -122,9 +121,6 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     }
     
     //MARK: MAP
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        centerMap((donatedItem?.coordinates)!)
-    }
     
     func centerMap(_ center:CLLocationCoordinate2D){
         let spanX = 0.007
@@ -144,12 +140,9 @@ class ItemViewController: UIViewController, CLLocationManagerDelegate, MKMapView
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   
         super.prepare(for: segue, sender: sender)
-        
     }
  
-    
     //MARK: Actions
     @IBAction func reserveSwitched(_ sender: AnyObject) {
         

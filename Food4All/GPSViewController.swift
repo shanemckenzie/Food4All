@@ -50,15 +50,20 @@ class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         mapView.isZoomEnabled = true
         mapView.isScrollEnabled = true
         
+        
+        
         if let coor = mapView.userLocation.location?.coordinate {
             mapView.setCenter(coor, animated: true)
         }
-        
+        let locValue: CLLocationCoordinate2D = locationManager.location!.coordinate
+        centerMap(locValue)
+
         //button for slide out menu
         menuBtn.target = self.revealViewController()
         menuBtn.action = #selector(SWRevealViewController.revealToggle(_:))
         
         _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(GPSViewController.repeatingMethod), userInfo: nil, repeats: true)
+        
     }
     
     //MARK: ADD PINS TO MAP
@@ -93,8 +98,7 @@ class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
             if(customAnnotation.color == "green"){
                 annotationView.pinTintColor = MKPinAnnotationView.greenPinColor()
-            }
-            else{
+            } else{
                 annotationView.pinTintColor = MKPinAnnotationView.redPinColor()
             }
             return annotationView
@@ -109,7 +113,6 @@ class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
         //find the donated item that corresponds with the pin that was tapped
         for index in 0 ... (donatedItems.getCount() - 1){
-            
             
             if(compareCoordinates(c1: currentAnnotation!, c2: donatedItems.getItem(index: index).coordinates!)){
                 itemIndex = index
@@ -156,7 +159,6 @@ class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             
         //an existing item is pressed
         case "mapShowItem":
-            
             guard let itemViewController = segue.destination as? ItemViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
@@ -171,15 +173,7 @@ class GPSViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        
-        centerMap(locValue)
-    }
-    
     func centerMap(_ center:CLLocationCoordinate2D){
-        //self.saveCurrentLocation(center)
-        
         let spanX = 0.007
         let spanY = 0.007
         
